@@ -1,0 +1,17 @@
+username : epiz_27615052
+password : pfX6Oi6rQl
+kerjapraktek.ga
+port : 21
+hostname : ftpupload.net
+
+akun detail, mysql detail, ftp akun
+
+
+database
+
+name : epiz_27615052_kerjapraktek
+username : epiz_27615052
+host name : sql302.epizy.com
+
+HiBDn4ZTofirp2bazG3H password webhost0000
+zcPc0fBymmc7<L#H password database

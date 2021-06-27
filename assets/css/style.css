@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+*{
+	padding: 0;
+	margin: 0;
+	font-family: "Montserrat";
+}
+
+.container{
+	width: 1148px;
+	margin: 0 auto;
+
+}
+
+nav{
+	display: flex;
+	justify-content: space-between;
+	height: 100px;
+	align-items: center;
+	
+}
+
+/*.nav-brand{
+	font-size: 24px;
+	color: #00a6ed;
+	font-weight: 700;
+
+}*/
+.nav-brand img{
+	width: 60%;
+}
+
+.nav-items{
+	width: 60%;
+	display: flex;
+	justify-content:  flex-end;
+	
+}
+
+.nav-links{
+	width: 60%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	list-style: none;
+}
+
+.nav-link{
+	color: #232323;
+	text-decoration: none;
+	font-size: 16px;
+}
+
+.nav-link.active{
+	font-weight: 400;
+	border-bottom: 3px solid #00a6ed;
+	padding : 10px;
+	
+}
+.nav-link:hover{
+	font-weight: 400;
+	border-radius: 3px solid #00a6ed;
+	transition: 1s;
+}
+
+section.home{
+	display: grid;
+	grid-template-columns: 1.4fr 1fr;
+	grid-template-rows: 1fr;
+}
+
+.text-section{
+	padding-top: 100px;
+}
+h1.title{
+	font-size: 35px;
+	color: #232323;
+
+}
+
+p.namakampus{
+	font-size: 25px;
+	margin: 10px 0;
+
+}
+
+.btn{
+	margin-top: 14px;
+	margin-right: 10px;
+	padding: 18px 18px;
+	background-color: #00a6ed;
+	border-radius: 80px;
+	color: #fff;
+	border: none;
+	font-size: 14px;
+	font-weight: 400;
+	box-shadow: 0 10px 20px #00000038;
+	margin: 24px 0;
+	cursor: pointer;
+	/*font-weight: 700px;*/
+}
+
+.btn:hover {
+	background-color: #4CB1F7;
+}
+.image img{
+
+	width: 530px;
+	border-radius: 50px;
+	box-shadow: 0 10px 20px #00000038;
+}
+
+.text-section a {
+	text-decoration: none;
+}
+
+@media(max-width: 415px){
+	.container{
+		width: 335px;
+		margin: 0 auto;
+		position: relative;
+	}
+
+	/*nav{
+		display: flex;
+		justify-content: space-between;
+		height: 80px;
+		align-items: center;
+	}*/
+	.line{
+		width: 28px;
+		height: 4px;
+		background-color: #232323;
+		margin-bottom: 5px;
+	}
+
+	.nav-items{
+		display: none;
+	}
+
+	section.home{
+		grid-template-columns: 1fr;
+		grid-template-columns: 1.4fr 1fr;
+	}
+
+	.text-section{
+		grid-row: 2/3;
+	}
+
+	.image img{
+		position: relative;
+		height: 200px;
+		width: 335px;
+		border-radius: 10px;
+		box-shadow: 0 10px 20px #00000038;
+	}
+
+	.text-section{
+		padding-top: 24px;
+	}
+
+	h1.title{
+	font-size: 25px;
+	color: #232323;
+
+	}
+
+	p.namakampus{
+		font-size: 18px;
+		margin: 16px 0;
+
+	}
+
+	.btn{
+		margin: 5px auto;
+		/*margin-right: 10px;*/
+		padding: 18px 18px;
+		background-color: #00a6ed;
+		border-radius: 100px;
+		color: #fff;
+		border: none;
+		font-size: 12px;
+		font-weight: 400;
+		box-shadow: 0 10px 20px #00000038;
+		cursor: pointer;
+	}
+
+	.btn:hover {
+	background-color: #4CB1F7;
+	}
+}
