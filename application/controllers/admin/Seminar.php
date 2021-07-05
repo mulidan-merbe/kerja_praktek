@@ -16,8 +16,16 @@ class Seminar extends CI_Controller
 
     public function index()
     {
-        $data['title']  = 'Admin | Pernyataan Siap Seminar';
-        $data['kptiga'] = $this->Model_Kptiga->getAdmin();
+        $data['cektiga'] = $this->Model_Kptiga->getAdmin();
+        foreach ($data['cektiga'] as $data) {
+            $NIM = $data->NIM;
+        }
+        $data = [
+            'title'  => 'Admin | Pernyataan Siap Seminar',
+            'tiga'   => $this->Model_Kptiga->cek_status(),
+            'kptiga' => $this->Model_Kptiga->getAdmin(),
+            'empat'  => $this->Model_Kpempat->getbyNIM($NIM)
+        ];
 
         $this->load->view('admin/tampil_datatiga', $data);
         // }
@@ -55,6 +63,38 @@ class Seminar extends CI_Controller
         }
     }
 
+
+    public function tambah($NIM)
+    {
+        $data['title']  = 'Admin | Jadwal Seminar';
+
+        $data['jadwal'] = $this->Model_Kptiga->jadwalSeminar($NIM);
+        $this->form_validation->set_rules('NIM', 'NIM', 'trim|required');
+        $this->form_validation->set_rules('NIP', 'NIP', 'trim|required');
+        $this->form_validation->set_rules('No_identitas', 'No identitas', 'trim|required');
+        $this->form_validation->set_rules('Hari', 'Hari', 'trim|required');
+        $this->form_validation->set_rules('Tanggal_seminar', 'Tanggal seminar', 'trim|required');
+        $this->form_validation->set_rules('Waktu', 'Waktu', 'trim|required');
+        $this->form_validation->set_rules('Ruangan', 'Ruangan', 'trim|required');
+        if($this->form_validation->run() == false )
+        {
+            $this->load->view('admin/tambah_dataEmpat', $data);
+        } else {
+            $NIM                = htmlspecialchars($this->input->post('NIM', true));
+            $NIP                = htmlspecialchars($this->input->post('NIP', true));
+            $No_identitas       = htmlspecialchars($this->input->post('No_identitas', true));
+            $Hari               = htmlspecialchars($this->input->post('Hari', true));
+            $Tanggal_seminar    = htmlspecialchars($this->input->post('Tanggal_seminar', true));
+            $Waktu              = htmlspecialchars($this->input->post('Waktu', true));
+            $Ruangan            = htmlspecialchars($this->input->post('Ruangan', true));
+            $Tanggal            = date('Y-m-d');
+
+            $this->kpempat->simpanData($NIM, $NIP, $No_identitas, $Hari, $Tanggal_seminar, $Waktu, $Ruangan, $Tanggal );
+            $this->session->set_flashdata('flash', 'Ditambahkan');
+            redirect('admin/seminar/jadwal');
+        }
+    }
+
     public function ubah()
     {
         $Id = $_GET['Id'];
@@ -65,7 +105,7 @@ class Seminar extends CI_Controller
     public function ubahData()
     {
         $data = [
-            'title'     => 'Admin | KP-TI-A03',
+            'title'     => 'Admin | Pernyataan Siap Seminar',
             'syarat'    => $this->Model_Syarat->getSyarat(),
             'jadwal'    => $this->Model_Jadwal->getAll()
         ];

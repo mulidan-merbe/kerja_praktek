@@ -17,7 +17,7 @@
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-6 text-center text-sm-left mb-0">
-                <h3 class="page-title">Data KP-TI-A02C</h3>
+                <h3 class="page-title">Data Konsultasi</h3>
               </div>
             </div>
             <!-- End Page Header -->
@@ -35,6 +35,8 @@
                           <?php if($this->session->flashdata('msg')){echo $this->session->flashdata('msg');} ?>
                           <form method="post" action="<?= base_url('pembimbing/KP_TI_A02C/tambahData') ?>" enctype="multipart/form-data">
                           <?php foreach ($tambah as $data){ ?>
+                          <div class="row">
+                            <div class="col-md-8 offset-md-2">
                               
                           <div class="row">
                           	<div class="col-md-4 col-sm-12">
@@ -84,6 +86,8 @@
                           <p>* Pastikan satuan penilaian adalah <strong>( 1-100 )</strong></p>
                           <button type="submit" class="btn btn-primary">simpan</button>
                            <button type="reset" class="btn btn-info">Reset</button>
+                            </div>
+                          </div>
                           </form>
                         </div>
                       </div>

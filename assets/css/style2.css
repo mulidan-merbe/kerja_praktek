@@ -1,3 +1,18 @@
 .bg-light{
 	background-color: fff !important;
 }
+
+.image img{
+
+	width: 530px;
+	border-radius: 50px;
+	box-shadow: 0 10px 20px #00000038;
+}
+
+h3 {
+	font-weight: bold;
+}
+
+.tombol button {
+	border-radius: 10px solid;
+}

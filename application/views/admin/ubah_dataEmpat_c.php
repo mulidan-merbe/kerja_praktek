@@ -80,39 +80,39 @@
                         $totalsemua	= ($total + $total2 + $total3)
                          ?>
                               <tr>
-                                <td style="text-align: center;" colspan="2"><b>KOMPONEN</b></td>
-                                <td style="text-align: center;" ><b>NILAI</td>
-                                <td style="text-align: center;" ><b>BOBOT</td>
-                                <td style="text-align: center;" ><b>NILAI X BOBOT</td>
+                                <td class="text-center" colspan="2"><b>KOMPONEN</b></td>
+                                <td class="text-center" ><b>NILAI</td>
+                                <td class="text-center" ><b>BOBOT</td>
+                                <td class="text-center" ><b>NILAI X BOBOT</td>
                               </tr>
                               <tr>
-                              	<td style="text-align: center;"><b>Penilaian Lapangan</b></td>
-                                <td style="text-align: center;"><b>Pembimbing Lapangan</b></td>
-                                <td style="text-align: center;"><?= $Rata3 ?></td>
-                                <td style="text-align: center;">40 %</td>
-                                <td style="text-align: center;"><?= $total3 ?></td>
+                              	<td class="text-center"><b>Penilaian Lapangan</b></td>
+                                <td class="text-center"><b>Pembimbing Lapangan</b></td>
+                                <td class="text-center"><?= $Rata3 ?></td>
+                                <td class="text-center">40 %</td>
+                                <td class="text-center"><?= $total3 ?></td>
                               </tr>
                               <tr>
                               <tr>
-                              	<td style="text-align: center;"><b>Penilaian Seminar Kerja Praktek</b></td>
-                                <td style="text-align: center;"><b>Pembimbing Lapangan</b></td>
-                                <td style="text-align: center;"><?= $Rata2 ?></td>
-                                <td style="text-align: center;">20 %</td>
-                                <td style="text-align: center;"><?= $total2 ?></td>
+                              	<td class="text-center"><b>Penilaian Seminar Kerja Praktek</b></td>
+                                <td class="text-center"><b>Pembimbing Lapangan</b></td>
+                                <td class="text-center"><?= $Rata2 ?></td>
+                                <td class="text-center">20 %</td>
+                                <td class="text-center"><?= $total2 ?></td>
                               </tr>
                               <tr>
-                              	<td style="text-align: center;"><b>Penilaian Seminar Kerja Praktek</b></td>
-                                <td style="text-align: center;"><b>Dosen Pembimbing</b></td>
-                                <td style="text-align: center;"><?= $Rata1 ?></td>
-                                <td style="text-align: center;">40 %</td>
-                                <td style="text-align: center;"><?= $total ?></td>
+                              	<td class="text-center"><b>Penilaian Seminar Kerja Praktek</b></td>
+                                <td class="text-center"><b>Dosen Pembimbing</b></td>
+                                <td class="text-center"><?= $Rata1 ?></td>
+                                <td class="text-center">40 %</td>
+                                <td class="text-center"><?= $total ?></td>
                               </tr>
                               <tr>
-                              	<td style="text-align: center;"></td>
-                                <td style="text-align: center;"></td>
-                                <td style="text-align: center;"><b>TOTAL</b></td>
-                                <td style="text-align: center;">100 %</td>
-                                <td style="text-align: center;"><span class="badge badge-info"><?= $totalsemua ?></span></td>
+                              	<td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"><b>TOTAL</b></td>
+                                <td class="text-center">100 %</td>
+                                <td class="text-center"><span class="badge badge-info"><?= $totalsemua ?></span></td>
                               </tr>
 
 

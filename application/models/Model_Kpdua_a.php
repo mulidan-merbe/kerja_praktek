@@ -15,19 +15,17 @@ class Model_Kpdua_a extends CI_Model
           return $query->result();
 	}
 
-	// public function getbyNIP($NIP)
-	// {
-	// 	// return $this->db->get_where('tbl_kpdua_a', ['Konsultasi' => $NIP])->result();
-
-	// 	$this->db->from('tbl_kpdua_a a');
-	// 	$this->db->join('tbl_status s', 's.Id = a.Status');
-	// 	$this->db->join('tbl_proposal p', 'p.NIM = a.NIM');
-	// 	$this->db->where('a.NIP ', $NIP );
-	// 	$this->db->order_by('a.Id_duaA', 'DESC');
-	// 	$query = $this->db->get();
- //          return $query->result();
-
-	// }
+	public function getAll()
+	{
+		$this->db->select('a.Id_duaA, a.NIM, nama,  COUNT(a.NIM) AS total ');
+		$this->db->from('tbl_kpdua_a a');
+		$this->db->join('tbl_proposal p', 'p.NIM = a.NIM');
+		$this->db->group_by('a.NIM');
+		$this->db->order_by('total', 'desc');
+		$query = $this->db->get();
+        return $query->result();
+		
+	}
 
 	public function getbyNIP($NIP)
 	{
@@ -56,7 +54,7 @@ class Model_Kpdua_a extends CI_Model
 	{
 		$this->db->from('tbl_kpdua_a a');
 		$this->db->join('tbl_status s', 's.Id = a.Status');
-		// $this->db->join('tbl_tawaranjudul p', 'p.NIP = a.NIP');
+		$this->db->join('tbl_proposal p', 'p.NIM = a.NIM');
 		$this->db->where(['a.Status ' => 2 ]);
 		$this->db->order_by('a.Id_duaA', 'DESC');
 		$query = $this->db->get();

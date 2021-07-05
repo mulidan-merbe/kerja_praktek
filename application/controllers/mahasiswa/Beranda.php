@@ -7,7 +7,7 @@ class Beranda extends CI_Controller {
         parent::__construct();
 		$this->load->model(['Model_Jadwal', 'Model_Draft','Model_beranda','Model_Kpdua','Model_Kpempat','Model_rencanaTopik']);
 		if(is_null($this->session->userdata('Login'))) {
-	    	redirect(base_url("auth_mahasiswa"));
+	    	redirect(base_url("mahasiswa/login"));
 	    }
 
 	 //    if($this->session->userdata('Mahasiswa') != TRUE) {

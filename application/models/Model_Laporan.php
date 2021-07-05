@@ -16,15 +16,33 @@ class Model_Laporan extends CI_Model{
 		return $this->db->get_where('tbl_laporan', ['NIM' => $NIM])->result();
 	}
 
+	public function getbyNIMlimit($NIM)
+	{
+		$this->db->from('tbl_laporan ');
+		$this->db->limit(1);
+		$this->db->order_by('Id_laporan','DESC');
+		$query = $this->db->get();
+		return $query->result();
+	}
 
 	public function getPembimbing($No_identitas)
 	{
-		return $this->db->get_where('tbl_laporan', ['No_identitas' => $No_identitas])->result();
+		$this->db->from('tbl_laporan l');
+		$this->db->join('tbl_proposal p', 'p.NIM = l.NIM');
+		$this->db->join('tbl_pelaksanaan j', 'j.Id_pelaksanaan = l.Id_pelaksanaan');
+		$this->db->where('No_identitas', $No_identitas);
+		$query = $this->db->get();
+		return $query->result();
 	}
 
 	public function getDosen($NIP)
 	{
-		return $this->db->get_where('tbl_laporan', ['NIP' => $NIP])->result();
+		$this->db->from('tbl_laporan l');
+		$this->db->join('tbl_proposal p', 'p.NIM = l.NIM');
+		$this->db->join('tbl_pelaksanaan j', 'j.Id_pelaksanaan = l.Id_pelaksanaan');
+		$this->db->where('NIP', $NIP);
+		$query = $this->db->get();
+		return $query->result();
 	}
 
 	public function getbydataNIP($NIP)
@@ -56,13 +74,14 @@ class Model_Laporan extends CI_Model{
         return $query->result();
     }
 
-	public function tambahData($Id_pelaksanaan, $NIM, $NIP, $No_identitas, $Berkas, $Tanggal)
+	public function tambahData($Id_pelaksanaan, $NIM, $NIP, $No_identitas, $Keterangan, $Berkas, $Tanggal)
 	{
 		$data = array(
 			'Id_pelaksanaan' => $Id_pelaksanaan,
 			'NIM' 			 => $NIM,
 			'NIP'			 => $NIP,
 			'No_identitas'	 => $No_identitas,
+			'Keterangan'	 => $Keterangan,
 			'Berkas'		 => $Berkas,
 			'Tanggal'		 => $Tanggal
 		);
@@ -70,9 +89,10 @@ class Model_Laporan extends CI_Model{
 		$this->db->insert('tbl_laporan', $data);
 	}
 
-	public function ubahData($NIM, $Berkas, $Tanggal)
+	public function ubahData($NIM, $Keterangan, $Berkas, $Tanggal)
 	{
 		$data = array(
+			'Keterangan'	 => $Keterangan,
 			'Berkas'		=> $Berkas,
 			'Tanggal'		=> $Tanggal
 		);

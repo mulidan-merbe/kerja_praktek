@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class KP_TI_A04 extends CI_Controller {
+class Jadwal extends CI_Controller {
 
 	function __construct() {
         parent::__construct();
@@ -45,7 +45,7 @@ class KP_TI_A04 extends CI_Controller {
 
 			$this->kpempat->simpanData($NIM, $NIP, $No_identitas, $Hari, $Tanggal_seminar, $Waktu, $Ruangan, $Tanggal );
 			$this->session->set_flashdata('flash', 'Ditambahkan');
-			redirect('admin/KP_TI_A04');
+			redirect('admin/jadwal');
 		}
 	}
 
@@ -54,10 +54,10 @@ class KP_TI_A04 extends CI_Controller {
 		
 	}
 
-	public function ubah()
+	public function ubah($Id_Kpempat)
 	{
 		$data['title']  = 'Admin | KP-TI-A04';
-		$Id_Kpempat = $_GET['Id'];
+		// $Id_Kpempat = $_GET['Id'];
 		$data['ubah'] = $this->kpempat->getbyId($Id_Kpempat);
 		$this->load->view('admin/ubah_dataEmpat', $data);
 	}
@@ -91,16 +91,16 @@ class KP_TI_A04 extends CI_Controller {
 
 			$this->kpempat->ubahData($Id_Kpempat, $NIM, $NIP, $No_identitas, $Hari, $Tanggal_seminar, $Waktu, $Ruangan, $Tanggal );
 			$this->session->set_flashdata('flash', 'Diubah');
-			redirect('admin/KP_TI_A04');
+			redirect('admin/jadwal');
 		}
 	}
 
-	public function hapusData()
+	public function hapus($Id_Kpempat)
 	{
-		$Id_Kpempat = $_GET['Id'];
+		// $Id_Kpempat = $_GET['Id'];
 		$this->kpempat->hapusData($Id_Kpempat);
 		$this->session->set_flashdata('flash', 'Dihapus');
-		redirect('admin/KP_TI_A04');
+		redirect('admin/jadwal');
 	}
 
 }

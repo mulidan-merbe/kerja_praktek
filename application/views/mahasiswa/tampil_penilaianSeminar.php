@@ -20,8 +20,12 @@
                 <h3 class="page-title">Data Penilaian</h3>
               </div>
             </div>
-            <!-- End Page Header -->
-            <!-- Default Light Table -->
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a type="button3" class="btn btn-info <?php if($this->uri->segment(2)=="penilaian"){echo "active";} ?>" href="<?= base_url('mahasiswa/penilaian') ?>">Penilaian Seminar 
+              </a>
+              <a type="button3" class="btn btn-info " href="<?= base_url('mahasiswa/beritaAcara') ?>">Berita Acara
+              </a>
+            </div>
             <div class="row">
               <div class="col">
                 <div class="card card-small mb-4">

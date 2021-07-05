@@ -29,7 +29,7 @@
                     <div class="card-body" style="min-height: 375px"> 
                       <?php if($rencanaTopik > 0 ) {?>
                       <div class="alert alert-warning" role="alert">
-                        Rencana Topik <span class="badge badge-pill badge-primary" id="total-data"><?= $rencanaTopik ?></span><a href="<?= base_url('dosen/rencana_topik')?>" class="alert-link float-right" >Lihat</a>
+                        Rencana Topik <span class="badge badge-pill badge-primary" id="total-data"><?= $rencanaTopik ?></span><a href="<?= base_url('dosen/topik/rencana')?>" class="alert-link float-right" >Lihat</a>
                       </div>
                       <?php } ?>
                       <?php if($proposal > 0) { ?>
@@ -39,17 +39,17 @@
                       <?php } ?>
                       <?php if($duaA > 0) { ?>
                       <div class="alert alert-warning" role="alert">
-                        Konsultasi Mahasiswa <span class="badge badge-pill badge-primary"><?= $duaA ?></span><a href="<?= base_url('dosen/KP_TI_A02A') ?>" class="alert-link float-right" >Lihat</a>
+                        Konsultasi Mahasiswa <span class="badge badge-pill badge-primary"><?= $duaA ?></span><a href="<?= base_url('dosen/konsultasi') ?>" class="alert-link float-right" >Lihat</a>
                       </div>
                       <?php } ?>
                       <?php if($tiga > 0) { ?>
                       <div class="alert alert-warning" role="alert">
-                        Pernyataan Siap Seminar <span class="badge badge-pill badge-primary"><?=  $tiga ?></span><a href="<?= base_url('dosen/KP_TI_A03') ?>" class="alert-link float-right" >Lihat</a>
+                        Pernyataan Siap Seminar <span class="badge badge-pill badge-primary"><?=  $tiga ?></span><a href="<?= base_url('dosen/PernyataanSiapSeminar') ?>" class="alert-link float-right" >Lihat</a>
                       </div>
                       <?php } ?>
                       <?php if($empat > 0) { ?>
                       <div class="alert alert-info" role="alert">
-                        Jadwal Seminar <span class="badge badge-pill badge-primary"><?=  $empat ?></span><a href="<?= base_url('dosen/KP_TI_A04') ?>" class="alert-link float-right" >Lihat</a>
+                        Jadwal Seminar <span class="badge badge-pill badge-primary"><?=  $empat ?></span><a href="<?= base_url('dosen/seminar') ?>" class="alert-link float-right" >Lihat</a>
                       </div>
                       <?php } ?>
                       <?php if($laporan > 0) { ?>

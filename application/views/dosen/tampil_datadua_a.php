@@ -14,14 +14,29 @@
           <!-- / .main-navbar -->
           <div class="main-content-container container-fluid px-4">
           <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+          <?= $this->session->unset_userdata('flash'); ?>
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-6 text-center text-sm-left mb-0">
                 <h3 class="page-title">Data Konsultasi Mahasiswa</h3>
               </div>
             </div>
-            <!-- End Page Header -->
-            <!-- Default Light Table -->
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button2" class="btn btn-info <?php if($this->uri->segment(2)=="konsultasi"){echo "active";} ?>">Konsultasi
+                    <?php if($duaA > 0) {  ?>
+                        <span class="badge badge-light">
+                          <?= $duaA ?>
+                        </span>
+                    <?php } ?>
+              </button>
+              <a type="button3" class="btn btn-info" href="<?= base_url('dosen/PernyataanSiapSeminar') ?>">Pernyataan Siap Seminar
+                <?php if($tiga > 0) {  ?>
+                        <span class="badge badge-light">
+                          <?= $tiga ?>
+                        </span>
+                 <?php } ?>
+              </a>
+            </div>
             
             <div class="row">
               <div class="col-md-12">
@@ -65,11 +80,7 @@
                           </td>
                           <td class="text-center">
                             <div class="btn-group btn-group-sm " role="group" aria-label="Table row actions">
-                              <a   class="mb-2 btn  btn-success"  href="<?= base_url('')?>dosen/KP_TI_A02A/detail/<?= $data->NIM ?>" data-placement="top" title="Lihat" ><i class="fas fa-eye"></i></a>
-                              <!-- <a   class="mb-2 btn  btn-success" data-toggle="modal" data-target="#modal-lihat<?=$data->Id_duaA; ?>" data-placement="top" title="Lihat" ><i class="fas fa-eye"></i></a> -->
-                              <!-- <a class="mb-2 btn btn-primary " data-toggle="modal" data-target="#modal-edit<?=$data->Id_duaA; ?>" data-placement="top" ><i class="material-icons">add</i></a> -->
-                             <!--  <a class="mb-2 btn  btn-info " data-toggle="modal" data-target="#modal-edit<?=$data->Id_duaA; ?>" data-placement="top" title="Status"><i class="material-icons">&#xE254;</i></a> -->
-                              
+                              <a   class="mb-2 btn  btn-success"  href="<?= base_url('')?>dosen/konsultasi/detail/<?= $data->NIM ?>" data-placement="top" title="Lihat" ><i class="fas fa-eye"></i></a>
                             </div>
                           </td> 
                         </tr>

@@ -18,11 +18,15 @@
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-                <h3 class="page-title">Data Rencana Topik</h3>
+                <h3 class="page-title">Data Topik</h3>
               </div>
             </div>
-            <!-- End Page Header -->
-            <!-- Default Light Table -->
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a type="button3" class="btn btn-info " href="<?= base_url('mahasiswa/tawaran_topik') ?>">Tawaran Topik
+              </a>
+              <a type="button3" class="btn btn-info <?php if($this->uri->segment(2)=="rencana_topik"){echo "active";} ?>" href="<?= base_url('mahasiswa/rencana_topik') ?>">rencana topik
+              </a>
+            </div>
             <div class="row">
               <div class="col">
                 <div class="card card-small mb-4" style="min-height: 410px;">
@@ -34,12 +38,12 @@
                     <table id="dtBasicExample" class="table mb-0 table-bordered">
                       <thead class="">
                         <tr>
-                          <th  style="text-align: center"><b>No. </b></th>
-                          <th style="text-align: center"><b>Nama</b></th>
-                          <th style="text-align: center"><b>Topik</b></th>
-                          <th style="text-align: center"><b>Instansi</b></th>
-                          <th style="text-align: center"><b>Status</b></th>
-                          <!-- <th style="text-align: center"><b>Aksi</b></th> -->
+                          <th  class="text-center col-1"><b>No. </b></th>
+                          <th class="text-center col-4"><b>Nama</b></th>
+                          <th class="text-center"><b>Topik</b></th>
+                          <th class="text-center"><b>Instansi</b></th>
+                          <th class="text-center"><b>Status</b></th>
+                          <!-- <th class="text-center"><b>Aksi</b></th> -->
                         </tr>
                       </thead>
                       <tbody>
@@ -47,12 +51,12 @@
                         $no = 1;
                         foreach ($rencanaTopik as $data) { ?>
                         <tr>
-                          <td style="text-align: center"><?= $no++ ?>.</td>
-                          <td style="text-align: center"><?= $data->Username?></td>
-                          <td style="text-align: center"><?= $data->topik ?></td>
-                          <td style="text-align: center"><?= $data->Instansi?></td>
-                          <td style="text-align: center"><?= $data->Icon?></td>
-                          <!-- <td style="text-align: center">
+                          <td class="text-center"><?= $no++ ?>.</td>
+                          <td class=""><?= $data->Username?></td>
+                          <td class=""><?= $data->topik ?></td>
+                          <td class="text-center"><?= $data->Instansi?></td>
+                          <td class="text-center"><?= $data->Icon?></td>
+                          <!-- <td class="text-center">
                           <div class="btn-group btn-group-sm" role="group" aria-label="Table row actions">
                             <?php if($data->Status == 2) { ?>
                                <a class="btn btn-white" disabled>

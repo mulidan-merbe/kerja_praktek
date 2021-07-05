@@ -14,14 +14,21 @@
           <!-- / .main-navbar -->
           <div class="main-content-container container-fluid px-4">
           <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+          <?= $this->session->unset_userdata('flash'); ?>
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-6 text-center text-sm-left mb-0">
-                <h3 class="page-title">Data KP-TI-A04A</h3>
+                <h3 class="page-title">Data Seminar</h3>
               </div>
             </div>
-            <!-- End Page Header -->
-            <!-- Default Light Table -->
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a type="button3" class="btn btn-info " href="<?= base_url('dosen/seminar') ?>">Jadwal Seminar 
+              </a>
+              <a type="button3" class="btn btn-info <?php if($this->uri->segment(3)=="penilaian"){echo "active";} ?>" href="<?= base_url('dosen/seminar/penilaian') ?>">Penilaian Seminar
+              </a>
+              <a type="button3" class="btn btn-info " href="<?= base_url('dosen/KP_TI_A04C') ?>">Berita Acara
+              </a>
+            </div>
             <div class="row">
               <div class="col">
                 <div class="card card-small mb-4">
@@ -30,13 +37,12 @@
                   </div>
                 <div class="table-responsive">
                    <div class="card-body">
-                      <a href="<?= base_url('dosen/KP_TI_A04A/jadwal') ?>" class="mb-2 btn  btn-accent btn-primary mr-2" ><i class="fas fa-plus">&nbsp</i>Tambah</a>
                       <table id="dtBasicExample" class=" table  mb-0 table-bordered table-striped">
                       <thead class="">
                         <tr>
                           <th  class="text-center"><b>No. </b></th>
                           <th  class="text-center"><b>NIM </b></th>
-                          <th  class="text-center"><b>Nama </b></th>
+                          <th  class="text-center col-5"><b>Nama </b></th>
                           <th class="text-center"><b>Total </b></th>
                           <th class="text-center"><b>Rata-rata </b></th>
                           <th class="text-center"><b>Tanggal </b></th>
@@ -57,7 +63,7 @@
                         <tr>
                           <td class="text-center"><?= $no++ ?>.</td>
                           <td class="text-center"><?= $data->NIM ?></td>
-                          <td class="text-center"><?= $data->nama ?></td>
+                          <td class=""><?= $data->nama ?></td>
                            <!-- <td class="text-center"><?= $data->nama ?></td> -->
                           <td class="text-center"><span class="badge badge-success"><?= $Total; ?></span></td>
                           <td class="text-center"><span class="badge badge-info"><?= $Rata; ?></span></td>
@@ -65,7 +71,10 @@
                           <td class="text-center">
                             <div class="btn-group btn-group-sm " role="group" aria-label="Table row actions">
                               <a class=" btn  btn-success " data-toggle="modal" data-target="#modal-lihat<?=$Id_empatA; ?>"><i class="fas fa-eye"></i></a>
-                              <a class=" btn  btn-info "  href="<?= base_url() ?>dosen/KP_TI_A04A/ubah/<?= $data->NIM?>"><i class="material-icons">&#xE254;</i></a>
+                              <a class=" btn  btn-info "  href="<?= base_url() ?>dosen/penilaian/ubah/<?= $data->NIM?>"><i class="material-icons">&#xE254;</i></a>
+                              <a href="<?= base_url() ?>dosen/KP_TI_A04C/detail/<?= $data->NIM?>" class="btn  btn-primary " >
+                                <i class="material-icons">add</i>
+                              </a>
                             </div>
                           </td>
                         </tr>
@@ -98,7 +107,6 @@
                     <div class="col-md-6"></div>
                     <div class="col-md-6"></div>
                   </div>
-                  <form method="post" action="<?= base_url('dosen/rencana_judul/updateRencanajudul') ?>" enctype="multipart/form-data">
                     <div class="modal-body mx-3">
                       <table class="table  mb-0 table-bordered">
                               <tr>
@@ -125,9 +133,8 @@
                     </div>
                    
                     <div class="modal-footer d-flex justify-content-center">
-                      <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">TUTUP</button>
+                      <button type="button" class="btn btn btn-default" data-dismiss="modal">TUTUP</button>
                     </div>
-                  </form>
                 </div>
               </div>
             </div>

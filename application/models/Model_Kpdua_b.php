@@ -19,6 +19,7 @@ class Model_Kpdua_b extends CI_Model
 	{
 		$this->db->from('tbl_kpdua_b b');
 		$this->db->join('tbl_status s', 's.Id = b.Status');
+		$this->db->join('tbl_proposal l', 'l.NIM = b.NIM');
 		$this->db->join('tbl_pembimbing_lapangan p', 'p.Id = b.Id_pembimbing');
 		$this->db->limit(1);
 		$this->db->where([' b.NIM ' => $NIM ]);
@@ -29,11 +30,31 @@ class Model_Kpdua_b extends CI_Model
 
 	public function getbyNo_identitas($No_identitas)
 	{
-		$this->db->from('tbl_kpdua_b b');
-		$this->db->join('tbl_status s', 's.Id = b.Status');
-		$this->db->join('tbl_proposal p', 'p.NIM = b.NIM');
-		$this->db->where('b.No_identitas', $No_identitas);
-		$this->db->order_by('b.Id_duaB', 'DESC');
+		// $this->db->from('tbl_kpdua_b b');
+		// $this->db->join('tbl_status s', 's.Id = b.Status');
+		// $this->db->join('tbl_proposal p', 'p.NIM = b.NIM');
+		// $this->db->where('b.No_identitas', $No_identitas);
+		// $this->db->order_by('b.Id_duaB', 'DESC');
+		// $query = $this->db->get();
+  //       return $query->result();
+
+        $this->db->select('a.Id_duaB, a.NIM, p.nama,  COUNT(a.NIM) AS total ');
+		$this->db->from('tbl_kpdua_b a');
+		$this->db->join('tbl_proposal p', 'p.NIM = a.NIM');
+		$this->db->group_by('a.NIM');
+		$this->db->where('a.No_identitas ', $No_identitas );
+		$this->db->order_by('total', 'desc');
+		$query = $this->db->get();
+        return $query->result();
+	}
+
+	public function getAll()
+	{
+        $this->db->select('a.Id_duaB, a.NIM, p.nama,  COUNT(a.NIM) AS total ');
+		$this->db->from('tbl_kpdua_b a');
+		$this->db->join('tbl_proposal p', 'p.NIM = a.NIM');
+		$this->db->group_by('a.NIM');
+		$this->db->order_by('total', 'desc');
 		$query = $this->db->get();
         return $query->result();
 	}
@@ -51,7 +72,7 @@ class Model_Kpdua_b extends CI_Model
 	{
 		$this->db->from('tbl_kpdua_b b');
 		$this->db->join('tbl_status s', 's.Id = b.Status');
-		// $this->db->join('tbl_pembimbing_lapangan p', 'p.No_identitas = b.No_identitas');
+		$this->db->join('tbl_proposal p', 'p.NIM = b.NIM');
 		$this->db->where(['b.Status ' => 2 ]);
 		$this->db->order_by('b.Id_duaB', 'DESC');
 		$query = $this->db->get();
@@ -75,6 +96,15 @@ class Model_Kpdua_b extends CI_Model
 		$query = $this->db->get('tbl_kpdua_b');
 		return $query->result();
 	}
+
+	public function status($Id_duaB, $Status)
+    {
+        $data = array (
+            'Status'            => $Status,
+            );        
+        $this->db->where('Id_duaB', $Id_duaB);
+        $this->db->update('tbl_kpdua_b', $data);
+    }
 
 	public function getDistincPembimbing($No_identitas)
 	{

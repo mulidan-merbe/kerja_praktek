@@ -17,11 +17,19 @@
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-                <h3 class="page-title">Data KP-TI-A04</h3>
+                <h3 class="page-title">Data Seminar</h3>
               </div>
             </div>
-            <!-- End Page Header -->
-            <!-- Default Light Table -->
+            <div class="btn-group mb-2" role="group" aria-label="Basic example">
+              <a type="button2" class="btn btn-info <?php if($this->uri->segment(2)=="seminar"){echo "active";} ?>" href="<?= base_url('admin/seminar') ?>">pernyataan siap seminar
+              <!-- <?php if($tiga > 0) {  ?>
+                        <span class="badge badge-light">
+                          <?= $tiga ?>
+                        </span>
+                    <?php } ?> -->
+              </a>
+              <a type="button3" class="btn btn-info " href="<?= base_url('admin/seminar/jadwal') ?>">jadwal seminar</a>
+            </div>
              <div class="row">
               <div class="col">
                 <div class="card card-small mb-4">
@@ -33,10 +41,13 @@
                     <?php if($this->session->flashdata('msg')){echo $this->session->flashdata('msg');} ?>
                       <form method="post" action="<?= base_url('admin/KP_TI_A04/tambah') ?>" enctype="multipart/form-data">
                           <div class="row"> 
+                            <?php foreach ($jadwal as $data){ ?>
                             <div class="col-md-4 col-sm-12">
+                                
+                             
                             	<div class="form-group">
                                  <label>NIM :</label>
-                                 <input type="text" name="NIM" id="form2" class="form-control" placeholder="NIM" value="<?= set_value('NIM') ?>">
+                                 <input type="text" name="NIM" id="form2" class="form-control" placeholder="NIM" value="<?= $data->NIM ?>">
                                  <?= form_error('NIM', '<small class="text-danger pl-3">', '</small>'); ?>
                               </div>
                               
@@ -44,7 +55,7 @@
                             <div class="col-md-4 col-sm-12">
                             	<div class="form-group">
                                  <label >NIP:</label>
-                                 <input type="text" name="NIP" id="form2" class="form-control" placeholder="NIP" value="<?= set_value('NP') ?>">
+                                 <input type="text" name="NIP" id="form2" class="form-control" placeholder="NIP" value="<?= $data->NIP ?>">
                                  <?= form_error('NIP', '<small class="text-danger pl-3">', '</small>'); ?>
                               </div>
                               
@@ -52,10 +63,11 @@
                             <div class="col-md-4 col-sm-12 "> 
                               <div class="form-group">
                                 <label >No Identitas  :</label>
-                                <input type="text" name="No_identitas" id="form1" class="form-control" placeholder="No identitas " value="<?= set_value('No_identitas') ?>">
+                                <input type="text" name="No_identitas" id="form1" class="form-control" placeholder="No identitas " value="<?= $data->No_identitas ?>">
                                 <?= form_error('No_identitas', '<small class="text-danger pl-3">', '</small>'); ?>
                               </div>
                           	</div>
+                             <?php } ?>
                           </div>
                           <div class="row">
                           	<div class="col-md-6 col-sm-12">

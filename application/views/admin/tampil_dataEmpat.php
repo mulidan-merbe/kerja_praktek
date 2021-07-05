@@ -14,6 +14,7 @@
           <!-- / .main-navbar -->
           <div class="main-content-container container-fluid px-4">
           <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+          <?= $this->session->unset_userdata('flash'); ?>
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
@@ -22,7 +23,7 @@
             </div>
             <div class="btn-group mb-2" role="group" aria-label="Basic example">
               <a type="button2" class="btn btn-info " href="<?= base_url('admin/seminar') ?>">pernyataan siap seminar</a>
-              <a type="button3" class="btn btn-info <?php if($this->uri->segment(3)=="jadwal"){echo "active";} ?>" href="<?= base_url('admin/seminar/jadwal') ?>">jadwal seminar</a>
+              <a type="button3" class="btn btn-info <?php if($this->uri->segment(2)=="jadwal"){echo "active";} ?>" href="<?= base_url('admin/jadwal') ?>">jadwal seminar</a>
             </div>
             <div class="row">
               <div class="col">
@@ -32,13 +33,12 @@
                   </div>
                 <div class="table-responsive">
                    <div class="card-body">
-                      <a href="<?= base_url('admin/KP_TI_A04/tambah') ?>" class="btn btn-primary" ><i class="fas fa-plus">&nbsp</i>Tambah</a>
                       <table id="dtBasicExample" class=" table  mb-0 table-bordered table-striped">
                       <thead class="">
                         <tr>
                           <th  class="text-center"><b>No. </b></th>
                           <th  class="text-center"><b>NIM </b></th>
-                          <th  class="text-center"><b>Nama </b></th>
+                          <th  class="text-center col-4"><b>Nama </b></th>
                           <th class="text-center"><b>Hari </b></th>
                           <th class="text-center"><b>Tanggal Seminar </b></th>
                           <th class="text-center"><b>Waktu</b></th>
@@ -62,10 +62,10 @@
                           <td class="text-center"><?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal)));?></td>
                           <td class="text-center">
                             <div class="btn-group btn-group-sm " role="group" aria-label="Table row actions">
-                              <a class="mb-2 btn btn-info "  href="<?= base_url() ?>admin/KP_TI_A04/ubah?Id=<?= $data->Id_Kpempat?>">
+                              <a class="mb-2 btn btn-info "  href="<?= base_url() ?>admin/jadwal/ubah/<?= $data->Id_Kpempat?>">
                                 <i class="material-icons">&#xE254;</i>
                               </a>
-                              <a class="mb-2 btn btn-danger tombol-hapus" href="<?= base_url() ?>admin/KP_TI_A04/hapusData?Id=<?= $data->Id_Kpempat?>">
+                              <a class="mb-2 btn btn-danger tombol-hapus" href="<?= base_url() ?>admin/jadwal/hapus/<?= $data->Id_Kpempat?>">
                                 <i class="material-icons">&#xE872;</i>
                               </a>
                             </div> 

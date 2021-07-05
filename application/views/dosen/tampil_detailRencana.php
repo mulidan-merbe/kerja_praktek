@@ -17,7 +17,7 @@
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-6 text-center text-sm-left mb-0">
-                <h3 class="page-title">Data Rencana Topik</h3>
+                <h3 class="page-title">Data Topik</h3>
               </div>
             </div>
             <!-- End Page Header -->

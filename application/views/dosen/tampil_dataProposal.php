@@ -14,6 +14,7 @@
           <!-- / .main-navbar -->
           <div class="main-content-container container-fluid px-4">
           <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+          <?= $this->session->unset_userdata('flash'); ?>
             <!-- Page Header -->
           <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-6 text-center text-sm-left mb-0">

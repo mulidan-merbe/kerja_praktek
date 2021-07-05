@@ -33,10 +33,11 @@
                       <table id="dtBasicExample" class=" table  mb-0 table-bordered table-striped">
                       <thead class="">
                         <tr>
-                          <th style="text-align: center"><b>No.</b></th>
-                          <th  style="text-align: center"><b>NIM </b></th>
-                          <th  style="text-align: center"><b>Berkas </b></th>
-                          <th  style="text-align: center"><b>Tanggal </b></th>
+                          <th class="text-center"><b>No.</b></th>
+                          <th  class="text-center"><b>NIM </b></th>
+                          <th  class="text-center"><b>NIM </b></th>
+                          <th  class="text-center"><b>Berkas </b></th>
+                          <th  class="text-center"><b>Tanggal </b></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -45,10 +46,11 @@
                         foreach ($laporan as $data){ 
                         ?>
                         <tr>
-                        	<td style="text-align: center"><?= $no++ ?>.</td>
-                          	<td style="text-align: center"><?= $data->NIM ?></td>
-                          	<td style="text-align: center"><a class="btn btn-sm btn-light" href="<?= base_url('assets/laporan/file/').$data->Berkas ?>"><img width="30" class="user-avatar rounded-circle mr-2" src="<?= base_url('assets/back')?>/images/avatars/zipp.svg" alt="User Avatar"></a></td>
-                          	<td style="text-align: center"><?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal ))); ?></td>
+                        	<td class="text-center"><?= $no++ ?>.</td>
+                          	<td class="text-center"><?= $data->NIM ?></td>
+                            <td class="col-5"><?= $data->nama ?></td>
+                          	<td class="text-center"><a class="btn btn-sm btn-light" href="<?= base_url('assets/laporan/file/').$data->Berkas ?>"><img width="30" class="user-avatar rounded-circle mr-2" src="<?= base_url('assets/back')?>/images/avatars/zipp.svg" alt="User Avatar"></a></td>
+                          	<td class="text-center"><?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal ))); ?></td>
                         </tr>
                         <?php } ?>
                       </tbody>

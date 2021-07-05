@@ -16,7 +16,7 @@ class Laporan extends CI_Controller {
     {
     	$NIM  = $this->session->userdata('NIM');
     	$data = [
-            'title'	            => 'Mahasiswa | Laporan KP',
+            'title'	            => 'Mahasiswa | Laporan ',
             'laporan'           => $this->Model_Laporan->getbyNIM($NIM),
             'cekBA'             => $this->Model_Kpempat_c->cekStatus($NIM),
             'catatanDosen'      => $this->Model_Kpempat_a->getbyNIM($NIM),
@@ -31,7 +31,7 @@ class Laporan extends CI_Controller {
     {
         $NIM    = $this->session->userdata('NIM');
         $data = [
-            'title'         => 'Mahasiswa | Laporan KP',
+            'title'         => 'Mahasiswa | Laporan ',
             'dosen'         => $this->Model_Proposal->getbyNIM($NIM),
             'pembimbing'    => $this->Model_Pembimbing_lapangan->getbyNIM($NIM),
             'jadwal'        => $this->Model_Jadwal->getAll()
@@ -39,6 +39,7 @@ class Laporan extends CI_Controller {
 
 
         $this->form_validation->set_rules('NIM', 'NIM', 'trim|required');
+        $this->form_validation->set_rules('Keterangan', 'Keterangan', 'trim|required');
 
         if($this->form_validation->run() == false) 
         { 
@@ -62,10 +63,11 @@ class Laporan extends CI_Controller {
             $NIM                = $this->session->userdata('NIM');
             $NIP                = $this->input->post('NIP');
             $No_identitas       = $this->input->post('No_identitas');
+            $Keterangan         = $this->input->post('Keterangan');
             $Berkas             = $result['file_name'];
             $Tanggal            = date('Y-m-d');
 
-            $this->Model_Laporan->tambahData($Id_pelaksanaan, $NIM, $NIP, $No_identitas,  $Berkas, $Tanggal);
+            $this->Model_Laporan->tambahData($Id_pelaksanaan, $NIM, $NIP, $No_identitas, $Keterangan,  $Berkas, $Tanggal);
             $this->session->set_flashdata('flash', 'Ditambahkan');
              redirect('mahasiswa/laporan');
             }
@@ -73,17 +75,17 @@ class Laporan extends CI_Controller {
     }
 
 
-    public function ubah()
+    public function ubah($NIM)
     {
-        $data['title']  = 'Mahasiswa | Laporan KP';
-        $NIM    = $_GET['NIM'];
+        $data['title']  = 'Mahasiswa | Laporan ';
+        // $NIM    = $_GET['NIM'];
         $data['ubah']   = $this->Model_Laporan->getbyNIM($NIM);
         $this->load->view('mahasiswa/ubah_dataLaporan', $data);
     }
 
     public function ubahData()
     {
-        $data['title']  = 'Mahasiswa | Laporan KP';
+        $data['title']  = 'Mahasiswa | Laporan ';
         $NIM    = $this->input->post('NIM');
         $data['ubah']   = $this->Model_Laporan->getbyNIM($NIM);
         
@@ -103,6 +105,7 @@ class Laporan extends CI_Controller {
             }else{
                     
                 $NIM         = $this->input->post('NIM');
+                $Keterangan  = $this->input->post('Keterangan');
                 $data        = $this->Model_Laporan->getDatabyNIM($NIM);
                 $proses      = 'assets/laporan/file/'.$data->Berkas;
                 unlink($proses);
@@ -111,17 +114,18 @@ class Laporan extends CI_Controller {
                 $Berkas          = $result['file_name'];
                 $Tanggal        = date('Y-m-d');
 
-                $this->Model_Laporan->ubahData($NIM, $Berkas, $Tanggal);
+                $this->Model_Laporan->ubahData($NIM, $Keterangan, $Berkas, $Tanggal);
                 $this->session->set_flashdata('flash', 'Diubah');
                 redirect('mahasiswa/laporan');
                 }
         // Kondisi dimana tidak ada file terbaru yg diuploud. Maka yg diuploud adalah file yg lama
         }else {
             $NIM            = $this->input->post('NIM');
+            $Keterangan     = $this->input->post('Keterangan');
             $Berkas         = $this->input->post('old_file');
             $Tanggal        = date('Y-m-d');
 
-            $this->Model_Laporan->ubahData($NIM, $Berkas, $Tanggal);
+            $this->Model_Laporan->ubahData($NIM, $Keterangan, $Berkas, $Tanggal);
             $this->session->set_flashdata('flash', 'Diubah');
             redirect('mahasiswa/laporan');
         }

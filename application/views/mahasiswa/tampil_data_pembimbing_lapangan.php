@@ -27,7 +27,7 @@
                   <div class="card-header border-bottom">
                     <h6 class="m-0">Surat Pengatar</h6>
                   </div>
-                   <div class="card-body" style="min-height: 300px">
+                   <div class="card-body" style="min-height: 375px">
                       <div class="alert alert-info" role="alert">
                         Surat Pengantar untuk tempat kerja praktek.
                       </div>
@@ -47,7 +47,7 @@
                     <h6 class="m-0">Pembimbing Lapangan</h6>
                   </div>
                   <div class="table-responsive">
-                   <div class="card-body" style="min-height: 300px;">
+                   <div class="card-body" style="min-height: 375px;">
                     <?php foreach ($pembimbing as $data) {
                       $Id_proposal = $data->Id_proposal;
                      ?>

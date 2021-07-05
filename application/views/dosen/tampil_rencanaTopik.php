@@ -22,7 +22,13 @@
             </div>
             <div class="btn-group mb-2" role="group" aria-label="Basic example">
               <a type="button2" class="btn btn-info " href="<?= base_url('dosen/topik') ?>">Tawaran</a>
-              <a type="button3" class="btn btn-info <?php if($this->uri->segment(3)=="rencana"){echo "active";} ?>" href="<?= base_url('dosen/topik/rencana') ?>">Rencana</a>
+              <a type="button3" class="btn btn-info <?php if($this->uri->segment(3)=="rencana"){echo "active";} ?>" href="<?= base_url('dosen/topik/rencana') ?>">Rencana
+              <?php if($status > 0) {  ?>
+                        <span class="badge badge-light">
+                          <?= $status ?>
+                        </span>
+                 <?php } ?>
+              </a>
             </div>
             <div class="row">
               <div class="col">

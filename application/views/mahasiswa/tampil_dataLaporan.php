@@ -35,28 +35,26 @@
                         Catatan Laporan Seminar <span class="badge badge-pill badge-primary"></span><a href="<?= base_url('mahasiswa/KP_TI_A04') ?>" data-toggle="modal" data-target="#modal-lihat" class="alert-link" style="float: right;">Lihat</a>
                       </div>
                       <hr>
-                      <?php foreach ($laporan as $data) {
-                      $Id_pelaksanaan = $data->Id_pelaksanaan;
-                      ?>
 
                       <?php foreach ($jadwal as $data) {
-                      $Id_pelaksanaan2 = $data->Id_pelaksanaan;
+                      $tanggal_sekarang = date('Y-m-d');
+                      $tanggal = $data->Tanggal_selesai;
                       ?>
-                      <?php } ?>
+                      
                         <?php } ?>
-                      <?php if($laporan) { ?>
-                        <?php if($Id_pelaksanaan == $Id_pelaksanaan2) { ?>
+                     
+                        <?php if($tanggal_sekarang == $tanggal) { ?>
                           <button type="button" class="btn btn-primary" disabled><i class="fas fa-plus">&nbsp</i>Tambah</button>
                         <?php } else { ?>
-                         <a href="<?= base_url('mahasiswa/laporan/tambah') ?>" class="mb-2 btn btn-primary mr-2" ><i class="fas fa-plus">&nbsp</i>Tambah</a>
+                          <a href="<?= base_url('mahasiswa/laporan/tambah') ?>" class="mb-2 btn btn-primary mr-2" ><i class="fas fa-plus">&nbsp</i>Tambah</a>
                         <?php } ?>
-                      <?php } else { ?>
-                        <button type="button" class="btn btn-primary" disabled><i class="fas fa-plus">&nbsp</i>Tambah</button>
-                       <?php } ?>
+                     
                       <table id="dtBasicExample" class=" table  mb-0 table-bordered">
                       <thead class="">
                         <tr>
+                          <th  class="text-center"><b>No </b></th>
                           <th  class="text-center"><b>NIM </b></th>
+                          <th  class="text-center"><b>Keterangan </b></th>
                           <th  class="text-center"><b>Berkas </b></th>
                           <th  class="text-center"><b>Tanggal </b></th>
                           <th class="text-center"><b>Aksi</b></th>
@@ -68,12 +66,14 @@
                         foreach ($laporan as $data){ 
                         ?>
                         <tr>
+                          <td class="text-center"><?= $no++ ?></td>
                           <td class="text-center"><?= $data->NIM ?></td>
+                          <td class="text-center"><span class="badge badge-info"><?= $data->Keterangan ?></span></td>
                           <td class="text-center"><a class="btn btn-sm btn-light" href="<?= base_url('assets/laporan/file/').$data->Berkas ?>"><img width="20" class="user-avatar rounded-circle mr-2" src="<?= base_url('assets/back')?>/images/avatars/zipp.svg" alt="User Avatar"></a></td>
                           <td class="text-center"><?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal ))); ?></td>
                           <td class="text-center">
                             <div class="btn-group btn-group-sm" role="group" aria-label="Table row actions">
-                                 <a class="mb-2 btn btn-info "  href="<?= base_url() ?>mahasiswa/Laporan/ubah?NIM=<?= $data->NIM?>"><i class="material-icons">&#xE254;</i></a>
+                                 <a class="mb-2 btn btn-info "  href="<?= base_url() ?>mahasiswa/laporan/ubah/<?= $data->NIM?>"><i class="material-icons">&#xE254;</i></a>
                               </div>
                            
                           </td>

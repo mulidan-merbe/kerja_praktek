@@ -6,6 +6,15 @@ class Model_Jadwal extends CI_Model
 	{
 		return $this->db->get_where('tbl_pelaksanaan', ['Id_pelaksanaan' => $Id_pelaksanaan])->result();
 	}
+
+	public function get()
+	{
+		 $this->db->from('tbl_pelaksanaan');
+		 $this->db->order_by('Id_pelaksanaan', 'DESC');
+		 $query = $this->db->get();
+		 return $query->result();
+	}
+
 	public function getAll()
 	{
 		 $this->db->from('tbl_pelaksanaan');

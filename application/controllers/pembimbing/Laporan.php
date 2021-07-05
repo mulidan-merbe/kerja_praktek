@@ -14,7 +14,7 @@ class Laporan extends CI_Controller {
 
     public function index()
     {
-    	  $data['title']  = 'Pembimbing | Laporan KP';
+    	  $data['title']  = 'Pembimbing | Laporan';
     	  $No_identitas = $this->session->userdata('No_identitas');
     	  $data['laporan']	= $this->Model_Laporan->getPembimbing($No_identitas);
     	  $this->load->view('pembimbing/tampil_dataLaporan', $data);

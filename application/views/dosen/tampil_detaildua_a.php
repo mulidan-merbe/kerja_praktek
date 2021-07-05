@@ -63,8 +63,8 @@
                           <td class="text-center">
                             <div class="btn-group btn-group-sm " role="group" aria-label="Table row actions">
                               <a   class="mb-2 btn  btn-info" data-toggle="modal" data-target="#modal-lihat<?=$data->Id_duaA; ?>" data-placement="top" title="Lihat" ><i class="fas fa-eye"></i></a>
-                               <a  class="mb-2 btn  btn-success" href="<?= base_url('')?>dosen/KP_TI_A02A/setuju?setujui=<?= $data->Id_duaA ?>&NIM=<?= $data->NIM ?>"  data-placement="top" title="Lihat" ><i class="fas fa-check"></i></a>
-                              <a  class="mb-2 btn  btn-danger" href="<?= base_url('')?>dosen/KP_TI_A02A/tolak?ditolak=<?= $data->Id_duaA ?>&NIM=<?= $data->NIM ?>"  data-placement="top" title="Lihat" ><i class="fas fa-times"></i></a>
+                               <a  class="mb-2 btn  btn-success" href="<?= base_url('')?>dosen/konsultasi/setuju?setujui=<?= $data->Id_duaA ?>&NIM=<?= $data->NIM ?>"  data-placement="top" title="Lihat" ><i class="fas fa-check"></i></a>
+                              <a  class="mb-2 btn  btn-danger" href="<?= base_url('')?>dosen/konsultasi/tolak?ditolak=<?= $data->Id_duaA ?>&NIM=<?= $data->NIM ?>"  data-placement="top" title="Lihat" ><i class="fas fa-times"></i></a>
                             </div>
                           </td> 
                         </tr>

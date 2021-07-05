@@ -14,15 +14,16 @@
           <!-- / .main-navbar -->
           <div class="main-content-container container-fluid px-4">
           <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+          <?= $this->session->unset_userdata('flash'); ?>
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-                <h3 class="page-title">Data Pembimbing Lapangan</h3>
+                <h3 class="page-title">Data Proposal</h3>
               </div>
             </div>
-            <div class="btn-group mb-2" role="group" aria-label="Basic example">
-              <a type="button2" class="btn btn-info <?php if($this->uri->segment(3)=="suratPengantar"){echo "active";} ?>" href="<?= base_url('admin/pembimbingLapangan/suratPengantar') ?>">Surat Pengantar</a>
-              <a type="button3" class="btn btn-info " href="<?= base_url('admin/pembimbingLapangan') ?>">Pembimbing Lapangan</a>
+             <div class="btn-group mb-2" role="group" aria-label="Basic example">
+              <a type="button3" class="btn btn-info " href="<?= base_url('admin/proposal') ?>">Proposal</a>
+              <a type="button2" class="btn btn-info <?php if($this->uri->segment(3)=="suratPengantar"){echo "active";} ?>" href="<?= base_url('admin/proposal/suratPengantar') ?>">Surat Pengantar</a>
             </div>
             <div class="row">
               <div class="col">
@@ -37,12 +38,12 @@
                       <table id="dtBasicExample" class=" table  mb-0 table-bordered table-striped">
                       <thead class="">
                         <tr>
-                          <th  style="text-align: center"><b>No. </b></th>
-                          <th  style="text-align: center"><b>NIM </b></th>
-                          <th  style="text-align: center"><b>Nama </b></th>
-                          <th style="text-align: center"><b>Berkas</b></th>
-                          <th style="text-align: center"><b>Tanggal </b></th>
-                          <th style="text-align: center"><b>Aksi</b></th>
+                          <th  class="text-center"><b>No. </b></th>
+                          <th  class="text-center"><b>NIM </b></th>
+                          <th  class="text-center"><b>Nama </b></th>
+                          <th class="text-center"><b>Berkas</b></th>
+                          <th class="text-center"><b>Tanggal </b></th>
+                          <th class="text-center"><b>Aksi</b></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -50,17 +51,17 @@
                         $no = 1;
                         foreach ($kpdua as $data) { ?> 
                         <tr>
-                          <td style="text-align: center"><?= $no++ ?>.</td>
-                          <td style="text-align: center"><?= $data->NIM ?></td>
-                          <td style="text-align: center"><?= $data->nama ?></td>
-                          <td style="text-align: center">
+                          <td class="text-center"><?= $no++ ?>.</td>
+                          <td class="text-center"><?= $data->NIM ?></td>
+                          <td class="text-center"><?= $data->nama ?></td>
+                          <td class="text-center">
                             <a class="btn btn-sm btn-light" href="<?= base_url('assets/KP_TI_A02/file/').$data->File ?>"><img width="20" class="user-avatar rounded-circle mr-2" src="<?= base_url('assets/back')?>/images/avatars/pdf.svg" alt="User Avatar">
                             </a>
                           </td>
-                          <td style="text-align: center">
+                          <td class="text-center">
                             <?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal)));?>
                           </td>
-                          <td style="text-align: center">
+                          <td class="text-center">
                             <div class="btn-group btn-group-sm " role="group" aria-label="Table row actions">
                               <a class="mb-2 btn btn-info " href="<?= base_url() ?>admin/KP_TI_A02/ubah?Id=<?= $data->Id_Kpdua?>">
                                 <i class="material-icons">&#xE254;</i>

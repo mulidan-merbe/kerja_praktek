@@ -6,7 +6,7 @@ class Proposal extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->library('pdf');
-		$this->load->model(['Model_Proposal', 'Model_Jadwal']);
+		$this->load->model(['Model_Proposal', 'Model_Jadwal','Model_Kpdua']);
 		if(is_null($this->session->userdata('Admin'))) {
 	    	redirect(base_url("auth_admin"));
 	    }
@@ -82,5 +82,22 @@ class Proposal extends CI_Controller {
         $this->load->view('Cetak/test', $data); 
         
 	}
+
+	public function suratPengantar()
+	  {
+	  	$Id = $this->Model_Jadwal->getAll();
+		foreach ($Id as $data) {
+			$Id = $data->Id_pelaksanaan;
+		}
+
+		$Id_pelaksanaan = $Id;
+	  	$data = [
+			'title'  => 'Admin | Surat Pengantar',
+			'proposal'	=> $this->Model_Proposal->caribyId($Id_pelaksanaan),
+			'kpdua' => $this->Model_Kpdua->getAll()
+		];
+	  	$this->load->view('admin/tampil_dataDua', $data);
+
+	  }
 }
 

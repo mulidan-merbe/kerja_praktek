@@ -17,11 +17,25 @@
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-6 text-center text-sm-left mb-0">
-                <h3 class="page-title">Data KP-TI-A02B</h3>
+                <h3 class="page-title">Data Konsultasi</h3>
               </div>
             </div>
-            <!-- End Page Header -->
-            <!-- Default Light Table -->
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a type="button3" class="btn btn-info <?php if($this->uri->segment(2)=="konsultasi"){echo "active";} ?>" href="<?= base_url('pembimbing/konsultasi') ?>">Konsultasi 
+                <?php if($duaB > 0) {  ?>
+                        <span class="badge badge-light">
+                          <?= $duaB ?>
+                        </span>
+                    <?php } ?>
+              </a>
+              <a type="button3" class="btn btn-info " href="<?= base_url('pembimbing/penilaianLapangan') ?>">Penilaian lapangan
+                <!-- <?php if($tiga > 0) {  ?>
+                        <span class="badge badge-light">
+                          <?= $tiga ?>
+                        </span>
+                 <?php } ?> -->
+              </a>
+            </div>
             
             <div class="row">
               <div class="col-md-12">
@@ -34,38 +48,46 @@
                       <table id="dtBasicExample" class=" table  mb-0 table-bordered table-striped">
                       <thead class="">
                         <tr>
-                          <th  style="text-align: center"><b>No.</b></th>
-                          <th  style="text-align: center"><b>NIM</b></th>
-                          <th  style="text-align: center"><b>Nama</b></th>
-                          <th  style="text-align: center"><b>Tema</b></th>
-                          <th  style="text-align: center"><b>Berkas</b></th>
-                          <th  style="text-align: center"><b>Status</b></th>
-                          <th  style="text-align: center"><b>Tanggal</b></th>
-                          <th  style="text-align: center"><b>Aksi</b></th>
+                          <th  class="col-1 text-center "><b>No.</b></th>
+                          <th  class="col-3 text-center"><b>NIM</b></th>
+                          <th  class="col-5 text-center"><b>Nama</b></th>
+                          <!-- <th  class="text-center"><b>Tema</b></th>
+                          <th  class="text-center"><b>Berkas</b></th> -->
+                          <!-- <th  class="text-center"><b>Status</b></th> -->
+                          <th  class="text-center"><b>Jumlah</b></th>
+                          
+                          <th  class="text-center"><b>Aksi</b></th>
                         </tr>
                       </thead>
                       <tbody>
+                        <?php foreach ($syarat as $data){ 
+                          $jumlah = $data->Jumlah;
+                        ?>
                         <?php 
                         $no = 1;
                         foreach ($kpdua_b as $data) { ?>
                         <tr>
-                          <td style="text-align: center"><?= $no++ ?>.</td>
-                          <td style="text-align: center"><?= $data->NIM ?></td>
-                          <td style="text-align: center"><?= $data->nama ?></td>
-                          <td style="text-align: center"><?= $data->Tema ?></td>
-                          <td style="text-align: center">
-                            <a class="btn btn-sm btn-light" href="<?= base_url('assets/KonsultasiLapangan/file/').$data->File ?>"><img width="20" class="user-avatar rounded-circle mr-2" src="<?= base_url('assets/back')?>/images/avatars/pdf.svg" alt="User Avatar">
-                            </a>
+                          <td class="col-1 text-center"><?= $no++ ?>.</td>
+                          <td class="col-2 text-center"><?= $data->NIM ?></td>
+                          <td class="col-4"><?= $data->nama ?></td> 
+                          <td class="col-3 text-center">
+                            <!-- <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:40%">
+                              
+                            </div><?= $data->total ?></td> -->
+                            <div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" role="progressbar"  style="min-height: 2em; width:40%" value="3">
+                             <?= $data->total ?>
+                            </div>
                           </td>
-                          <td style="text-align: center"><?= $data->Icon ?></td> 
-                          <td style="text-align: center"><?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal ))); ?></td>
-                          <td style="text-align: center">
-                            <div class="btn-group btn-group-sm" role="group" aria-label="Table row actions">
-                                 <a   class="mb-2 btn btn-success mr-2" data-toggle="modal" data-target="#modal-lihat<?=$data->Id_duaB; ?>" data-placement="top" title="Lihat" ><i class="fas fa-eye"></i></a>
-                              <a class="mb-2 btn btn-info " data-toggle="modal" data-target="#modal-edit<?=$data->Id_duaB; ?>" data-placement="top" title="Masukkan"><i class="fas fa-edit"></i></a>
-                              </div>
-                          </td>
+                          <td class="text-center">
+                            <div class="btn-group btn-group-sm " role="group" aria-label="Table row actions">
+                              <a   class="mb-2 btn  btn-success"  href="<?= base_url('')?>pembimbing/konsultasi/detail/<?= $data->NIM ?>" data-placement="top" title="Lihat" ><i class="fas fa-eye"></i></a>
+                              <?php if($data->total >= $jumlah ) { ?>
+                              <a   class="mb-2 btn  btn-primary"  href="<?= base_url('')?>pembimbing/penilaianLapangan/tambah/<?= $data->NIM ?>" data-placement="top" title="Lihat" ><i class="material-icons">add</i></a>
+                              <?php } ?>
+                            </div>
+                          </td> 
                         </tr>
+                        <?php } ?>
                         <?php } ?>
                       </tbody>
                     </table>

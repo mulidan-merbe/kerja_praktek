@@ -52,13 +52,13 @@ nav{
 }
 
 .nav-link.active{
-	font-weight: 400;
+	font-weight: 700;
 	border-bottom: 3px solid #00a6ed;
 	padding : 10px;
 	
 }
 .nav-link:hover{
-	font-weight: 400;
+	font-weight: 700;
 	border-radius: 3px solid #00a6ed;
 	transition: 1s;
 }

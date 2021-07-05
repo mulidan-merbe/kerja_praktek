@@ -17,11 +17,20 @@
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-6 text-center text-sm-left mb-0">
-                <h3 class="page-title">Data KP-TI-A04</h3>
+                <h3 class="page-title">Data Seminar</h3>
               </div>
             </div>
-            <!-- End Page Header -->
-            <!-- Default Light Table -->
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a type="button3" class="btn btn-info <?php if($this->uri->segment(2)=="seminar"){echo "active";} ?>" href="<?= base_url('pembimbing/seminar') ?>">Jadwal Seminar 
+                <?php if($empat > 0) {  ?>
+                        <span class="badge badge-light">
+                          <?= $empat ?>
+                        </span>
+                    <?php } ?>
+              </a>
+              <a type="button3" class="btn btn-info " href="<?= base_url('pembimbing/penilaian') ?>">Penilaian Seminar
+              </a>
+            </div>
             <div class="row">
               <div class="col">
                 <div class="card card-small mb-4">
@@ -33,13 +42,14 @@
                       <table id="dtBasicExample" class=" table  mb-0 table-bordered table-striped">
                       <thead class="">
                         <tr>
-                          <th  style="text-align: center"><b>No. </b></th>
-                          <th  style="text-align: center"><b>NIM </b></th>
-                          <th  style="text-align: center"><b>Nama </b></th>
-                          <th style="text-align: center"><b>Hari </b></th>
-                          <th style="text-align: center"><b>Tanggal Seminar </b></th>
-                          <th style="text-align: center"><b>Waktu</b></th>
-                          <th style="text-align: center"><b>Ruangan</b></th>
+                          <th  class="text-center"><b>No. </b></th>
+                          <th  class="text-center"><b>NIM </b></th>
+                          <th  class="text-center col-5"><b>Nama </b></th>
+                          <th class="text-center"><b>Hari </b></th>
+                          <th class="text-center"><b>Tanggal Seminar </b></th>
+                          <th class="text-center"><b>Waktu</b></th>
+                          <th class="text-center"><b>Ruangan</b></th>
+                          <th class="text-center"><b>Aksi</b></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -47,13 +57,20 @@
                         $no = 1;
                         foreach ($kpempat as $data) { ?> 
                         <tr>
-                          <td style="text-align: center"><?= $no++ ?>.</td>
-                          <td style="text-align: center"><?= $data->NIM ?></td>
-                          <td style="text-align: center"><?= $data->nama ?></td>
-                          <td style="text-align: center"><?= $data->Hari ?></td>
-                          <td style="text-align: center"><?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal_seminar )));?></td>
-                          <td style="text-align: center"><?= $data->Waktu ?></td>
-                          <td style="text-align: center"><?= $data->Ruangan ?></td>
+                          <td class="text-center"><?= $no++ ?>.</td>
+                          <td class="text-center"><?= $data->NIM ?></td>
+                          <td class=""><?= $data->nama ?></td>
+                          <td class="text-center"><?= $data->Hari ?></td>
+                          <td class="text-center"><?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal_seminar )));?></td>
+                          <td class="text-center"><?= $data->Waktu ?></td>
+                          <td class="text-center"><?= $data->Ruangan ?></td>
+                          <td class="text-center">
+                             <div class="btn-group btn-group-sm" role="group" aria-label="Table row actions">
+                               <a href="<?= base_url() ?>pembimbing/penilaian/tambah/<?= $data->NIM?>" class="mb-2 btn  btn-primary mr-2" >
+                                <i class="material-icons">add</i>
+                              </a>
+                            </div>
+                          </td>
                         </tr>
                         <?php } ?> 
                       </tbody>

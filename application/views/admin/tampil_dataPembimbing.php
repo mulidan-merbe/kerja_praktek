@@ -20,10 +20,6 @@
                 <h3 class="page-title">Data Pembimbing Lapangan</h3>
               </div>
             </div>
-            <div class="btn-group mb-2" role="group" aria-label="Basic example">
-              <a type="button2" class="btn btn-info " href="<?= base_url('admin/pembimbingLapangan/suratPengantar') ?>">Surat Pengantar</a>
-              <a type="button3" class="btn btn-info <?php if($this->uri->segment(2)=="pembimbingLapangan"){echo "active";} ?>" href="<?= base_url('admin/pembimbingLapangan') ?>">Pembimbing Lapangan</a>
-            </div>
             <div class="row">
               <div class="col">
                 <div class="card card-small mb-4">
@@ -35,14 +31,15 @@
                       <table id="dtBasicExample" class=" table  mb-0 table-bordered table-striped">
                       <thead class="">
                         <tr>
-                          <th  style="text-align: center"><b>No. </b></th>
-                          <th  style="text-align: center"><b>No Identitas </b></th>
-                          <th  style="text-align: center"><b>Nama</b></th>
-                          <th  style="text-align: center"><b>Jabatan </b></th>
-                          <th style="text-align: center"><b>Alamat Kantor</b></th>
-                          <th style="text-align: center"><b>No Hp </b></th>
-                          <th style="text-align: center"><b>Berkas </b></th>
-                          <th style="text-align: center"><b>Tanggal </b></th>
+                          <th  class="text-center"><b>No. </b></th>
+                          <th  class="text-center"><b>NIM </b></th>
+                          <th  class="text-center"><b>No Identitas </b></th>
+                          <th  class="text-center"><b>Nama</b></th>
+                          <th  class="text-center"><b>Jabatan </b></th>
+                          <th class="text-center"><b>Alamat Kantor</b></th>
+                          <th class="text-center"><b>No Hp </b></th>
+                          <th class="text-center"><b>Berkas </b></th>
+                          <th class="text-center"><b>Tanggal </b></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -50,16 +47,17 @@
                         $no = 1;
                         foreach ($pembimbing as $data) { ?>
                         <tr>
-                          <td style="text-align: center"><?= $no++ ?>.</td>
+                          <td class="text-center"><?= $no++ ?>.</td>
+                          <td><?= $data->NIM ?></td>
                           <td><?= $data->No_identitas ?></td>
                           <td><?= $data->Nama ?></td>
                           <td><?= $data->Jabatan?></td>
                           <td><?= $data->Alamat_kantor ?></td>
                           <td><?= $data->No_hp ?></td>
-                          <td style="text-align: center">
+                          <td class="text-center">
                             <a class="btn btn-sm btn-light" href="<?= base_url('assets/kpifempat/file/').$data->File ?>"><img width="20" class="user-avatar rounded-circle mr-2" src="<?= base_url('assets/back')?>/images/avatars/pdf.svg" alt="User Avatar"></a>
                           </td>
-                          <td style="text-align: center"><?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal ))); ?></td>
+                          <td class="text-center"><?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal ))); ?></td>
                         </tr>
                         <?php } ?> 
                       </tbody>

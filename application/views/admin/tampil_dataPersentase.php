@@ -35,14 +35,14 @@
                       <table id="dtBasicExample" class=" table  mb-0 table-bordered table-striped">
                       <thead class="">
                         <tr>
-                          <th  style="text-align: center"><b>No. </b></th>
-                          <th  style="text-align: center"><b>Tahun </b></th>
-                          <th  style="text-align: center"><b>Periode</b></th>
-                          <th  style="text-align: center"><b>Nilai Lapangan</b></th>
-                          <th  style="text-align: center"><b>Nilai Seminar Lapangan</b></th>
-                          <th  style="text-align: center"><b>Nilai Seminar Dosen</b></th>
-                          <th style="text-align: center"><b>Tanggal</b></th>
-                          <th style="text-align: center"><b>Aksi</b></th>
+                          <th  class="text-center"><b>No. </b></th>
+                          <th  class="text-center"><b>Tahun </b></th>
+                          <th  class="text-center"><b>Periode</b></th>
+                          <th  class="text-center"><b>Nilai Lapangan</b></th>
+                          <th  class="text-center"><b>Nilai Seminar Lapangan</b></th>
+                          <th  class="text-center"><b>Nilai Seminar Dosen</b></th>
+                          <th class="text-center"><b>Tanggal</b></th>
+                          <th class="text-center"><b>Aksi</b></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -50,19 +50,19 @@
                         $no = 1;
                         foreach ($persentase as $data) { ?>
                         <tr>
-                          <td style="text-align: center"><?= $no++ ?>.</td>
-                          <td style="text-align: center"><?= $data->Tahun?></td>
-                          <td style="text-align: center"><?php if($data->Periode == 1 ) { ?>BERJALAN <?php } else { ?>LIBURAN <?php } ?></td>
-                          <td style="text-align: center"><?= $data->Nilai_lapangan?>%</td>
-                          <td style="text-align: center"><?= $data->Nilai_Seminar_lapangan?>%</td>
-                          <td style="text-align: center"><?= $data->Nilai_Seminar_dosen?>%</td>
-                          <td style="text-align: center"><?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal )));?></td>
-                          <td style="text-align: center">
+                          <td class="text-center"><?= $no++ ?>.</td>
+                          <td class="text-center"><?= $data->Tahun?></td>
+                          <td class="text-center"><?php if($data->Periode == 1 ) { ?>BERJALAN <?php } else { ?>LIBURAN <?php } ?></td>
+                          <td class="text-center"><?= $data->Nilai_lapangan?>%</td>
+                          <td class="text-center"><?= $data->Nilai_Seminar_lapangan?>%</td>
+                          <td class="text-center"><?= $data->Nilai_Seminar_dosen?>%</td>
+                          <td class="text-center"><?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal )));?></td>
+                          <td class="text-center">
                             <div class="btn-group btn-group-sm " role="group" aria-label="Table row actions">
                               <a class="mb-2 btn  btn-info " data-toggle="modal" data-target="#modal-ubah<?= $data->Id?>"> 
                                 <i class="material-icons">&#xE254;</i>
                               </a>
-                              <a class="mb-2 btn btn-danger tombol-hapus" href="<?= base_url() ?>admin/KP_TI_A04/hapusData?Id=<?= $data->Id ?>">
+                              <a class="mb-2 btn btn-danger tombol-hapus" href="<?= base_url() ?>admin/beritaAcara/hapus/<?= $data->Id ?>">
                                 <i class="material-icons">&#xE872;</i>
                               </a>
                             </div> 

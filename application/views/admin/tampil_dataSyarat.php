@@ -17,11 +17,15 @@
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-                <h3 class="page-title">Data KP-TI-A03</h3>
+                <h3 class="page-title">Data Seminar</h3>
               </div>
             </div>
-            <!-- End Page Header -->
-            <!-- Default Light Table -->
+            <div class="btn-group mb-2" role="group" aria-label="Basic example">
+              <a type="button2" class="btn btn-info <?php if($this->uri->segment(2)=="seminar"){echo "active";} ?>" href="<?= base_url('admin/seminar') ?>">pernyataan siap seminar
+              
+              </a>
+              <a type="button3" class="btn btn-info " href="<?= base_url('admin/seminar/jadwal') ?>">jadwal seminar</a>
+            </div>
             <div class="row">
               <div class="col">
                 <div class="card card-small mb-4">

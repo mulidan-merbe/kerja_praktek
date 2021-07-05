@@ -14,7 +14,7 @@ class KP_TI_A04C extends CI_Controller {
 
     public function index()
     {
-    	$data['title']	= 'Dosen | KP-TI-A04C';
+    	$data['title']	= 'Dosen | Berita Acara';
     	$NIP = $this->session->userdata('NIP');     
         $data['nilai']   = $this->Model_Kpempat_c->getbyNIP($NIP);
     	$this->load->view('dosen/tampil_dataEmpat_c', $data);
@@ -25,7 +25,7 @@ class KP_TI_A04C extends CI_Controller {
         $NIP = $this->session->userdata('NIP');
         $NIM    = $NIM;
         $data = [
-            'title'  => 'Dosen | KP-TI-A04C',
+            'title'  => 'Dosen | Berita Acara',
             'seminar' => $this->Model_Kpempat->getbyNIP($NIP),
             'nilai' => $this->Model_Kpempat_c->getbyNIP($NIP),
             'duaC'      => $this->Model_Kpdua_c->getbyNIM($NIM),
@@ -39,7 +39,7 @@ class KP_TI_A04C extends CI_Controller {
 
     public function Seminar()
     {
-        $data['title']  = 'Dosen | KP-TI-A04C';
+        $data['title']  = 'Dosen | Berita Acara';
         $NIP = $this->session->userdata('NIP');
         $data['seminar']   = $this->Model_Kpempat_a->getbyNIP($NIP);
  
@@ -98,7 +98,7 @@ class KP_TI_A04C extends CI_Controller {
         $NIP = $this->session->userdata('NIP');
         $NIM    = $NIM;
         $data = [
-            'title'  => 'Dosen | KP-TI-A04C',
+            'title'  => 'Dosen | Berita Acara',
             'empatA' => $this->Model_Kpempat_a->getbyNIM($NIM),
             'empatB' => $this->Model_Kpempat_b->getbyNIM($NIM),
             'nilai'  => $this->Model_Kpempat_c->getbyNIM($NIM)
@@ -108,7 +108,7 @@ class KP_TI_A04C extends CI_Controller {
 
     public function ubahData()
     {
-        $data['title']  = 'Dosen | KP-TI-A04C';
+        $data['title']  = 'Dosen | Berita Acara';
 
         $this->form_validation->set_rules('Status', 'Status', 'trim|required');
 

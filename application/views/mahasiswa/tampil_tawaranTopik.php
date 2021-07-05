@@ -17,11 +17,15 @@
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-                <h3 class="page-title">Data Tawaran Topik</h3>
+                <h3 class="page-title">Data Topik</h3>
               </div>
             </div>
-            <!-- End Page Header -->
-            <!-- Default Light Table -->
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a type="button3" class="btn btn-info <?php if($this->uri->segment(2)=="tawaran_topik"){echo "active";} ?>" href="<?= base_url('mahasiswa/tawaran_topik') ?>">Tawaran Topik
+              </a>
+              <a type="button3" class="btn btn-info " href="<?= base_url('mahasiswa/rencana_topik') ?>">rencana topik
+              </a>
+            </div>
             <div class="row">
               <div class="col">
                 <div class="card card-small mb-4">

@@ -29,6 +29,15 @@
                   <span>Beranda</span>
                 </a>
               </li>
+              <li class="nav-item dropdown  ">
+                <a class="nav-link dropdown-toggle   <?php if($this->uri->segment(2)=="jadwal_pelaksanaan"){echo "active";} ?> " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">date_range</i>
+                  <span>PERIODE </span></a>
+              <ul class="dropdown-menu">
+                <li class="  " >
+                        <a class="dropdown-item  <?php if($this->uri->segment(2)=="jadwal_pelaksanaan"){echo "active";} ?> "  href="<?= base_url('admin/jadwal_pelaksanaan')?>">  <i class="material-icons">note_add</i><span>Periode Pelaksanaan</span></a>
+                  </li>
+                </ul>
+              </li>
               <li class="nav-item">
                 <a class="nav-link <?php if($this->uri->segment(2)=="topik" || $this->uri->segment(2)=="tawaran_topik" || $this->uri->segment(2)=="rencana_topik" ){echo "active";} ?>" href="<?= base_url('admin/topik')?>">
                   <i class="material-icons" >description</i>
@@ -54,7 +63,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link <?php if($this->uri->segment(2)=="seminar"){echo "active";} ?>" href="<?= base_url('admin/seminar')?>">
+                <a class="nav-link <?php if($this->uri->segment(2)=="seminar" || $this->uri->segment(2)=="jadwal"){echo "active";} ?>" href="<?= base_url('admin/seminar')?>">
                   <i class="material-icons" >description</i>
                   <span>Seminar</span>
                 </a>
@@ -71,70 +80,19 @@
                   <span>Laporan</span>
                 </a>
               </li>
-            
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle <?php if($this->uri->segment(2)== "proposal" || $this->uri->segment(2)=="KP_TI_A02" || $this->uri->segment(2)=="pembimbing_lapangan" || $this->uri->segment(2)=="KP_TI_A02A" || $this->uri->segment(2)== "KP_TI_A02B" || $this->uri->segment(2)== "KP_TI_A02C" || $this->uri->segment(2)== "KP_TI_A03" || $this->uri->segment(2)== "KP_TI_A04" || $this->uri->segment(2)== "KP_TI_A04A" || $this->uri->segment(2)== "KP_TI_A04B" || $this->uri->segment(2)== "KP_TI_A04C" || $this->uri->segment(2)== "laporan"){echo "active";} ?> " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">description</i>
-                  <span>KP-IF </span></a>
-               <ul  class=" dropdown-menu  " >
-                  <li  >
-                    <a class="dropdown-item <?php if($this->uri->segment(2)=="proposal"){echo "active";} ?>" href="<?= base_url('admin/proposal') ?>">
-                    <i class="material-icons">note_add</i>
-                    <span>Proposal </span>
-                  </a>
-                  </li>
-                  <li class="  " >
-                        <a class="dropdown-item  <?php if($this->uri->segment(2)=="KP_TI_A02"){echo "active";} ?>"  href="<?= base_url('admin/KP_TI_A02')?>">  <i class="material-icons">note_add</i><span>Surat Pernyataan</span></a>
-                  </li>
-                  <li class="  " >
-                        <a class="dropdown-item  <?php if($this->uri->segment(2)=="pembimbing_lapangan"){echo "active";} ?>"  href="<?= base_url('admin/pembimbing_lapangan')?>">  <i class="material-icons">note_add</i><span>Pembimbing Lapangan</span></a>
-                  </li>
-                  <li class="  " >
-                        <a class="dropdown-item  <?php if($this->uri->segment(2)=="KP_TI_A02A"){echo "active";} ?>"  href="<?= base_url('admin/KP_TI_A02A')?>">  <i class="material-icons">note_add</i><span>Konsultasi Dosen</span></a>
-                  </li>
-                  <li class="  " >
-                        <a class="dropdown-item  <?php if($this->uri->segment(2)=="KP_TI_A02B"){echo "active";} ?>"  href="<?= base_url('admin/KP_TI_A02B')?>">  <i class="material-icons">note_add</i><span>Konsultasi Pembimbing Lapangan</span></a>
-                  </li>
-                  <li class="  " >
-                        <a class="dropdown-item  <?php if($this->uri->segment(2)=="KP_TI_A02C"){echo "active";} ?>"  href="<?= base_url('admin/KP_TI_A02C')?>">  <i class="material-icons">note_add</i><span>Penilaian Lapangan</span></a>
-                  </li>
-                  <li class="  " >
-                        <a class="dropdown-item  <?php if($this->uri->segment(2)=="KP_TI_A03"){echo "active";} ?>"  href="<?= base_url('admin/KP_TI_A03')?>">  <i class="material-icons">note_add</i><span>Pernyataan Siap Seminar</span></a>
-                  </li>
-                  <li class="  " >
-                        <a class="dropdown-item  <?php if($this->uri->segment(2)=="KP_TI_A04"){echo "active";} ?>"  href="<?= base_url('admin/KP_TI_A04"')?>">  <i class="material-icons">note_add</i><span>Jadwal Seminar</span></a>
-                  </li>
-                  <li class="  " >
-                        <a class="dropdown-item  <?php if($this->uri->segment(2)=="KP_TI_A04A"){echo "active";} ?>"  href="<?= base_url('admin/KP_TI_A04A')?>">  <i class="material-icons">note_add</i><span>Penilaian Seminar Dosen</span></a>
-                  </li>
-                  <li class="  " >
-                        <a class="dropdown-item  <?php if($this->uri->segment(2)=="KP_TI_A04B"){echo "active";} ?>"  href="<?= base_url('admin/KP_TI_A04B')?>">  <i class="material-icons">note_add</i><span>Penilaian Seminar Pembimbing Lapangan</span></a>
-                  </li>
-                  <li class="  " >
-                        <a class="dropdown-item  <?php if($this->uri->segment(2)=="laporan"){echo "active";} ?>"  href="<?= base_url('admin/laporan')?>">  <i class="material-icons">note_add</i><span>Laporan</span></a>
-                  </li>
-                  <li class="  " >
-                        <a class="dropdown-item  <?php if($this->uri->segment(2)=="KP_TI_A04C"){echo "active";} ?>"  href="<?= base_url('admin/KP_TI_A04C')?>">  <i class="material-icons">note_add</i><span>Berita Acara Seminar</span></a>
-                  </li>
-                  </ul>
-              </li>
-              <li class="nav-item dropdown  ">
-                <a class="nav-link dropdown-toggle   <?php if($this->uri->segment(2)=="jadwal_pelaksanaan"){echo "active";} ?> " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">date_range</i>
-                  <span>PERIODE </span></a>
-              <ul class="dropdown-menu">
-                <li class="  " >
-                        <a class="dropdown-item  <?php if($this->uri->segment(2)=="jadwal_pelaksanaan"){echo "active";} ?> "  href="<?= base_url('admin/jadwal_pelaksanaan')?>">  <i class="material-icons">note_add</i><span>Periode Pelaksanaan</span></a>
-                  </li>
-               <!--  <li  >
-                      <a class="dropdown-item <?php if($this->uri->segment(2)=="periode_pelaksanaan"){echo "active";} ?> "  href="<?= base_url('admin/jadwal_pelaksanaan')?>"> <i class="material-icons">date_range</i><span>Periode Pelaksanaan</span></a>
-                </li> -->
-                </ul>
-              </li>
               <li class="nav-item">
+                <a class="nav-link <?php if($this->uri->segment(2)=="beritaAcara"  ){echo "active";} ?>" href="<?= base_url('admin/beritaAcara')?>">
+                  <i class="material-icons" >description</i>
+                  <span>BA & DPNA</span>
+                </a>
+              </li>
+              
+              <!-- <li class="nav-item">
                 <a class="nav-link <?php if($this->uri->segment(2)=="userPembimbing"){echo "active";} ?>" href="<?= base_url('admin/userPembimbing')?>">
                 <i class="material-icons">account_circle</i>
                   <span>Akun Pembimbing Lapangan</span>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </div>
         </aside>

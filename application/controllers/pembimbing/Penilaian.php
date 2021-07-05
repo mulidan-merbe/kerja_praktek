@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class KP_TI_A04B extends CI_Controller {
+class Penilaian extends CI_Controller {
 
 	function __construct() {
         parent::__construct();
-		$this->load->model(['Model_Kpempat_b','Model_Kpempat']);
+		$this->load->model(['Model_Kpempat_b','Model_Kpempat','Model_Jadwal']);
 		$this->load->library('form_validation');
 		if(is_null($this->session->userdata('Pembimbing'))) {
 	    	redirect(base_url("auth_pembimbing"));
@@ -16,9 +16,17 @@ class KP_TI_A04B extends CI_Controller {
 
     public function index()
     {
-        $data['title']  = 'Pembimbing | KP-TI-A04B';
-    	$No_identitas = $this->session->userdata('No_identitas');
-    	$data['seminar'] = $this->Model_Kpempat_b->getPembimbing($No_identitas);
+        $data['jadwal'] = $this->Model_Jadwal->getAll();
+        foreach ($data['jadwal'] as $data) {
+            $tgl_awal   = $data->Tanggal_mulai;
+            $tgl_akhir  =  $data->Tanggal_selesai;
+        }
+        $No_identitas = $this->session->userdata('No_identitas');
+        $data = [
+            'title'     => 'Pembimbing | Penilaian',
+            'seminar'   => $this->Model_Kpempat_b->getPembimbing($No_identitas),
+            'empat'     => $this->Model_Kpempat->get_tanggal($tgl_awal, $tgl_akhir)
+        ];
     	$this->load->view('pembimbing/tampil_dataEmpat_b', $data);
 
         
@@ -27,18 +35,17 @@ class KP_TI_A04B extends CI_Controller {
 
     public function jadwal()
     {
-        $data['title']  = 'Pembimbing | KP-TI-A04B';
+        $data['title']  = 'Pembimbing | Penilaian';
     	$No_identitas = $this->session->userdata('No_identitas');
     	$data['jadwal'] = $this->Model_Kpempat->getPembimbing($No_identitas);
     	$this->load->view('pembimbing/tampil_jadwalSeminar', $data);
     }
 
-    public function tambah()
+    public function tambah($NIM)
     {
     	$No_identitas   = $this->session->userdata('No_identitas');
-        $NIM            = $_GET['NIM'];
         $data = [
-            'title'  => 'Pembimbing | KP-TI-A04B',
+            'title'  => 'Pembimbing | Penilaian',
             'nilai'     => $this->Model_Kpempat_b->getbyNIM($NIM),
             'jadwal'    => $this->Model_Kpempat->getbyNIM($NIM)
         ];
@@ -50,7 +57,7 @@ class KP_TI_A04B extends CI_Controller {
     	$No_identitas   = $this->session->userdata('No_identitas');
         $NIM            = $this->input->post('NIM');
         $data = [
-            'title'  => 'Pembimbing | KP-TI-A04B',
+            'title'  => 'Pembimbing | Penilaian',
             'nilai'     => $this->Model_Kpempat_b->getbyNIM($NIM),
             'jadwal'    => $this->Model_Kpempat->getbyNIM($NIM)
         ];
@@ -77,13 +84,13 @@ class KP_TI_A04B extends CI_Controller {
 
     		$this->Model_Kpempat_b->tambahData($No_identitas, $NIM, $Nilai_satu, $Nilai_dua, $Nilai_tiga, $Nilai_empat, $Nilai_lima, $Catatan,  $Tanggal);
     		$this->session->set_flashdata('flash', 'Ditambahkan');
-    		redirect('pembimbing/KP_TI_A04B');
+    		redirect('pembimbing/penilaian');
     	}
     }
 
-    public function Ubah()
+    public function ubah()
     {
-        $data['title']  = 'Pembimbing | KP-TI-A04B';
+        $data['title']  = 'Pembimbing | Penilaian';
         $NIM = $_GET['NIM'];
         $data['ubah'] = $this->Model_Kpempat_b->getbyNIM($NIM);
         $this->load->view('pembimbing/ubah_dataEmpat_b', $data);
@@ -91,7 +98,7 @@ class KP_TI_A04B extends CI_Controller {
 
     public function ubahData()
     {
-      $data['title']  = 'Pembimbing | KP-TI-A04B';
+      $data['title']  = 'Pembimbing | Penilaian';
         $Id_empatB      = $this->input->post('Id_empatB');
         $data['ubah'] = $this->Model_Kpempat_b->getbyId($Id_empatB);
 
@@ -117,7 +124,9 @@ class KP_TI_A04B extends CI_Controller {
             // var_dump($data);
             // die;
             $this->session->set_flashdata('flash', 'Diubah');
-            redirect('pembimbing/KP_TI_A04B');
+            redirect('pembimbing/penilaian');
         }
     }
 }
+
+

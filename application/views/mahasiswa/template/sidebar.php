@@ -29,20 +29,11 @@
                   <span>Beranda</span>
                 </a>
               </li>
-              <li class="nav-item dropdown ">
-                <a class="nav-link dropdown-toggle <?php if($this->uri->segment(2)=="tawaran_topik" || $this->uri->segment(2)=="rencana_topik"){echo "active";} ?>    " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons" >description</i>
-                  <span>TOPIK </span></a>
-                <ul class=" dropdown-menu  " >
-                  <li class="  ">  
-                        <a class="dropdown-item <?php if($this->uri->segment(2)=="tawaran_topik"){echo "active";} ?> "  href="<?= base_url('mahasiswa/tawaran_topik')?>">  <i class="material-icons">description</i><span>Tawaran Topik</span></a>
-                  </li>
-                  <li  class=" ">
-                        <a class="dropdown-item <?php if($this->uri->segment(2)=="rencana_topik"){echo "active";} ?> " href="<?= base_url('mahasiswa/rencana_topik') ?>">
-                    <i class="material-icons">note_add</i>
-                    <span>Rencana Topik</span>
-                  </a>
-                  </li>
-                </ul>
+              <li class="nav-item">
+                <a class="nav-link <?php if($this->uri->segment(2)=="tawaran_topik" || $this->uri->segment(2)=="rencana_topik"){echo "active";} ?>" href="<?= base_url('mahasiswa/tawaran_topik')?>">
+                  <i class="material-icons">description</i>
+                  <span>Topik</span>
+                </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link <?php if($this->uri->segment(2)=="proposal"){echo "active";} ?>" href="<?= base_url('mahasiswa/proposal')?>">
@@ -69,7 +60,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link <?php if($this->uri->segment(2)=="penilaian"){echo "active";} ?>" href="<?= base_url('mahasiswa/penilaian')?>">
+                <a class="nav-link <?php if($this->uri->segment(2)=="penilaian" || $this->uri->segment(2)=="beritaAcara"){echo "active";} ?>" href="<?= base_url('mahasiswa/penilaian')?>">
                   <i class="material-icons">description</i>
                   <span>Penilaian</span>
                 </a>
@@ -80,13 +71,13 @@
                   <span>Laporan</span>
                 </a>
               </li>
-              <li class="nav-item">
+<!--               <li class="nav-item">
                 <a class="nav-link <?php if($this->uri->segment(2)=="beritaAcara"){echo "active";} ?>" href="<?= base_url('mahasiswa/beritaAcara')?>">
                   <i class="material-icons">description</i>
                   <span>Berita Acara</span>
                 </a>
               </li>
-              
+               -->
               <li class="nav-item">
                 <a class="nav-link <?php if($this->uri->segment(2)=="profil"){echo "active";} ?>" href="<?= base_url('mahasiswa/profil')?>">
                   <i class="material-icons">&#xE7FD;</i>

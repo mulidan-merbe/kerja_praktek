@@ -17,7 +17,7 @@
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-                <h3 class="page-title"> Data Laporan KP</h3>
+                <h3 class="page-title"> Data Laporan</h3>
               </div>
             </div>
             <!-- End Page Header -->
@@ -45,6 +45,15 @@
                           <label for="email">NIM :</label>
                           <input type="text" class="form-control" name="NIM"  value="<?= $data->NIM ?>"   disabled >
                           <?= form_error('topik', '<small class="text-danger pl-3">', '</small>') ?>
+                        </div>
+                        <div class="form-group">
+                          <label for="email">Keterangan :</label>
+                          <select class="form-control" name="Keterangan" autofocus="">
+                            <option value="<?= $data->Keterangan ?>"><b><?= $data->Keterangan ?></b></option>
+                            <option value="Seminar"><b>Seminar</b></option>
+                            <option value="Revisi" ><b>Revisi</b></option>
+                           <?= form_error('Keterangan', '<small class="text-danger pl-3">', '</small>'); ?>
+                          </select>
                         </div>
                         <div class="form-group">
                           <label for="email">Berkas :</label>

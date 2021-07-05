@@ -17,7 +17,7 @@
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-                <h3 class="page-title">Data KP-TI-A04A</h3>
+                <h3 class="page-title">Data Seminar</h3>
               </div>
             </div>
             <!-- End Page Header -->
@@ -31,7 +31,7 @@
                   </div>
                   <div class="card-body " style="min-height: 375px;"> 
                           <?php if($this->session->flashdata('msg')){echo $this->session->flashdata('msg');} ?>
-                          <form method="post" action="<?= base_url('dosen/KP_TI_A04A/tambahData') ?>" enctype="multipart/form-data">
+                          <form method="post" action="<?= base_url('dosen/Penilaian/tambahData') ?>" enctype="multipart/form-data">
                             <?php foreach ($jadwal as $data) { ?>
                           <div class="row">
                             <div class="col-md-12">
@@ -65,7 +65,7 @@
                             <div class="col-md-12 col-sm-12">
                             <table class="table  mb-0 table-bordered mt-4">
                               <tr>
-                                <td class="col-5"><b>Hasil Kerja Praktek</b></td>
+                                <td class="col-8"><b>Hasil Kerja Praktek</b></td>
                                 <td><input type="number" name="Nilai_satu" class="form-control" placeholder="Hasil Kerja Praktek"  value="<?= set_value('Nilai_satu') ?>">
                                 <?= form_error('Nilai_satu', '<small class="text-danger pl-3">', '</small>'); ?>
                                 </td>

@@ -17,7 +17,7 @@
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-                <h3 class="page-title"> Data KP-TI-A02A</h3>
+                <h3 class="page-title"> Data Konsultasi</h3>
               </div>
             </div>
             <!-- End Page Header -->

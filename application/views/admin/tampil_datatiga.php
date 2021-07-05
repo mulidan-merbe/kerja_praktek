@@ -21,8 +21,14 @@
               </div>
             </div>
             <div class="btn-group mb-2" role="group" aria-label="Basic example">
-              <a type="button2" class="btn btn-info <?php if($this->uri->segment(2)=="seminar"){echo "active";} ?>" href="<?= base_url('admin/seminar') ?>">pernyataan siap seminar</a>
-              <a type="button3" class="btn btn-info " href="<?= base_url('admin/seminar/jadwal') ?>">jadwal seminar</a>
+              <a type="button2" class="btn btn-info <?php if($this->uri->segment(2)=="seminar"){echo "active";} ?>" href="<?= base_url('admin/seminar') ?>">pernyataan siap seminar
+              <?php if($tiga > 0) {  ?>
+                        <span class="badge badge-light">
+                          <?= $tiga ?>
+                        </span>
+                    <?php } ?>
+              </a>
+              <a type="button3" class="btn btn-info " href="<?= base_url('admin/jadwal') ?>">jadwal seminar</a>
             </div>
             <div class="row">
               <div class="col">
@@ -44,6 +50,7 @@
                           <th  class="text-center"><b>Status </b></th>
                           <!-- <th  class="text-center"><b>Dosen </b></th> -->
                           <th class="text-center"><b>Tanggal</b></th>
+                          <th class="text-center"><b>Jadwal Seminar</b></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -59,6 +66,13 @@
                           <!-- <td style="text-align: center"><?= $data->Username?></td> -->
                           <!-- <td style="text-align: center"><?= $data->NamaDosen?></td> -->
                           <td style="text-align: center"><?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal ))); ?></td>
+                          <td class="text-center">
+                             <div class="btn-group btn-group-sm" role="group" aria-label="Table row actions">
+                               <a href="<?= base_url() ?>admin/seminar/tambah/<?= $data->NIM?>" class="mb-2 btn  btn-primary mr-2" >
+                                <i class="material-icons">add</i>
+                              </a>
+                            </div>
+                          </td>
                         </tr>
                         <?php } ?>
                       </tbody>

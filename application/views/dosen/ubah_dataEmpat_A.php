@@ -17,7 +17,7 @@
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-                <h3 class="page-title">Data KP-TI-A04A</h3>
+                <h3 class="page-title">Data Seminar</h3>
               </div>
             </div>
             <!-- End Page Header -->
@@ -44,7 +44,7 @@
                             <div class="col-md-12 col-sm-12">
                             <table class="table  mb-0 table-bordered">
                               <tr>
-                                <td class="col-5"><b>Hasil Kerja Praktek</b></td>
+                                <td class="col-8"><b>Hasil Kerja Praktek</b></td>
                                 <td><input type="text" name="Nilai_satu" class="form-control" value="<?= $data->Nilai_satu?>" >
                                 <?= form_error('Nilai_satu', '<small class="text-danger pl-3">', '</small>'); ?>
                                 </td>
@@ -60,7 +60,7 @@
                                 <?= form_error('Nilai_tiga', '<small class="text-danger pl-3">', '</small>'); ?></td>
                               </tr>
                                <tr>
-                                <td><b>Kemampuan Menjawab Pertanyaan yang <br>Diberikan Serta Mempertahankan Isi <br>Laporan Kerja Praktek</b></td>
+                                <td><b>Kemampuan Menjawab Pertanyaan yang Diberikan Serta Mempertahankan Isi <br>Laporan Kerja Praktek</b></td>
                                 <td><input type="number" name="Nilai_empat" class="form-control" value="<?= $data->Nilai_empat?>" >
                                 <?= form_error('Nilai_empat', '<small class="text-danger pl-3">', '</small>'); ?></td>
                               </tr>

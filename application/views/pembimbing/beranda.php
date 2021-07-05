@@ -41,12 +41,12 @@
                     <div class="card-body" style="min-height: 375px"> 
                       <?php if($duaB > 0) { ?>
                       <div class="alert alert-warning" role="alert">
-                        Konsultasi Mahasiswa <span class="badge badge-pill badge-primary"><?= $duaB ?></span><a href="<?= base_url('pembimbing/KP_TI_A02B') ?>" class="alert-link float-right">Lihat</a>
+                        Konsultasi Mahasiswa <span class="badge badge-pill badge-primary"><?= $duaB ?></span><a href="<?= base_url('pembimbing/konsultasi') ?>" class="alert-link float-right">Lihat</a>
                       </div>
                       <?php } ?>
                       <?php if($empat > 0) { ?>
                       <div class="alert alert-info" role="alert">
-                        Jadwal Seminar <span class="badge badge-pill badge-primary"><?=  $empat ?></span><a href="<?= base_url('pembimbing/KP_TI_A04') ?>" class="alert-link float-right">Lihat</a>
+                        Jadwal Seminar <span class="badge badge-pill badge-primary"><?=  $empat ?></span><a href="<?= base_url('pembimbing/seminar') ?>" class="alert-link float-right">Lihat</a>
                       </div>
                       <?php } ?>
                       </div>

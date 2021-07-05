@@ -6,9 +6,19 @@ class Model_Kpempat_c extends CI_Model
 	public function getbyNIM($NIM)
 	{
 		$this->db->from('tbl_kpempat_c c');
-		$this->db->join('tbl_status a', 'a.Id = c.Status_dosen', 'right');
-		// $this->db->join('tbl_status s', 's.Id= c.Status_kaprodi');
-		$this->db->where('NIM', $NIM);
+		$this->db->join('tbl_status a', 'a.Id = c.Status_kaprodi');
+		$this->db->join('tbl_proposal p', 'p.NIM= c.NIM');
+		$this->db->where('c.NIM', $NIM);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	public function getbyPeriode($Periode)
+	{
+		$this->db->from('tbl_kpempat_c c');
+		$this->db->join('tbl_status a', 'a.Id = c.Status_kaprodi');
+		$this->db->join('tbl_proposal p', 'p.NIM= c.NIM');
+		$this->db->where('Id_periode', $Periode);
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -41,6 +51,7 @@ class Model_Kpempat_c extends CI_Model
 		return $query->result();
 	}
 
+
 	public function get_tanggal($tgl_awal, $tgl_akhir)
     {
         $this->db->from('tbl_kpempat_c');
@@ -67,6 +78,18 @@ class Model_Kpempat_c extends CI_Model
 		return $query->result();
 	}
 
+	public function getbyNo_identitas($No_identitas)
+	{
+		$this->db->from('tbl_kpempat_c c');
+		$this->db->join('tbl_proposal p', 'p.NIM = c.NIM');
+		// $this->db->join('tbl_status t', 't.Id = c.Status_kaprodi');
+		$this->db->join('tbl_status s', 's.Id = c.Status_dosen');
+		$this->db->where('c.No_identitas', $No_identitas);
+		$this->db->order_by('Id_empatC', 'DESC');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 	public function getAllAdmin()
 	{
 		$this->db->from('tbl_kpempat_c c');
@@ -82,7 +105,7 @@ class Model_Kpempat_c extends CI_Model
 	{
 		$this->db->from('tbl_kpempat_c c');
 		$this->db->join('tbl_proposal p', 'p.NIM = c.NIM');
-		$this->db->join('tbl_status t', 't.Id = c.Status_dosen');
+		$this->db->join('tbl_status t', 't.Id = c.Status_kaprodi');
 		$this->db->where('Status_dosen', 2);
 		$query = $this->db->get();
 		return $query->result();
@@ -90,9 +113,12 @@ class Model_Kpempat_c extends CI_Model
 
 	public function getAll()
 	{
-		$this->db->from('tbl_kpempat_c c');
-		$this->db->join('tbl_kpempat_a a', 'a.Id_empatA = c.Id_empatA');
-		$this->db->join('tbl_kpempat_b b', 'b.Id_empatB = c.Id_empatB');
+		$this->db->from('tbl_kpempat_c ');
+		// $this->db->join('tbl_kpempat_a a', 'a.Id_empatA = c.Id_empatA');
+		// $this->db->join('tbl_kpempat_b b', 'b.Id_empatB = c.Id_empatB');
+		$this->db->where(['Status_dosen' => 2, 'Status_kaprodi' => 2]);
+		$query = $this->db->get();
+		return $query->result();
 
 	}
 
@@ -145,9 +171,10 @@ class Model_Kpempat_c extends CI_Model
 	}
 	
 
-	public function tambahDataKaprodi($NIM, $No_identitas, $Status_kaprodi, $Tanggal_kaprodi)
+	public function tambahDataKaprodi($Id_periode, $NIM, $No_identitas, $Status_kaprodi, $Tanggal_kaprodi)
 	{
 		$data = [
+			'Id_periode'		=> $Id_periode,
 			'No_identitas'		=> $No_identitas,
 			'Status_kaprodi'	=> $Status_kaprodi,
 			'Tanggal_kaprodi'	=> $Tanggal_kaprodi
@@ -166,5 +193,14 @@ class Model_Kpempat_c extends CI_Model
 
 		$this->db->where('NIM', $NIM);
 		$this->db->update('tbl_kpempat_c', $data);
+	}
+
+	public function hapusData($Id)
+	{	
+		$data = [
+            'Id' => $Id
+        ];
+           
+        $this->db->delete('tbl_persentasenilai',$data); 
 	}
 }

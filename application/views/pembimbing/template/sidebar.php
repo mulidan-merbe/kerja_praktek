@@ -30,68 +30,22 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link <?php if($this->uri->segment(2)=="beranda"){echo "active";} ?>" href="<?= base_url('pembimbing/beranda')?>">
+                <a class="nav-link <?php if($this->uri->segment(2)=="konsultasi" || $this->uri->segment(2)=="penilaianLapangan"){echo "active";} ?>" href="<?= base_url('pembimbing/konsultasi')?>">
                   <i class="material-icons" >description</i>
                   <span>Konsultasi</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link <?php if($this->uri->segment(2)=="beranda"){echo "active";} ?>" href="<?= base_url('pembimbing/beranda')?>">
+                <a class="nav-link <?php if($this->uri->segment(2)=="seminar" || $this->uri->segment(2)=="penilaian"){echo "active";} ?>" href="<?= base_url('pembimbing/seminar')?>">
                   <i class="material-icons" >description</i>
-                  <span>Penilaian Lapangan</span>
+                  <span>Seminar</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link <?php if($this->uri->segment(2)=="beranda"){echo "active";} ?>" href="<?= base_url('pembimbing/beranda')?>">
-                  <i class="material-icons" >description</i>
-                  <span>Jadwal Seminar</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link <?php if($this->uri->segment(2)=="beranda"){echo "active";} ?>" href="<?= base_url('pembimbing/beranda')?>">
-                  <i class="material-icons" >description</i>
-                  <span>Penilaian Seminar</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link <?php if($this->uri->segment(2)=="beranda"){echo "active";} ?>" href="<?= base_url('pembimbing/beranda')?>">
+                <a class="nav-link <?php if($this->uri->segment(2)=="laporan"){echo "active";} ?>" href="<?= base_url('pembimbing/laporan')?>">
                   <i class="material-icons" >description</i>
                   <span>Laporan</span>
                 </a>
-              </li>
-              <li class="nav-item dropdown <?php if($this->uri->segment(2)=="KP_TI_A02B" || $this->uri->segment(2)=="KP_TI_A02C" || $this->uri->segment(2)== "KP_TI_A04" || $this->uri->segment(2)== "KP_TI_A04B" || $this->uri->segment(2)== "laporan"){echo "active";} ?> ">
-                <a class="nav-link dropdown-toggle    " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons" >description</i>
-                  <span>KP-TI</span></a>
-                <ul class=" dropdown-menu  " >
-                  <li class="  ">  
-                        <a class="dropdown-item <?php if($this->uri->segment(2)=="KP_TI_A02B"){echo "active";} ?> "  href="<?= base_url('pembimbing/KP_TI_A02B')?>">  <i class="material-icons">note_add</i><span>Konsultasi Mahasiswa</span></a>
-                  </li>
-                  <li  class=" ">
-                        <a class="dropdown-item <?php if($this->uri->segment(2)=="KP_TI_A02C"){echo "active";} ?> " href="<?= base_url('pembimbing/KP_TI_A02C') ?>">
-                    <i class="material-icons">note_add</i>
-                    <span>Penilaian Lapangan</span>
-                  </a>
-                  </li>
-                  <li  class=" ">
-                        <a class="dropdown-item <?php if($this->uri->segment(2)=="KP_TI_A04"){echo "active";} ?> " href="<?= base_url('pembimbing/KP_TI_A04') ?>">
-                    <i class="material-icons">note_add</i>
-                    <span>Jadwal Seminar</span>
-                  </a>
-                  </li>
-                  <li  class=" ">
-                        <a class="dropdown-item <?php if($this->uri->segment(2)=="KP_TI_A04B"){echo "active";} ?> " href="<?= base_url('pembimbing/KP_TI_A04B') ?>">
-                    <i class="material-icons">note_add</i>
-                    <span>Penilaian Seminar</span>
-                  </a>
-                  </li>
-                  <li  class=" ">
-                        <a class="dropdown-item <?php if($this->uri->segment(2)=="laporan"){echo "active";} ?> " href="<?= base_url('pembimbing/laporan') ?>">
-                    <i class="material-icons">note_add</i>
-                    <span>Laporan</span>
-                  </a>
-                  </li>
-                     
-                </ul>
               </li>
               <li class="nav-item">
                 <a class="nav-link <?php if($this->uri->segment(2)=="profil"){echo "active";} ?>" href="<?= base_url('pembimbing/profil') ?>">

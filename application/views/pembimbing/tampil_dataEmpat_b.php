@@ -17,11 +17,20 @@
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-6 text-center text-sm-left mb-0">
-                <h3 class="page-title">Data KP-TI-A04B</h3>
+                <h3 class="page-title">Data Seminar</h3>
               </div>
             </div>
-            <!-- End Page Header -->
-            <!-- Default Light Table -->
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a type="button3" class="btn btn-info " href="<?= base_url('pembimbing/seminar') ?>">Jadwal Seminar
+                  <?php if($empat > 0) {  ?>
+                        <span class="badge badge-light">
+                          <?= $empat ?>
+                        </span>
+                    <?php } ?> 
+              </a>
+              <a type="button3" class="btn btn-info <?php if($this->uri->segment(2)=="penilaian"){echo "active";} ?>" href="<?= base_url('pembimbing/penilaian') ?>">Penilaian Seminar
+              </a>
+            </div>
             <div class="row">
               <div class="col">
                 <div class="card card-small mb-4">
@@ -30,19 +39,18 @@
                   </div>
                 <div class="table-responsive">
                    <div class="card-body">
-                     <a href="<?= base_url('pembimbing/KP_TI_A04B/jadwal') ?>" class="mb-2 btn btn-primary mr-2" ><i class="fas fa-plus">&nbsp</i>Tambah</a>
                       <table id="dtBasicExample" class=" table  mb-0 table-bordered table-striped">
                       <thead class="">
                         <tr>
-                          <!-- <th  style="text-align: center"><b>No. </b></th> -->
-                          <th  style="text-align: center"><b>NIM </b></th>
-                          <th  style="text-align: center"><b>Nama </b></th>
-                          <th style="text-align: center"><b>Total </b></th>
-                          <th style="text-align: center"><b>Rata-rata </b></th>
-                          <!-- <th style="text-align: center"><b>Nilai </b></th> -->
-                          <th style="text-align: center"><b>Tanggal </b></th>
-                          <!-- <th style="text-align: center"><b>Catatan </b></th> -->
-                          <th style="text-align: center"><b>Aksi</b></th>
+                          <th  class="text-center"><b>No. </b></th>
+                          <th  class="text-center"><b>NIM </b></th>
+                          <th  class="text-center"><b>Nama </b></th>
+                          <th class="text-center"><b>Total </b></th>
+                          <th class="text-center"><b>Rata-rata </b></th>
+                          <!-- <th class="text-center"><b>Nilai </b></th> -->
+                          <th class="text-center"><b>Tanggal </b></th>
+                          <th class="text-center"><b>Berita Acara </b></th>
+                          <th class="text-center"><b>Aksi</b></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -57,18 +65,24 @@
                            // $Nilai = $Rata > 80 === 'A' or $Rata > 60 === 'B' or  $Rata > 40 === 'C';
                         ?> 
                         <tr>
-                         <!--  <td style="text-align: center"><?= $no++ ?>.</td> -->
-                          <td style="text-align: center"><?= $data->NIM ?></td>
-                          <td style="text-align: center"><?= $data->nama ?></td>
-                           <!-- <td style="text-align: center"><?= $data->nama ?></td> -->
-                          <td style="text-align: center"><span class="badge badge-success"><?= $Total ?></span></td>
-                          <td style="text-align: center"><span class="badge badge-info"><?= $Rata ?></span></td>
-                          <!-- <td style="text-align: center"><span class="badge badge-info"><?= $Nilai ?></span></td> -->
-                          <td style="text-align: center"><?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal ))); ?></td> 
-                          <td style="text-align: center">
+                          <td class="text-center"><?= $no++ ?>.</td>
+                          <td class="text-center"><?= $data->NIM ?></td>
+                          <td class="col-5"><?= $data->nama ?></td>
+                           <!-- <td class="text-center"><?= $data->nama ?></td> -->
+                          <td class="text-center"><span class="badge badge-success"><?= $Total ?></span></td>
+                          <td class="text-center"><span class="badge badge-info"><?= $Rata ?></span></td>
+                          <!-- <td class="text-center"><span class="badge badge-info"><?= $Nilai ?></span></td> -->
+                          <td class="text-center"><?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal ))); ?></td> 
+                          <td class="text-center">
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Table row actions">
+                              <a class="mb-2 btn btn-primary " href="<?= base_url('')?>pembimbing/seminar/beritaAcara/<?= $data->NIM?> " ><i class="fas fa-eye"></i></a> 
+                            </div>
+                             
+                          </td>
+                          <td class="text-center">
                             <div class="btn-group btn-group-sm" role="group" aria-label="Table row actions">
                               <a class="mb-2 btn btn-success " data-toggle="modal" data-target="#modal-lihat<?=$data->Id_empatB; ?>" data-placement="top" title="Lihat" ><i class="fas fa-eye"></i></a> 
-                              <a class="mb-2 btn btn-info "  href="<?= base_url() ?>pembimbing/KP_TI_A04B/Ubah?NIM=<?= $data->NIM?>"><i class="material-icons">&#xE254;</i></a>
+                              <a class="mb-2 btn btn-info "  href="<?= base_url() ?>pembimbing/penilaian/ubah?NIM=<?= $data->NIM?>"><i class="material-icons">&#xE254;</i></a>
                             </div>
                              
                           </td>

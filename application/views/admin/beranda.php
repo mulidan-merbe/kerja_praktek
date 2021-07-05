@@ -21,7 +21,114 @@
 
             </div>
               <div class="row">
-              <div class="col-md-4">
+                <div class="col-md-3">
+                  <div class="card card-small mb-4">
+                    <div class="card-header border-bottom">
+                     <h6 class="m-0">Proposal</h6>
+                        
+                    </div>
+                    <div class="card-body border-bottom" style="min-height: 100px">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card card-small mb-4">
+                    <div class="card-header ">
+                     <h6 class="m-0">Pernyataan Siap Seminar</h6>
+                      
+                    </div>
+                    <div class="card-body border-bottom" style="min-height: 100px">
+                      <span class="badge badge-info mb-2">10 Data</span>
+
+                    </div>
+                    <div class="card-footer">
+                       <?php if($tiga > 0) { ?>
+                     <!--  <div class="alert alert-info" role="alert"> -->
+                        <h6><b>Data terbaru</b>                         <span class="badge badge-pill badge-primary"><?=  $tiga ?></span><a href="<?= base_url('admin/KP_TI_A03') ?>" class="alert-link float-right">Lihat</a></h6>
+
+                      <!-- </div> -->
+                      <?php } ?>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card card-small mb-4">
+                    <div class="card-header border-bottom">
+                     <h6 class="m-0">Laporan</h6>
+                      
+                    </div>
+                    <div class="card-body" style="min-height: 100px">
+                      aaa
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card card-small mb-4">
+                    <div class="card-header border-bottom">
+                     <h6 class="m-0">BA & DPNA</h6>
+                      
+                    </div>
+                    <div class="card-body" style="min-height: 100px">
+                      aaa
+                    </div>
+                  </div> 
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="card card-small mb-4">
+                  <div class="card-header border-bottom">
+                    <h6 class="m-0">Jadwal Pelaksanaan</h6>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item p-3">
+                      <div class="row">
+                        <div class="col">
+                           <?php 
+                  
+                            foreach ($jadwal as $data) { 
+                              $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal_mulai )));
+                              $format2 = format_indo(date('Y-m-d', strtotime( $data->Tanggal_selesai )));
+                              $format3 = format_indo(date('Y-m-d', strtotime( $data->Pengajuan_seminar )));
+                              $format4 = format_indo(date('Y-m-d', strtotime( $data->Pelaksanaan_seminar )));
+                              $format5 = format_indo(date('Y-m-d', strtotime( $data->RevisiDpengumpulan )));
+                               ?>
+                               <span class="badge badge-pill badge-info mb-4"><?php if($data->Periode == 1 ) { ?>BERJALAN <?php } else { ?>LIBURAN <?php } ?></span>
+                          <table class="table table-bordered table-striped">
+                            <tr>
+                                <th class="text-center">No.</th>
+                                <th class="text-center">Kegiatan </th>
+                                <th class="text-center">Tanggal</th>
+                              </tr>
+                              <tr>
+                                <td>1.</td>
+                                <td>Pelaksanaan Kerja Praktek </td>
+                                <td>  <?= $format1; ?> - <?= $format2; ?></td>
+                              </tr>
+                              <tr>
+                                <td>2.</td>
+                                <td>Pengajuan Seminar Kerja Praktek </td>
+                                <td><?= $format3; ?></td>
+                              </tr>
+                              <tr>
+                                <td>3.</td>
+                                <td>Pelaksanaan Seminar Kerja Praktek </td>
+                                <td><?= $format4; ?></td>
+                              </tr>
+                              <tr>
+                                <td>4.</td>
+                                <td>Revisi dan Pengumpulan Laporan Kerja Praktek </td>
+                                <td><?= $format5; ?></td>
+                            </tr>
+                            </table>
+                            <?php } ?>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                </div>
+                <div class="col-md-6">
                   <div class="card card-small mb-4">
                     <div class="card-header border-bottom">
                       <h6 class="m-0">Data terbaru</h5> 
@@ -55,59 +162,7 @@
                       </div>
                   </div>
                 </div>
-              <div class="col-md-8">
-                <div class="card card-small mb-4">
-                  <div class="card-header border-bottom">
-                    <h6 class="m-0">Jadwal Pelaksanaan</h6>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item p-3">
-                      <div class="row">
-                        <div class="col">
-                           <?php 
-                  
-                            foreach ($jadwal as $data) { 
-                              $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal_mulai )));
-                              $format2 = format_indo(date('Y-m-d', strtotime( $data->Tanggal_selesai )));
-                              $format3 = format_indo(date('Y-m-d', strtotime( $data->Pengajuan_seminar )));
-                              $format4 = format_indo(date('Y-m-d', strtotime( $data->Pelaksanaan_seminar )));
-                              $format5 = format_indo(date('Y-m-d', strtotime( $data->RevisiDpengumpulan )));
-                               ?>
-                               <span class="badge badge-pill badge-info mb-4"><?php if($data->Periode == 1 ) { ?>BERJALAN <?php } else { ?>LIBURAN <?php } ?></span><br>
-                          <table class="table table-bordered table-striped">
-                            <tr>
-                                <th style="text-align: center">No.</th>
-                                <th style="text-align: center">Kegiatan </th>
-                                <th style="text-align: center">Tanggal</th>
-                              </tr>
-                              <tr>
-                                <td>1.</td>
-                                <td>Pelaksanaan Kerja Praktek </td>
-                                <td>  <?= $format1; ?> - <?= $format2; ?></td>
-                              </tr>
-                              <tr>
-                                <td>2.</td>
-                                <td>Pengajuan Seminar Kerja Praktek </td>
-                                <td><?= $format3; ?></td>
-                              </tr>
-                              <tr>
-                                <td>3.</td>
-                                <td>Pelaksanaan Seminar Kerja Praktek </td>
-                                <td><?= $format4; ?></td>
-                              </tr>
-                              <tr>
-                                <td>4.</td>
-                                <td>Revisi dan Pengumpulan Laporan Kerja Praktek </td>
-                                <td><?= $format5; ?></td>
-                            </tr>
-                            </table>
-                            <?php } ?>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              
             </div>
           </div>
 <?php $this->load->view('admin/template/footer') ?>

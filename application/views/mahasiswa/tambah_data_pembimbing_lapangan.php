@@ -79,7 +79,7 @@
                               <button class="btn btn-info" type="Reset">Reset</button>
                             </div>
                             </form>
-                          
+                          </div>
                           </div>
                           </div>
                         </div>

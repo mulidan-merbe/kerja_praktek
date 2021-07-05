@@ -33,7 +33,7 @@
                   <div class="card-header border-bottom">
                     <h6 class="m-0">Tambah Proposal</h6>
                   </div>
-                   <div class="card-body">
+                   <div class="card-body" style="min-height: 375px;">
                     <!-- <form action="" class="dropzone" id="fileupload">
                       <input type="file" name="file" >
                     </form> -->
@@ -76,7 +76,7 @@
                   </div>
                 <div class="table-responsive">
                    <div class="card-body">
-                    <?php foreach ($proposal as $data) {
+                  <!--   <?php foreach ($proposal as $data) {
                       $Id_pelaksanaan = $data->Id_pelaksanaan;
                      ?>
                     <?php foreach ($jadwal as $data) {
@@ -97,7 +97,7 @@
                     <?php } else { ?>
                        <button type="button" class="btn btn-primary" disabled><i class="fas fa-plus">&nbsp</i>Tambah</button> 
                     <?php } ?>
-                    
+                     -->
                     <table id="" class=" table mt-4 mb-0 table-bordered table-striped">
                       <thead class="">
                         <!-- <thead class="bg-light"> -->

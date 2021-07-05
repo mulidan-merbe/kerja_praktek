@@ -16,11 +16,15 @@
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-                <h3 class="page-title">Data Berita Acara</h3>
+                <h3 class="page-title">Data Penilaian</h3>
               </div>
             </div>
-            <!-- End Page Header -->
-            <!-- Default Light Table -->
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a type="button3" class="btn btn-info " href="<?= base_url('mahasiswa/penilaian') ?>">Penilaian Seminar 
+              </a>
+              <a type="button3" class="btn btn-info <?php if($this->uri->segment(2)=="beritaAcara"){echo "active";} ?>" href="<?= base_url('mahasiswa/beritaAcara') ?>">Berita Acara
+              </a>
+            </div>
             <div class="row">
               <div class="col-md-12 col-sm-12">
                 <div class="card card-small mb-4">

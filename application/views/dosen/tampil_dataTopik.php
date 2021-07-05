@@ -14,6 +14,7 @@
           <!-- / .main-navbar -->
           <div class="main-content-container container-fluid px-4">
           <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+          <?= $this->session->unset_userdata('flash'); ?>
             <!-- Page Header -->
              <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
@@ -22,7 +23,13 @@
             </div>
             <div class="btn-group" role="group" aria-label="Basic example">
               <button type="button2" class="btn btn-info <?php if($this->uri->segment(2)=="topik"){echo "active";} ?>">Tawaran</button>
-              <a type="button3" class="btn btn-info" href="<?= base_url('dosen/topik/rencana') ?>">Rencana</a>
+              <a type="button3" class="btn btn-info" href="<?= base_url('dosen/topik/rencana') ?>">Rencana
+                <?php if($rencanaTopik > 0) {  ?>
+                        <span class="badge badge-light">
+                          <?= $rencanaTopik ?>
+                        </span>
+                 <?php } ?>
+              </a>
             </div>
             <div class="row mt-2">
               <div class="col">
@@ -65,7 +72,7 @@
                               <a type="button" class="btn btn-info active-light" href="<?= base_url() ?>dosen/tawaran_topik/ubah/<?= $data->Id_tawaranjudul ?>">
                                 <i class="material-icons">&#xE254;</i>
                               </a>
-                              <a type="button" class="btn btn-danger tombol-hapus" href="<?= base_url() ?>dosen/tawaran_topik/hapus/<?= $data->Id_tawaranjudul ?>">
+                              <a type="button" class="btn btn-danger tombol-hapus" href="<?= base_url() ?>dosen/topik/hapus/<?= $data->Id_tawaranjudul ?>">
                                 <i class="material-icons">&#xE872;</i>
                               </a>
                             </div> 

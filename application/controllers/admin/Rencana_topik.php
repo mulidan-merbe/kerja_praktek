@@ -22,10 +22,13 @@ class Rencana_topik extends CI_Controller {
 	{
 		$Id_rencanajudul = $_GET['setujui'];
 		$Status = 2;
+		$Id = $this->uri->segment(4);
 
 		$this->rencanatopik->setuju($Status, $Id_rencanajudul);
 		$this->session->set_flashdata('flash', ' dipilih');
-		redirect('admin/topik/rencana');
+		$url = 'admin/rencana_topik/detail/'.$Id;
+		redirect($url);
+		// redirect('admin/topik/rencana');
 	}
 
 	public function tolak()

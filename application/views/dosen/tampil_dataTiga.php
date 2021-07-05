@@ -14,14 +14,29 @@
           <!-- / .main-navbar -->
           <div class="main-content-container container-fluid px-4">
           <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+          <?= $this->session->unset_userdata('flash'); ?>
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-6 text-center text-sm-left mb-0">
-                <h3 class="page-title">Data KP-TI-A03</h3>
+                <h3 class="page-title">Data Pernyataan Siap Seminar</h3>
               </div>
             </div>
-            <!-- End Page Header -->
-            <!-- Default Light Table -->
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a type="button3" class="btn btn-info" href="<?= base_url('dosen/konsultasi') ?>">Konsultasi 
+                <?php if($duaA > 0) {  ?>
+                        <span class="badge badge-light">
+                          <?= $duaA ?>
+                        </span>
+                    <?php } ?>
+              </a>
+              <a type="button3" class="btn btn-info <?php if($this->uri->segment(2)=="PernyataanSiapSeminar"){echo "active";} ?>" href="<?= base_url('dosen/PernyataanSiapSeminar') ?>">Pernyataan Siap Seminar
+                <?php if($tiga > 0) {  ?>
+                        <span class="badge badge-light">
+                          <?= $tiga ?>
+                        </span>
+                 <?php } ?>
+              </a>
+            </div>
             <div class="row">
               <div class="col">
                 <div class="card card-small mb-4">
@@ -35,13 +50,13 @@
                       <table id="dtBasicExample" class=" table  mb-0 table-bordered table-striped">
                       <thead class="">
                         <tr>
-                          <th  style="text-align: center"><b>No. </b></th>
-                          <th  style="text-align: center"><b>NIM </b></th>
-                          <th  style="text-align: center"><b>Nama</b></th>
-                          <th  style="text-align: center"><b>Topik </b></th>
-                          <th  style="text-align: center"><b>Status </b></th>
-                          <th  style="text-align: center"><b>Tanggal </b></th>
-                          <th style="text-align: center"><b>Aksi</b></th>
+                          <th  class="text-center"><b>No. </b></th>
+                          <th  class="text-center"><b>NIM </b></th>
+                          <th  class="text-center"><b>Nama</b></th>
+                          <th  class="text-center"><b>Topik </b></th>
+                          <th  class="text-center"><b>Status </b></th>
+                          <th  class="text-center"><b>Tanggal </b></th>
+                          <th class="text-center"><b>Aksi</b></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -49,17 +64,17 @@
                         $no = 1;
                         foreach ($kptiga as $data) { ?>
                         <tr>
-                          <td style="text-align: center"><?= $no++ ?>.</td>
-                          <td style="text-align: center"><?= $data->NIM ?></td>
-                          <td style="text-align: center"><?= $data->nama ?></td>
-                          <td style="text-align: center"><?= $data->topik ?></td>
-                          <td style="text-align: center"><?= $data->Icon?></td>
-                          <td style="text-align: center"><?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal ))); ?></td>
-                          <td style="text-align: center">
+                          <td class="text-center"><?= $no++ ?>.</td>
+                          <td class="text-center"><?= $data->NIM ?></td>
+                          <td class="text-center"><?= $data->nama ?></td>
+                          <td class="text-center"><?= $data->topik ?></td>
+                          <td class="text-center"><?= $data->Icon?></td>
+                          <td class="text-center"><?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal ))); ?></td>
+                          <td class="text-center">
                             <div class="btn-group btn-group-sm" role="group" aria-label="Table row actions">
                              <!--  <a class="mb-2 btn btn-primary " data-toggle="modal" data-target="#modal-edit<?=$data->Id_Kptiga; ?>" data-placement="top" ><i class="material-icons">add</i></a> -->
-                              <a  class="mb-2 btn  btn-success" href="<?= base_url('')?>dosen/KP_TI_A03/setuju/<?= $data->Id_Kptiga ?>"  data-placement="top" title="Lihat" ><i class="fas fa-check"></i></a>
-                              <a  class="mb-2 btn  btn-danger" href="<?= base_url('')?>dosen/KP_TI_A03/tolak/<?= $data->Id_Kptiga ?>"  data-placement="top" title="Lihat" ><i class="fas fa-times"></i></a>
+                              <a  class="mb-2 btn  btn-success" href="<?= base_url('')?>dosen/PernyataanSiapSeminar/setuju/<?= $data->Id_Kptiga ?>"  data-placement="top" title="Lihat" ><i class="fas fa-check"></i></a>
+                              <a  class="mb-2 btn  btn-danger" href="<?= base_url('')?>dosen/PernyataanSiapSeminar/tolak/<?= $data->Id_Kptiga ?>"  data-placement="top" title="Lihat" ><i class="fas fa-times"></i></a>
                             </div>
                             
                           </td>

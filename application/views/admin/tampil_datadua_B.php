@@ -22,7 +22,7 @@
             </div>
             <div class="btn-group mb-2" role="group" aria-label="Basic example">
               <a type="button2" class="btn btn-info " href="<?= base_url('admin/konsultasi') ?>">Konsultasi Dosen</a>
-              <a type="button3" class="btn btn-info <?php if($this->uri->segment(3)=="Lapangan"){echo "active";} ?>" href="<?= base_url('admin/konsultasi/Lapangan') ?>">Konsultasi Lapangan</a>
+              <a type="button3" class="btn btn-info <?php if($this->uri->segment(3)=="lapangan"){echo "active";} ?>" href="<?= base_url('admin/konsultasi/lapangan') ?>">Konsultasi Lapangan</a>
             </div>
             <div class="row">
               <div class="col-md-12">
@@ -33,15 +33,17 @@
                 <div class="table-responsive">
                   <div class="card-body">
                       <table id="dtBasicExample" class=" table  mb-0 table-bordered table-striped">
-                      <thead class="">
+                     <thead class="">
                         <tr>
-                          <th  style="text-align: center"><b>No.</b></th>
-                          <th  style="text-align: center"><b>NIM</b></th>
-                          <th  style="text-align: center"><b>Tema</b></th>
-                          <th  style="text-align: center"><b>Berkas</b></th>
-                          <th  style="text-align: center"><b>Status</b></th>
-                          <th  style="text-align: center"><b>Tanggal</b></th>
-                          <th  style="text-align: center"><b>Aksi</b></th>
+                          <th  class="col-1 text-center "><b>No.</b></th>
+                          <th  class="col-3 text-center"><b>NIM</b></th>
+                          <th  class="col-5 text-center"><b>Nama</b></th>
+                          <!-- <th  class="text-center"><b>Tema</b></th>
+                          <th  class="text-center"><b>Berkas</b></th> -->
+                          <!-- <th  class="text-center"><b>Status</b></th> -->
+                          <th  class="text-center"><b>Jumlah</b></th>
+                          
+                          <th  class="text-center"><b>Aksi</b></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -49,20 +51,22 @@
                         $no = 1;
                         foreach ($kpduaB as $data) { ?>
                         <tr>
-                          <td style="text-align: center"><?= $no++ ?>.</td>
-                          <td style="text-align: center"><?= $data->NIM ?></td>
-                          <td style="text-align: center"><?= $data->Tema ?></td>
-                          <td style="text-align: center">
-                            <a class="btn btn-sm btn-light" href="<?= base_url('assets/KonsultasiDosen/file/').$data->File ?>"><img width="20" class="user-avatar rounded-circle mr-2" src="<?= base_url('assets/back')?>/images/avatars/pdf.svg" alt="User Avatar">
-                            </a>
+                          <td class="col-1 text-center"><?= $no++ ?>.</td>
+                          <td class="col-2 text-center"><?= $data->NIM ?></td>
+                          <td class="col-4"><?= $data->nama ?></td> 
+                          <td class="col-3 text-center">
+                            <!-- <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:40%">
+                              
+                            </div><?= $data->total ?></td> -->
+                            <div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" role="progressbar"  style="min-height: 2em; width:40%" value="3">
+                             <?= $data->total ?>
+                            </div>
                           </td>
-                          <td style="text-align: center"><?= $data->Icon ?></td> 
-                          <td style="text-align: center"><?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal ))); ?></td>
-                          <td style="text-align: center">
+                          <td class="text-center">
                             <div class="btn-group btn-group-sm " role="group" aria-label="Table row actions">
-                              <a   class="mb-2 btn btn-success mr-2" data-toggle="modal" data-target="#modal-lihat<?=$data->Id_duaB; ?>" data-placement="top" title="Lihat" ><i class="fas fa-eye"></i></a>
-                            </div> 
-                          </td>
+                              <a   class="mb-2 btn  btn-success"  href="<?= base_url('')?>admin/konsultasi/detailLapangan/<?= $data->NIM ?>" data-placement="top" title="Lihat" ><i class="fas fa-eye"></i></a>
+                            </div>
+                          </td> 
                         </tr>
                         <?php } ?>
                       </tbody>

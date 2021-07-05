@@ -13,9 +13,13 @@ class Topik extends CI_Controller {
 
 	public function index()
 	{
-		$data['title']  = 'Dosen | Tawaran Topik';
+
 		$NIP = $this->session->userdata('NIP');
-		$data['tawaranTopik'] = $this->Model_tawaranTopik->getAllTopik($NIP);
+		$data = [
+			'title'			=> 'Dosen | Tawaran Topik',
+			'tawaranTopik' => $this->Model_tawaranTopik->getAllTopik($NIP),
+			'rencanaTopik'  => $this->Model_rencanaTopik->cek_status($NIP),
+		];
 			$this->load->view('dosen/tampil_dataTopik', $data);
 		// }else {
 		// 	$this->load->view('mahasiswa/no_dataTawaranJudul');
@@ -26,7 +30,12 @@ class Topik extends CI_Controller {
 	{
 		$data['title']  = 'dosen | Rencana Topik';
 		$NIP = $this->session->userdata('NIP');
-		$data['rencanaTopik'] = $this->Model_rencanaTopik->getbyNIP($NIP);
+		$data = [
+			'title'			=> 'Dosen | Tawaran Topik',
+			'rencanaTopik'  => $this->Model_rencanaTopik->getbyNIP($NIP),
+			'tawaranTopik'  => $this->Model_tawaranTopik->getAllTopik($NIP),
+			'status'        => $this->Model_rencanaTopik->cek_status($NIP),
+		];
 		$this->load->view('dosen/tampil_rencanaTopik', $data);
 	}
 
@@ -56,7 +65,7 @@ class Topik extends CI_Controller {
 			$Tanggal     	 = format_indo(date('Y-m-d'));
 			$this->Model_tawaranTopik->tambahData(  $NIP,$topik, $Alamat, $Jumlah, $No_hp, $Instansi, $Username, $Id_pelaksanaan, $Tanggal);
 			$this->session->set_flashdata('flash', 'Ditambahkan');
-			redirect('dosen/tawaran_topik');
+			redirect('dosen/topik');
 		}
 	}
 
@@ -95,7 +104,7 @@ class Topik extends CI_Controller {
 			$Tanggal     	 	= format_indo(date('Y-m-d'));
 			$this->Model_tawaranTopik->ubahData($Id_tawaranjudul, $topik, $Alamat, $Jumlah, $No_hp, $Instansi, $NIP, $Tanggal);
 			$this->session->set_flashdata('flash', 'Diubah');
-			redirect('dosen/tawaran_topik');
+			redirect('dosen/topik');
 		}
 	}
 
@@ -104,7 +113,7 @@ class Topik extends CI_Controller {
 		$Id_tawaranjudul = $Id_tawaranjudul;
         $this->Model_tawaranTopik->hapusDataJudul($Id_tawaranjudul);
         $this->session->set_flashdata('flash', 'Dihapus');
-		redirect('dosen/tawaran_topik');
+		redirect('dosen/topik');
     }
 
 }

@@ -2,7 +2,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class KP_TI_A04A extends CI_Controller {
+class Penilaian extends CI_Controller {
 
 	function __construct() {
         parent::__construct();
@@ -15,7 +15,7 @@ class KP_TI_A04A extends CI_Controller {
 
     public function index()
     {
-        $data['title']  = 'Dosen | KP-TI-A04A';
+        $data['title']  = 'Dosen | Penilaian Seminar';
     	$NIP = $this->session->userdata('NIP');
     	$data['jadwal'] = $this->Model_Kpempat->getbyNIP($NIP);
     	$data['seminar'] = $this->Model_Kpempat_a->getbyNIP($NIP);
@@ -25,7 +25,7 @@ class KP_TI_A04A extends CI_Controller {
 
     public function jadwal()
     {
-        $data['title']  = 'Dosen | KP-TI-A04A';
+        $data['title']  = 'Dosen | Penilaian Seminar';
     	$NIP = $this->session->userdata('NIP');
 
     	$data['jadwal'] = $this->Model_Kpempat->getbyNIP($NIP);
@@ -37,7 +37,7 @@ class KP_TI_A04A extends CI_Controller {
     {
         $NIM            = $NIM;
         $data = [
-            'title'     => 'Dosen | KP-TI-A04A',
+            'title'     => 'Dosen | Penilaian Seminar',
             'nilai'     => $this->Model_Kpempat_a->getbyNIM($NIM),
             'jadwal'    => $this->Model_Kpempat->getbyNIM($NIM)
         ];
@@ -49,7 +49,7 @@ class KP_TI_A04A extends CI_Controller {
         $NIP            = $this->session->userdata('NIP');
         $NIM            = $this->input->post('NIM');
     	$data = [
-            'title'     => 'Dosen | KP-TI-A04A',
+            'title'     => 'Dosen | Penilaian Seminar',
             'nilai'     => $this->Model_Kpempat_a->getbyNIM($NIM),
             'jadwal'    => $this->Model_Kpempat->getbyNIM($NIM)
         ];
@@ -75,13 +75,13 @@ class KP_TI_A04A extends CI_Controller {
 
     		$this->Model_Kpempat_a->tambahData($NIP, $NIM, $Nilai_satu, $Nilai_dua, $Nilai_tiga, $Nilai_empat, $Nilai_lima, $Catatan,  $Tanggal);
     		$this->session->set_flashdata('flash', 'Ditambahkan');
-    		redirect('dosen/KP_TI_A04A');
+    		redirect('dosen/Penilaian');
     	}
     }
 
     public function ubah($NIM)
     {
-        $data['title']  = 'Dosen | KP-TI-A04A';
+        $data['title']  = 'Dosen | Penilaian Seminar';
         $NIM = $NIM;
         $data['ubah'] = $this->Model_Kpempat_a->getbyNIM($NIM);
         $data['pelaksanaan'] = $this->Model_Jadwal->getAll();
@@ -90,7 +90,7 @@ class KP_TI_A04A extends CI_Controller {
 
     public function ubahData()
     {
-        $data['title']  = 'Dosen | KP-TI-A04A';
+        $data['title']  = 'Dosen | Penilaian Seminar';
         $Id_empatA      = $this->input->post('Id_empatA');
         $data['ubah']   = $this->Model_Kpempat_a->getbyId($Id_empatA);
         $data['pelaksanaan'] = $this->Model_Jadwal->getAll();
@@ -117,7 +117,7 @@ class KP_TI_A04A extends CI_Controller {
             // var_dump($data);
             // die;
             $this->session->set_flashdata('flash', 'Diubah');
-            redirect('dosen/KP_TI_A04A');
+            redirect('dosen/Penilaian');
         }
     }
 }

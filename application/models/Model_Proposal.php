@@ -59,6 +59,7 @@ class Model_Proposal extends CI_Model {
      {
         $this->db->from('tbl_proposal r');
         $this->db->join('tbl_pelaksanaan p', 'p.Id_pelaksanaan = r.Id_pelaksanaan');
+        $this->db->join('tbl_status t', 't.Id = r.Status');
         $this->db->order_by('Id_proposal', 'DESC');
         $query = $this->db->get();
         return $query->result();
@@ -87,13 +88,7 @@ class Model_Proposal extends CI_Model {
            
     }
 
-    // public function cekStatus($NIM)
-    // {
-    //     $this->db->from('tbl_proposal');
-    //     $this->db->where('Status' 2);
-    //     $this->db->where('NIM', $NIM);
-    //     $this->db->order_by()
-    // }
+
 
     public function inputProposal($Id_pelaksanaan, $topik, $Username, $NIP, $NamaDosen, $Berkas, $NIM,  $Tanggal) {
         $data = array(

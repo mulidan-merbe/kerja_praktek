@@ -95,6 +95,7 @@ class Proposal extends CI_Controller {
 		$config['upload_path'] = 'assets/proposal/file/';
 		$config['allowed_types'] = 'pdf';
 		$config['max_size']      = 5000;
+		$namabaru = 
 		$this->load->library('upload', $config);
 
 		// Cek apakah ada berkas yang diuploud atau tidak
@@ -113,7 +114,7 @@ class Proposal extends CI_Controller {
 
 				$result         = $this->upload->data();
 				// $topik 			= $this->input->post('topik');
-				$Berkas           = $result['file_name'];
+				$Berkas         = $result['file_name'];
 				$Tanggal		= date('Y-m-d');
 
 				$this->Model_Proposal->ubahData($NIM, $Berkas, $Tanggal);

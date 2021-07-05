@@ -26,6 +26,8 @@ class Seminar extends CI_Controller {
             'syarat'        => $this->Model_Syarat->get(),
             'kpempat'		=> $this->Model_Kpempat->getbyNIM($NIM)
     	 ];
+
+        // menampilkan data pernyataan siap seminar dan jadwal seminar
         $this->load->view('mahasiswa/tampil_dataSeminar', $data);
     	
     }

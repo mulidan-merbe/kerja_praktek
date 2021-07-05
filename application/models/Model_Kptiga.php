@@ -43,6 +43,17 @@ class Model_Kptiga extends CI_Model
 
     }
 
+
+    public function jadwalSeminar($NIM)
+    {
+    	$this->db->from('tbl_kptiga t');
+    	$this->db->join('tbl_pembimbing_lapangan p', 'p.NIM = t.NIM');
+    	$this->db->limit(1);
+    	$this->db->order_by('Id_Kptiga', 'DESC');
+    	$query = $this->db->get();
+    	return $query->result();
+    }
+
      public function cek_statusDosen($NIP)
     {
     	$this->db->from('tbl_kptiga');

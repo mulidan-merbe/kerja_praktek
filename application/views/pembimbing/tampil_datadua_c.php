@@ -17,11 +17,15 @@
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-6 text-center text-sm-left mb-0">
-                <h3 class="page-title">Data KP-TI-A02C</h3>
+                <h3 class="page-title">Data Konsultasi</h3>
               </div>
             </div>
-            <!-- End Page Header -->
-            <!-- Default Light Table -->
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a type="button3" class="btn btn-info " href="<?= base_url('pembimbing/konsultasi') ?>">Konsultasi 
+              </a>
+              <a type="button3" class="btn btn-info <?php if($this->uri->segment(2)=="penilaianLapangan"){echo "active";} ?>" href="<?= base_url('pembimbing/penilaianLapangan') ?>">Penilaian lapangan
+              </a>
+            </div>
             <div class="row">
               <div class="col">
                 <div class="card card-small mb-4">
@@ -30,17 +34,16 @@
                   </div>
                 <div class="table-responsive ">
                    <div class="card-body">
-                      <a href="<?= base_url('pembimbing/KP_TI_A02C/Penilaian') ?>" class="mb-2 btn btn-primary mr-2" ><i class="fas fa-plus">&nbsp</i>Tambah</a>
                       <table id="dtBasicExample" class=" table  mb-0 table-bordered table-striped">
                       <thead >
                        <!--  <thead class="bg-light"> -->
                         <tr>
-                          <th  style="text-align: center">No. </th>
-                          <th style="text-align: center">NIM </th>
-                          <th style="text-align: center">Nama</th>
-                          <th style="text-align: center">Nilai Rata-rata</th>
-                          <th style="text-align: center">Tanggal</th>
-                          <th style="text-align: center">AKSI</th>
+                          <th  class="text-center">No. </th>
+                          <th class="text-center">NIM </th>
+                          <th class="text-center col-4">Nama</th>
+                          <th class="text-center">Nilai Rata-rata</th>
+                          <th class="text-center">Tanggal</th>
+                          <th class="text-center">Aksi</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -52,15 +55,15 @@
                           $Rata   = $Total / $Jumlah;
                           ?>
                         <tr>
-                          <td style="text-align: center"><?= $no++ ?>.</td>
-                          <td style="text-align: center"><?= $data->NIM ?></td>
-                           <td style="text-align: center"><?= $data->nama ?></td>
-                          <td style="text-align: center"><span class="badge badge-info"><?= $Rata?></span></td>
-                          <td style="text-align: center"><?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal ))); ?></td> 
-                          <td style="text-align: center">
+                          <td class="text-center"><?= $no++ ?>.</td>
+                          <td class="text-center"><?= $data->NIM ?></td>
+                           <td class=""><?= $data->nama ?></td>
+                          <td class="text-center"><span class="badge badge-info"><?= $Rata?></span></td>
+                          <td class="text-center"><?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal ))); ?></td> 
+                          <td class="text-center">
                             <div class="btn-group btn-group-sm" role="group" aria-label="Table row actions">
                               <a class="mb-2 btn btn-success " data-toggle="modal" data-target="#modal-lihat<?=$data->Id_duaC; ?>" data-placement="top" title="Lihat" ><i class="fas fa-eye"></i></a>
-                              <a class="mb-2 btn btn-info " href="<?= base_url() ?>pembimbing/KP_TI_A02C/Ubah?Id=<?= $data->Id_duaC ?>"><i class="fas fa-edit"></i></a>
+                              <a class="mb-2 btn btn-info " href="<?= base_url() ?>pembimbing/penilaianLapangan/ubah/<?= $data->Id_duaC ?>"><i class="fas fa-edit"></i></a>
                             </div>
                           </td>
                         </tr>

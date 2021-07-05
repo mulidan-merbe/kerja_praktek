@@ -14,6 +14,7 @@
           <!-- / .main-navbar -->
           <div class="main-content-container container-fluid px-4">
           <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+          <?= $this->session->unset_userdata('flash'); ?>
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-6 text-center text-sm-left mb-0">
@@ -30,16 +31,18 @@
                   </div>
                 <div class="table-responsive">
                    <div class="card-body">
-                     <a href="<?= base_url() ?>admin/KP_TI_A04C/persentase" class="mb-2 btn btn-primary mr-2" >Persentase Penilaian Seminar</a>
+                     <a href="<?= base_url() ?>admin/beritaAcara/persentase" class="mb-2 btn btn-primary mr-2" >Persentase Penilaian</a>
+                      <a   class="mb-2 btn  btn-primary" data-toggle="modal" data-target="#modal-DPNA" data-placement="top" title="Lihat" >DPNA</a>
+                      <a href="<?= $cetak; ?>" class=" btn btn-warning  ">Cetak</a>
                       <table id="dtBasicExample" class=" table  mb-0 table-bordered table-striped">
                       <thead class="">
                         <tr>
-                          <th  style="text-align: center"><b>No. </b></th>
-                          <th style="text-align: center"><b>NIM</b></th>
-                          <th style="text-align: center"><b>Nama</b></th>
-                          <th style="text-align: center"><b>Status</b></th>
-                          <th style="text-align: center"><b>Tanggal</b></th> 
-                          <th style="text-align: center"><b>Aksi</b></th>
+                          <th  class="text-center"><b>No. </b></th>
+                          <th class="text-center"><b>NIM</b></th>
+                          <th class="text-center col-4"><b>Nama</b></th>
+                          <th class="text-center"><b>Status</b></th>
+                          <th class="text-center"><b>Tanggal</b></th> 
+                          <th class="text-center"><b>Aksi</b></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -47,21 +50,21 @@
                         $no = 1;
                         foreach ($nilai as $data) { ?>
                         <tr>
-                          <td style="text-align: center"><?= $no++ ?>.</td>
-                          <td style="text-align: center"><?= $data->NIM ?></td>
-                          <td style="text-align: center"><?= $data->nama ?></td>
-                          <!-- <td style="text-align: center"><?= $data->Icon ?></td> -->
-                          <td style="text-align: center"><?= $data->Icon ?></td>
-                          <td style="text-align: center"><?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal_kaprodi ))); ?></td>
-                          <td style="text-align: center">
+                          <td class="text-center"><?= $no++ ?>.</td>
+                          <td class="text-center"><?= $data->NIM ?></td>
+                          <td class=""><?= $data->nama ?></td>
+                          <!-- <td class="text-center"><?= $data->Icon ?></td> -->
+                          <td class="text-center"><?= $data->Icon ?></td>
+                          <td class="text-center"><?= $format1 = format_indo(date('Y-m-d', strtotime( $data->Tanggal_kaprodi ))); ?></td>
+                          <td class="text-center">
                             <div class="btn-group btn-group-sm " role="group" aria-label="Table row actions">
                               <?php if($this->session->userdata('Status') == 1) {?>
-                                <a class="mb-2 btn  btn-success "  href="<?= base_url() ?>admin/KP_TI_A04C/detail/<?= $data->NIM?>"><i class="fas fa-eye"></i></a>
-                                <a  class="mb-2 btn  btn-success" href="<?= base_url('')?>admin/KP_TI_A04C/setuju?setujui=<?= $data->NIM ?>"  data-placement="top" title="Lihat" ><i class="fas fa-check"></i></a>
-                                <a  class="mb-2 btn  btn-danger" href="<?= base_url('')?>admin/KP_TI_A04C/tolak?ditolak=<?= $data->NIM ?>"  data-placement="top" title="Lihat" ><i class="fas fa-times"></i></a>
+                                <a class="mb-2 btn  btn-success "  href="<?= base_url() ?>admin/beritaAcara/detail/<?= $data->NIM?>"><i class="fas fa-eye"></i></a>
+                                <a  class="mb-2 btn  btn-primary" href="<?= base_url('')?>admin/beritaAcara/setuju?setujui=<?= $data->NIM ?>"  data-placement="top" title="Lihat" ><i class="fas fa-check"></i></a>
+                                <a  class="mb-2 btn  btn-danger" href="<?= base_url('')?>admin/beritaAcara/tolak?ditolak=<?= $data->NIM ?>"  data-placement="top" title="Lihat" ><i class="fas fa-times"></i></a>
                               <?php } ?>
                               <?php if($this->session->userdata('Status') == 2) {?>
-                                <a class="mb-2 btn  btn-success "  href="<?= base_url() ?>admin/KP_TI_A04C/detail/<?= $data->NIM?>"><i class="fas fa-eye"></i></a>
+                                <a class="mb-2 btn  btn-success "  href="<?= base_url() ?>admin/beritaAcara/detail/<?= $data->NIM?>"><i class="fas fa-eye"></i></a>
                               <?php } ?>
                                
                             </div> 
@@ -109,6 +112,72 @@
               </div>
             </div>
             <?php } ?>
+
+
+            <div class="modal fade" id="modal-DPNA" tabindex="-1" role="dialog"      labelledby="myModalLabel"
+              >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">cetak DPNA </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form method="GET" action="" enctype="multipart/form-data">
+                    <div class="modal-body mx-3">
+                      <div class="form-group">
+                          <label >Pilih Berdasarkan :</label>
+                          <select name="filter" id="filter"  class="form-control">
+                              <option value="">Pilih</option>
+                              <option value="1">Per Mahasiswa</option>
+                              <option value="2">Per Periode</option>
+                             <!--  <option value="3">Per </option> -->
+                          </select>
+                      <div class="form-group mt-2">    
+                          <div id="form-mahasiswa" >
+                              <label>NIM :</label><br>
+                              <select name="NIM" class="form-control">>
+                                  <option value="">Pilih</option>
+                                  <?php
+                                  foreach($mahasiswa as $data){ // Ambil data tahun dari model yang dikirim dari controller
+                                      echo '<option value="'.$data->NIM.'">'.$data->NIM.'</option>';
+                                  }
+                                  ?>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="form-group mt-2">    
+                          <div id="form-periode" >
+                              <label>Periode</label><br>
+                              <select name="Periode" class="form-control">>
+                                  <option value="">Pilih</option>
+                                  <?php
+                                  foreach($periode as $data){
+                                    if($data->Periode == 1) { 
+                                      echo "Berjalan";
+                                    } elseif($data->Periode == 2) {
+                                     echo "Liburan";
+                                    }
+
+                                      echo '<option value="'.$data->Id_pelaksanaan.'">'.$data->Tahun."-".$data->Periode .'</option>';
+                                  }
+                                  ?>
+                              </select>
+                            </div>
+                        </div>
+                       
+                        </div>  
+                    </div>
+                   
+                    <div class="modal-footer d-flex justify-content-center">
+                       <button type="submit" class="btn btn-primary " >Tampilkan</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">TUTUP</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
          
   <?php $this->load->view('admin/template/footer') ?>
   <!-- MDBootstrap Datatables  -->
@@ -130,4 +199,19 @@
      }
      }
    });
+</script>
+<script>
+    $(document).ready(function(){ // Ketika halaman selesai di load
+        $('#form-mahasiswa, #form-periode' ).hide(); // Sebagai default kita sembunyikan form filter tanggal, bulan & tahunnya
+        $('#filter').change(function(){ // Ketika user memilih filter
+            if($(this).val() == '1'){ // Jika filter nya 1 (per tanggal)
+                $('#form-periode').hide(); // Tampilkan form tanggal
+                $(' #form-mahasiswa').show();
+            }else if($(this).val() == '2'){ // Jika filter nya 2 (per bulan)
+                $(' #form-mahasiswa').hide(); 
+                $('#form-periode').show(); // Tampilkan form bulan dan tahun
+            }
+            $(' #form-mahasiswa select, #form-periode select').val(''); // Clear data pada textbox tanggal, combobox bulan & tahun
+        })
+    })
 </script>

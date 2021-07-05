@@ -17,11 +17,17 @@
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-6 text-center text-sm-left mb-0">
-                <h3 class="page-title">Data KP-TI-A04C</h3>
+                <h3 class="page-title">Data Seminar</h3>
               </div>
             </div>
-            <!-- End Page Header -->
-            <!-- Default Light Table -->
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a type="button3" class="btn btn-info " href="<?= base_url('dosen/seminar') ?>">Jadwal Seminar 
+              </a>
+              <a type="button3" class="btn btn-info " href="<?= base_url('dosen/seminar/penilaian') ?>">Penilaian Seminar
+              </a>
+              <a type="button3" class="btn btn-info <?php if($this->uri->segment(2)=="KP_TI_A04C"){echo "active";} ?>" href="<?= base_url('dosen/KP_TI_A04C') ?>">Berita Acara
+              </a>
+            </div>
             <div class="row">
               <div class="col">
                 <div class="card card-small mb-4">
@@ -30,11 +36,11 @@
                   </div>
                 <div class="table-responsive">
                    <div class="card-body">
-                    <a href="<?= base_url() ?>dosen/KP_TI_A04C/seminar" class="mb-3 btn btn-primary mr-2" >Lihat</a>
+                    <!-- <a href="<?= base_url() ?>dosen/KP_TI_A04C/seminar" class="mb-3 btn btn-primary mr-2" >Lihat</a> -->
                       <table id="dtBasicExample" class=" table  mb-0 table-bordered table-striped">
                       <thead class="">
                         <tr>
-                          <th  class="text-center col-1"><b>No. </b></th>
+                          <th class="text-center col-1"><b>No. </b></th>
                           <th class="text-center col-2"><b>NIM</b></th>
                           <th class="text-center col-5"><b>Nama</b></th>
                           <th class="text-center"><b>Status</b></th>
@@ -54,25 +60,7 @@
                           <td class="text-center"><?= $data->Icon ?></td>
                           <td class="text-center">
                             <div class="btn-group btn-group-sm " role="group" aria-label="Table row actions">
-                              <!-- <form  method="post" action="<?= base_url('')?>dosen/KP_TI_A04C/setuju?setujui=<?= $data->NIM ?>" enctype="multipart/form-data">
-                                <div class="form-group">
-                                  <input type="hidden" name="NIM" value="<?= $data->NIM ?>"  class="form-control">
-                                  <?php foreach ($duaC as $data): ?>
-                                  <input type="hidden" name="Id_duaC" value="<?= $data->Id_duaC ?>"  class="form-control">
-                                  <?php endforeach ?>
-                                  <?php foreach ($empatA as $data): ?>
-                                  <input type="hidden" name="Id_empatA" value="<?= $data->Id_empatA ?>"  class="form-control">
-                                  <?php endforeach ?>
-                                  <?php foreach ($empatB as $data): ?>
-                                  <input type="hidden" name="Id_empatB" value="<?= $data->Id_empatB ?>"  class="form-control">
-                                  <?php endforeach ?>
-                                </div>
-                                    <a  type="submit" class="mb-2 btn-sm  btn-success"  data-placement="top" title="Lihat" ><i class="fas fa-check"></i></a>
-                                    <button class="btn btn-primary" type="submit">Simpan</button>
-                               <a  class="mb-2 btn  btn-danger" href="<?= base_url('')?>admin/KP_TI_A04C/tolak?ditolak=<?= $data->NIM ?>"  data-placement="top" title="Lihat" ><i class="fas fa-times"></i></a>
-                              </form>
-                             
- -->
+                            
                               <a class="mb-2 btn  btn-info "  href="<?= base_url() ?>dosen/KP_TI_A04C/ubah/<?= $data->NIM?>"><i class="material-icons">&#xE254;</i></a>
                             </div>
                             
