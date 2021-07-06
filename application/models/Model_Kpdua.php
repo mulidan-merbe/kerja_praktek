@@ -63,9 +63,9 @@ class Model_kpdua extends CI_Model {
 
     }
 
- 	public function getDatabyId($Id) 
+ 	public function getDatabyId($Id_Kpdua) 
     {
-        $this->db->where(['Id_Kpdua' => $Id]);
+        $this->db->where(['Id_Kpdua' => $Id_Kpdua]);
         return $this->db->get('tbl_kpdua')->row();
 
     }
@@ -82,9 +82,9 @@ class Model_kpdua extends CI_Model {
         $this->db->update('tbl_kpdua', $data);
     }
 
-    public function hapusData($Id)
+    public function hapusData($Id_Kpdua)
     {
-    	$data = array ('Id_Kpdua' => $Id);
+    	$data = array ('Id_Kpdua' => $Id_Kpdua);
     	$this->db->delete('tbl_kpdua', $data);
     }
 

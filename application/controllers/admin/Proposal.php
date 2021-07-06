@@ -98,6 +98,82 @@ class Proposal extends CI_Controller {
 		];
 	  	$this->load->view('admin/tampil_dataDua', $data);
 
-	  }
+	}
+
+	// surat pengantar
+	public function ubah($Id_Kpdua)
+	{
+		$data['title']  = 'Admin | KP-TI-A02';
+		// $Id_Kpdua = $_GET['Id'];
+		$data['ubah'] = $this->Model_Kpdua->getbyId($Id_Kpdua);
+		$this->load->view('admin/ubah_dataDua', $data);
+	}
+
+	// surat pengantar
+	public function ubahData()
+	{
+		$data['title']  = 'Admin | KP-TI-A02';
+		$Id_Kpdua	= $this->input->post('Id');
+		$data['ubah'] 	= $this->Model_Kpdua->getbyId($Id_Kpdua);
+		
+
+		$config['upload_path'] = 'assets/KP_TI_A02/file/';
+		$config['allowed_types'] = 'pdf';
+		$config['max_size']      = 5000;
+		$this->load->library('upload', $config);
+
+		// Cek apakah ada berkas yang diuploud atau tidak
+		if(!empty($_FILES['File']['name']))
+		{
+			// Cek apakah Filei sudah sesuai dengan konfigurasi
+			if (!$this->upload->do_upload('File')) {
+				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">File tidak sesuai</div>' );
+				$this->load->view('admin/tambah_dataDuaaa', $data);
+			}else{
+					
+	        	$Id_Kpdua 	 = $this->input->post('Id');
+				$data 		 = $this->Model_Kpdua->getDatabyId($Id_Kpdua);
+				$proses 	 = 'assets/KP_TI_A02/file/'.$data->File;
+				unlink($proses);
+
+				$result         = $this->upload->data();
+				$NIM 			= htmlspecialchars($this->input->post('NIM'));
+				$nama 			= htmlspecialchars($this->input->post('nama'));
+				$File           = $result['file_name'];
+				$Tanggal		= date('Y-m-d');
+
+				$this->Model_Kpdua->ubahData($Id_Kpdua, $NIM, $nama, $File, $Tanggal);
+				$this->session->set_flashdata('flash', 'Diubah');
+				redirect('admin/proposal/suratPengantar');
+				}
+		// Kondisi dimana tidak ada file terbaru yg diuploud. Maka yg diuploud adalah file yg lama
+		}else {
+			$Id_Kpdua 		= $this->input->post('Id');
+			$NIM 			= htmlspecialchars($this->input->post('NIM'));
+			$nama 			= htmlspecialchars($this->input->post('nama'));
+			$File  			= $this->input->post('old_file');
+			$Tanggal		= date('Y-m-d');
+
+			$this->Model_Kpdua->ubahData($Id_Kpdua, $NIM, $nama, $File, $Tanggal);
+			$this->session->set_flashdata('flash', 'Diubah');
+			redirect('admin/proposal/suratPengantar');
+		}
+	}
+
+	// hapus surat pernyataan
+	public function hapus($Id_Kpdua)
+	{
+		// $Id  = $_GET['Id'];
+		$data = $this->Model_Kpdua->getDatabyId($Id_Kpdua);
+		$proses = 'assets/KP_TI_A02/file/'.$data->File;
+		if(is_readable($proses) && unlink($proses)) {
+		$hapus =	$this->Model_Kpdua->hapusData($Id_Kpdua);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect('admin/KP_TI_A02');
+		} else {
+			'error';
+		}
+        
+	}
 }
 

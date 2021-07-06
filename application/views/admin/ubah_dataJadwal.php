@@ -36,7 +36,7 @@
                     <?php if($this->session->flashdata('msg')){echo $this->session->flashdata('msg');} ?>
                     <?php foreach ($ubah as $data) { ?>
                     
-                    <form method="post" action="<?= base_url('admin/Jadwal_pelaksanaan/ubahData') ?>" enctype="multipart/form-data">
+                    <form method="post" action="<?= base_url('admin/jadwal_pelaksanaan/ubahData') ?>" enctype="multipart/form-data">
                     <div class="row"> 
                       <div class="col-md-6 col-sm-12"> 
                         <div class="form-group">
@@ -105,7 +105,8 @@
                 </div>   
             </div>
           </div>
-          
+          </div>
+         
      
   <?php $this->load->view('admin/template/footer') ?>
   <script src="<?php echo base_url('assets/back/datepicker/dist/js') ?>/bootstrap-datepicker.min.js"></script>

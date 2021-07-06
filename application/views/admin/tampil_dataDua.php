@@ -34,7 +34,7 @@
                     <div class="table-responsive">
                    <div class="card-body">
                       <!-- <a href="<?= base_url('admin/KP_TI_A02/tambah') ?>" class="btn btn-primary" ><i class="fas fa-plus">&nbsp</i>Tambah</a> -->
-                      <a  class="btn btn-primary mb-4" data-toggle="modal" data-target="#modal-tambah">Tambah</a>
+                      <!-- <a  class="btn btn-primary mb-4" data-toggle="modal" data-target="#modal-tambah">Tambah</a> -->
                       <table id="dtBasicExample" class=" table  mb-0 table-bordered table-striped">
                       <thead class="">
                         <tr>
@@ -53,7 +53,7 @@
                         <tr>
                           <td class="text-center"><?= $no++ ?>.</td>
                           <td class="text-center"><?= $data->NIM ?></td>
-                          <td class="text-center"><?= $data->nama ?></td>
+                          <td class="col-4"><?= $data->nama ?></td>
                           <td class="text-center">
                             <a class="btn btn-sm btn-light" href="<?= base_url('assets/KP_TI_A02/file/').$data->File ?>"><img width="20" class="user-avatar rounded-circle mr-2" src="<?= base_url('assets/back')?>/images/avatars/pdf.svg" alt="User Avatar">
                             </a>
@@ -63,10 +63,10 @@
                           </td>
                           <td class="text-center">
                             <div class="btn-group btn-group-sm " role="group" aria-label="Table row actions">
-                              <a class="mb-2 btn btn-info " href="<?= base_url() ?>admin/KP_TI_A02/ubah?Id=<?= $data->Id_Kpdua?>">
+                              <a class="mb-2 btn btn-info " data-toggle="modal" data-target="#modal-ubah<?= $data->Id_proposal; ?>">
                                 <i class="material-icons">&#xE254;</i>
                               </a>
-                              <a class="mb-2 btn btn-danger tombol-hapus" href="<?= base_url() ?>admin/KP_TI_A02/hapusData?Id=<?= $data->Id_Kpdua?> ?>">
+                              <a class="mb-2 btn btn-danger tombol-hapus" href="<?= base_url() ?>admin/proposal/hapus/<?= $data->Id_Kpdua?>">
                                 <i class="material-icons">&#xE872;</i>
                               </a>
                             </div> 
@@ -82,35 +82,39 @@
             </div>
           </div>
 
-          <!-- Modal Tambah-->
-           <div class="modal fade" id="modal-tambah" tabindex="-1" role="dialog"      labelledby="myModalLabel"
+          <!-- Modal ubah-->
+            <?php foreach ($kpdua as $data) { ?>
+
+            <div class="modal fade" id="modal-ubah<?= $data->Id_proposal?>" tabindex="-1" role="dialog"      labelledby="myModalLabel"
               >
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header text-center">
-                    <h4 class="modal-title w-100 font-weight-bold">Tambah Surat Pernyataan </h4>
+                    <h4 class="modal-title w-100 font-weight-bold">Ubah Surat Pernyataan </h4>
                     <?php if($this->session->flashdata('msg')){echo $this->session->flashdata('msg');} ?>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <form method="post" action="<?= base_url('admin/KP_TI_A02/tambah') ?>" enctype="multipart/form-data">
+                  <form method="post" action="<?= base_url('admin/proposal/ubahData') ?>" enctype="multipart/form-data">
                     <div class="modal-body mx-3">
                       <div class="form-group">
                         <label>NIM :</label><br>
-                          <select name="NIM" id="NIM"  class="form-control">
-                            <option value="">Pilih</option>
-                              <?php foreach ($proposal as $data){ ?>
-                            <option value="<?= $data->NIM ?>"><?= $data->NIM ?></option>
-                              <?php } ?>
-                          </select>
+                          <input type="text" class="form-control" value="<?= $data->NIM ?>" disabled>
+                          <input type="hidden" name="NIM" class="form-control" value="<?= $data->NIM ?>" >
+                              
                         <?= form_error('NIM', '<small class="text-danger pl-3">', '</small>'); ?>
                       </div>
                       <div class="form-group">
                         <label for="email">Berkas :</label><br>
                         <?php echo $this->session->flashdata('message'); ?>
+                        <?= $this->session->unset_userdata('message'); ?>
+                        <small><b><?= $data->File ?></b></small>
                         <input type="file" class="form-control" name="File" value="<?= set_value('File') ?>" multiple>
                         <?= form_error('File', '<small class="text-danger pl-3">', '</small>') ?>
+                      </div>
+                      <div class="form-group">
+                        <input type="hidden" class="form-control" name="old_file" value="<?= $data->File ?>" multiple>
                       </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
@@ -121,6 +125,8 @@
                 </div>
               </div>
             </div>
+          
+          <?php } ?>
 
          
   <?php $this->load->view('admin/template/footer') ?>

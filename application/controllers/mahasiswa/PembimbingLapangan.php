@@ -22,8 +22,7 @@ class PembimbingLapangan extends CI_Controller {
 			'proposal' 		=> $this->Model_Proposal->getDataNIMLimit($NIM)
 			
 		];
-		// var_dump($data['proposal']);
-		// die;
+		// menampilkan data surat pengantar dan pembimbing lapangan
 		$this->load->view('mahasiswa/tampil_data_pembimbing_lapangan', $data);
 
 	}

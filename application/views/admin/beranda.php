@@ -78,7 +78,7 @@
                 <div class="col-md-6">
                   <div class="card card-small mb-4">
                   <div class="card-header border-bottom">
-                    <h6 class="m-0">Jadwal Pelaksanaan</h6>
+                    <h6 class="m-0">Periode Pelaksanaan</h6>
                   </div>
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item p-3">

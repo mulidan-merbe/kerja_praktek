@@ -30,6 +30,7 @@ class Model_Proposal extends CI_Model {
     public function lihatTahun($Tahun){
         $this->db->from('tbl_proposal s');
         $this->db->join('tbl_pelaksanaan p', 'p.Id_pelaksanaan = s.Id_pelaksanaan');
+        $this->db->join('tbl_status t', 't.Id = s.Status');
         $this->db->where('Tahun ', $Tahun);
         $query = $this->db->get();
         return $query->result();
@@ -40,7 +41,7 @@ class Model_Proposal extends CI_Model {
         $this->db->from('tbl_proposal r');
         $this->db->join('tbl_status t', 't.Id = r.Status');
         $this->db->where('NIP', $NIP);
-         $this->db->order_by('Id_proposal', 'DESC');
+        $this->db->order_by('Id_proposal', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
@@ -49,8 +50,9 @@ class Model_Proposal extends CI_Model {
     {
         $this->db->from('tbl_proposal r');
         $this->db->join('tbl_pelaksanaan t', 't.Id_pelaksanaan = r.Id_pelaksanaan');
+        $this->db->join('tbl_status s', 's.Id = r.Status');
         $this->db->where('NIP', $NIP);
-         $this->db->order_by('Id_proposal', 'DESC');
+        $this->db->order_by('Id_proposal', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }

@@ -159,13 +159,14 @@
                       <div class="form-group">
                         <label>NIM :</label><br>
                           <input type="text" class="form-control" value="<?= $data->NIM ?>" disabled>
-                          <input type="hidde" name="NIM"> class="form-control" value="<?= $data->NIM ?>" disabled>
+                          <input type="hidden" name="NIM" class="form-control" value="<?= $data->NIM ?>" >
                               
                         <?= form_error('NIM', '<small class="text-danger pl-3">', '</small>'); ?>
                       </div>
                       <div class="form-group">
                         <label for="email">Berkas :</label><br>
                         <?php echo $this->session->flashdata('message'); ?>
+                        <?= $this->session->unset_userdata('message'); ?>
                         <input type="file" class="form-control" name="File" value="<?= set_value('File') ?>" multiple>
                         <?= form_error('File', '<small class="text-danger pl-3">', '</small>') ?>
                       </div>
