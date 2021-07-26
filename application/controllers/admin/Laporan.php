@@ -1,36 +1,37 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Laporan extends CI_Controller {
+class Laporan extends CI_Controller
+{
 
-	function __construct() {
+    function __construct()
+    {
         parent::__construct();
-		$this->load->model(['Model_Laporan','Model_Jadwal']);
-		$this->load->library('form_validation');
-		if(is_null($this->session->userdata('Admin'))) {
-	    	redirect(base_url("auth_admin"));
-	    }
+        $this->load->model(['Model_Laporan', 'Model_Jadwal']);
+        $this->load->library('form_validation');
+        if (is_null($this->session->userdata('Admin'))) {
+            redirect(base_url("admin/login"));
+        }
     }
 
     public function index()
     {
-    	  $data['title']  = 'Admin | Laporan ';
-          $data['tahun'] = $this->Model_Jadwal->Tahun();
+        $data['title']  = 'Admin | Laporan ';
+        $data['tahun'] = $this->Model_Jadwal->Tahun();
 
-          if(isset($_GET['filter']) && ! empty($_GET['filter'])) {
+        if (isset($_GET['filter']) && !empty($_GET['filter'])) {
             $filter = $_GET['filter'];
 
-            if($filter == '1') {
+            if ($filter == '1') {
 
                 $Tahun = $_GET['Tahun'];
-                $ket = 'Data Laporan Tahun '.$Tahun;
-                $cetak = 'laporan/cetak?filter=1&Tahun='.$Tahun;
+                $ket = 'Data Laporan Tahun ' . $Tahun;
+                $cetak = 'laporan/cetak?filter=1&Tahun=' . $Tahun;
                 $data['dataLaporan'] = $this->Model_Laporan->lihatTahun($Tahun);
-
-            } elseif($filter == '2') {
+            } elseif ($filter == '2') {
                 $NIP = $_GET['NIP'];
-                $ket = 'Data Laporan'.$NIP;
-                $cetak = 'laporan/cetak?filter=2&Tahun=&NIP='.$NIP;
+                $ket = 'Data Laporan' . $NIP;
+                $cetak = 'laporan/cetak?filter=2&Tahun=&NIP=' . $NIP;
                 $data['dataLaporan'] = $this->Model_Laporan->getbydataNIP($NIP);
             }
         } else {
@@ -41,31 +42,30 @@ class Laporan extends CI_Controller {
 
         $data['ket'] = $ket;
         $data['cetak'] = $cetak;
-    	  $this->load->view('admin/tampil_dataLaporan', $data);
+        $this->load->view('admin/tampil_dataLaporan', $data);
     }
 
     public function cetak()
     {
-        $data['title']  = 'Admin | Laporan '; 
+        $data['title']  = 'Admin | Laporan ';
         $data['tahun'] = $this->Model_Jadwal->Tahun();
 
-        if(isset($_GET['filter']) && ! empty($_GET['filter'])) {
+        if (isset($_GET['filter']) && !empty($_GET['filter'])) {
             $filter = $_GET['filter'];
 
-             if($filter == '1') {
+            if ($filter == '1') {
 
                 $Tahun = $_GET['Tahun'];
-                $ket = 'Data Laporan Tahun '.$Tahun;
+                $ket = 'Data Laporan Tahun ' . $Tahun;
                 $laporan = $data['dataLaporan'] = $this->Model_Laporan->lihatTahun($Tahun);
-
-            } elseif($filter == '2') {
+            } elseif ($filter == '2') {
                 $NIP = $_GET['NIP'];
                 $ket = $NIP;
                 $laporan = $data['dataLaporan'] = $this->Model_Laporan->getbydataNIP($NIP);
             }
         } else {
             $ket = 'Data Laporan Tahun ';
-           $laporan = $data['dataLaporan'] = $this->Model_Laporan->getAll();
+            $laporan = $data['dataLaporan'] = $this->Model_Laporan->getAll();
         }
 
         $data['ket'] = $ket;

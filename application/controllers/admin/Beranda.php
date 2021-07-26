@@ -1,19 +1,21 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Beranda extends CI_Controller {
+class Beranda extends CI_Controller
+{
 
-	function __construct() {
-        parent::__construct();
-		$this->load->model(['Model_Jadwal', 'Model_Proposal','Model_Pembimbing_lapangan','Model_Kptiga','Model_Kpempat_c','Model_Laporan']);
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->model(['Model_Jadwal', 'Model_Proposal', 'Model_Pembimbing_lapangan', 'Model_Kptiga', 'Model_Kpempat_c', 'Model_Laporan']);
 		// if(is_null($this->session->userdata('Status') == '2' || $this->session->userdata('Status') == '1' )) {
-	 //    	redirect(base_url("Auth"));
-	 //    }
+		//    	redirect(base_url("Auth"));
+		//    }
 
-	    if(is_null($this->session->userdata('Admin'))) {
-	    	redirect(base_url("auth_admin"));
-	    }
-    }
+		if (is_null($this->session->userdata('Admin'))) {
+			redirect(base_url("admin/login"));
+		}
+	}
 
 	public function index()
 	{
@@ -36,7 +38,7 @@ class Beranda extends CI_Controller {
 			'laporan'		=> $this->Model_Laporan->get_tanggal($tgl_awal, $tgl_akhir)
 		];
 
-		
-        $this->load->view('admin/beranda', $data);
+
+		$this->load->view('admin/beranda', $data);
 	}
 }

@@ -1,22 +1,24 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class KP_TI_A04C extends CI_Controller {
+class KP_TI_A04C extends CI_Controller
+{
 
-	function __construct() {
+    function __construct()
+    {
         parent::__construct();
-		$this->load->model(['Model_Kpempat','Model_Kpempat_a','Model_Kpempat_b', 'Model_Kpempat_c','Model_Jadwal']);
-		$this->load->library('form_validation');
-		if(is_null($this->session->userdata('Admin')) ) {
-	    	redirect(base_url("auth_admin"));
-	    }
+        $this->load->model(['Model_Kpempat', 'Model_Kpempat_a', 'Model_Kpempat_b', 'Model_Kpempat_c', 'Model_Jadwal']);
+        $this->load->library('form_validation');
+        if (is_null($this->session->userdata('Admin'))) {
+            redirect(base_url("admin/login"));
+        }
     }
 
     public function index()
     {
-    	$data['title']	= 'Admin | KP-TI-A04C';  
+        $data['title']    = 'Admin | KP-TI-A04C';
         $data['nilai']   = $this->Model_Kpempat_c->getStatusDosen();
-    	$this->load->view('admin/tampil_dataEmpat_c', $data);
+        $this->load->view('admin/tampil_dataEmpat_c', $data);
     }
 
     public function lihat()
@@ -29,7 +31,7 @@ class KP_TI_A04C extends CI_Controller {
             'empatB' =>  $this->Model_Kpempat_b->getbyNIM($NIM),
             'cek'    =>  $this->Model_Kpempat_c->getRowNIM($NIM)
         ];
-        
+
         $this->load->view('admin/tampil_dataLihat', $data);
     }
 
@@ -58,11 +60,11 @@ class KP_TI_A04C extends CI_Controller {
     public function Seminar()
     {
         $NIP = $this->session->userdata('NIP');
- 		$data = [
- 			'status_dosen' => $this->Model_Kpempat_c->getStatusDosen(),
- 			'seminar'	   => $this->Model_Kpempat->getAdmin(),
- 			'title'			=> 'Admin | KP-TI-A04C'
- 		];
+        $data = [
+            'status_dosen' => $this->Model_Kpempat_c->getStatusDosen(),
+            'seminar'       => $this->Model_Kpempat->getAdmin(),
+            'title'            => 'Admin | KP-TI-A04C'
+        ];
 
         $this->load->view('admin/tampil_dataSeminar', $data);
     }
@@ -93,7 +95,7 @@ class KP_TI_A04C extends CI_Controller {
 
     public function tambahPersentase()
     {
-         $data = [
+        $data = [
             'title' =>  'Admin | KP-TI-A04C',
             'jadwal'    => $this->Model_Jadwal->getAll(),
             'persentase'     => $this->Model_Kpempat_c->getPersentase()
@@ -103,7 +105,7 @@ class KP_TI_A04C extends CI_Controller {
         $this->form_validation->set_rules('Nilai_Seminar_lapangan', 'Nilai Seminar Lapangan', 'trim|required');
         $this->form_validation->set_rules('Nilai_Seminar_dosen', 'Nilai Seminar Dosen', 'trim|required');
 
-         if($this->form_validation->run() == false ){
+        if ($this->form_validation->run() == false) {
             $this->load->view('Admin/tampil_dataPersentase', $data);
         } else {
             $Id_pelaksanaan             = $this->input->post('Id_pelaksanaan');
@@ -120,7 +122,7 @@ class KP_TI_A04C extends CI_Controller {
 
     public function ubahPersentase()
     {
-         $data = [
+        $data = [
             'title' =>  'Admin | KP-TI-A04C',
             'persentase'     => $this->Model_Kpempat_c->getPersentase()
         ];
@@ -129,7 +131,7 @@ class KP_TI_A04C extends CI_Controller {
         $this->form_validation->set_rules('Nilai_Seminar_lapangan', 'Nilai Seminar Lapangan', 'trim|required');
         $this->form_validation->set_rules('Nilai_Seminar_dosen', 'Nilai Seminar Dosen', 'trim|required');
 
-         if($this->form_validation->run() == false ){
+        if ($this->form_validation->run() == false) {
             $this->load->view('Admin/tampil_dataPersentase', $data);
         } else {
             $Id                         = $this->input->post('Id');
@@ -153,5 +155,4 @@ class KP_TI_A04C extends CI_Controller {
         $data['nilai']   = $this->Model_Kpempat_c->getbyNIMAdmin($NIM);
         $this->load->view('admin/ubah_dataEmpat_c', $data);
     }
-
 }

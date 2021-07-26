@@ -1,15 +1,17 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Rencana_topik extends CI_Controller {
+class Rencana_topik extends CI_Controller
+{
 
-	function __construct() {
-        parent::__construct();
+	function __construct()
+	{
+		parent::__construct();
 		$this->load->model('Model_rencanaTopik', 'rencanatopik');
-		if(is_null($this->session->userdata('Admin'))) {
-	    	redirect(base_url("auth_admin"));
-	    }
-    }
+		if (is_null($this->session->userdata('Admin'))) {
+			redirect(base_url("admin/login"));
+		}
+	}
 
 	public function index()
 	{
@@ -26,7 +28,7 @@ class Rencana_topik extends CI_Controller {
 
 		$this->rencanatopik->setuju($Status, $Id_rencanajudul);
 		$this->session->set_flashdata('flash', ' dipilih');
-		$url = 'admin/rencana_topik/detail/'.$Id;
+		$url = 'admin/rencana_topik/detail/' . $Id;
 		redirect($url);
 		// redirect('admin/topik/rencana');
 	}

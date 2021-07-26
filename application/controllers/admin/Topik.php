@@ -9,7 +9,7 @@ class Topik extends CI_Controller
 		parent::__construct();
 		$this->load->model(['Model_tawaranTopik', 'Model_Jadwal', 'Model_Pengajuan', 'Model_rencanaTopik']);
 		if (is_null($this->session->userdata('Admin'))) {
-			redirect(base_url("auth_admin"));
+			redirect(base_url("admin/login"));
 		}
 	}
 

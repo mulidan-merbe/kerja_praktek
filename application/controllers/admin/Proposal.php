@@ -1,103 +1,101 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Proposal extends CI_Controller {
+class Proposal extends CI_Controller
+{
 
-    function __construct() {
-        parent::__construct();
-        $this->load->library('pdf');
-		$this->load->model(['Model_Proposal', 'Model_Jadwal','Model_Kpdua']);
-		if(is_null($this->session->userdata('Admin'))) {
-	    	redirect(base_url("auth_admin"));
-	    }
-    }
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->library('pdf');
+		$this->load->model(['Model_Proposal', 'Model_Jadwal', 'Model_Kpdua']);
+		if (is_null($this->session->userdata('Admin'))) {
+			redirect(base_url("admin/login"));
+		}
+	}
 
 	public function index()
 	{
 		$data['title']  = 'Admin | Proposal';
-		
+
 		$data['tahun'] = $this->Model_Jadwal->Tahun();
-       
 
-		
-        // var_dump($data['tahun']);
-        // die;
-        if(isset($_GET['filter']) && ! empty($_GET['filter'])) {
-        	$filter = $_GET['filter'];
 
-        	if($filter == '1') {
 
-        		$Tahun = $_GET['Tahun'];
-				$ket = 'Data Proposal Tahun '.$Tahun;
-				$cetak = 'proposal/cetak?filter=1&Tahun='.$Tahun;
-        		$data['dataProposal'] = $this->Model_Proposal->lihatTahun($Tahun);
+		// var_dump($data['tahun']);
+		// die;
+		if (isset($_GET['filter']) && !empty($_GET['filter'])) {
+			$filter = $_GET['filter'];
 
-        	} elseif($filter == '2') {
-        		$NIP = $_GET['NIP'];
-        		$ket = $NIP;
-        		$cetak = 'proposal/cetak?filter=2&Tahun=&NIP='.$NIP;
-        		$data['dataProposal'] = $this->Model_Proposal->getbydataNIP($NIP);
-        	}
-        } else {
-        	$ket = 'Semua Data Proposal';
-        	$cetak = 'proposal/cetak';
-        	$data['dataProposal'] = $this->Model_Proposal->getAllAdmin();
-        }
+			if ($filter == '1') {
 
-        $data['ket'] = $ket;
-        $data['cetak'] = $cetak;
-        $this->load->view('admin/tampil_dataProposal', $data);
+				$Tahun = $_GET['Tahun'];
+				$ket = 'Data Proposal Tahun ' . $Tahun;
+				$cetak = 'proposal/cetak?filter=1&Tahun=' . $Tahun;
+				$data['dataProposal'] = $this->Model_Proposal->lihatTahun($Tahun);
+			} elseif ($filter == '2') {
+				$NIP = $_GET['NIP'];
+				$ket = $NIP;
+				$cetak = 'proposal/cetak?filter=2&Tahun=&NIP=' . $NIP;
+				$data['dataProposal'] = $this->Model_Proposal->getbydataNIP($NIP);
+			}
+		} else {
+			$ket = 'Semua Data Proposal';
+			$cetak = 'proposal/cetak';
+			$data['dataProposal'] = $this->Model_Proposal->getAllAdmin();
+		}
+
+		$data['ket'] = $ket;
+		$data['cetak'] = $cetak;
+		$this->load->view('admin/tampil_dataProposal', $data);
 	}
 
 	public function cetak()
 	{
 		$data['title']  = 'Admin | Proposal';
-		
+
 		$data['tahun'] = $this->Model_Jadwal->Tahun();
 
-        if(isset($_GET['filter']) && ! empty($_GET['filter'])) {
-        	$filter = $_GET['filter'];
+		if (isset($_GET['filter']) && !empty($_GET['filter'])) {
+			$filter = $_GET['filter'];
 
-        	if($filter == '1') {
+			if ($filter == '1') {
 
-        		$Tahun = $_GET['Tahun'];
-				$ket = 'Data Proposal Tahun '.$Tahun;
-        		$proposal = $data['dataProposal'] = $this->Model_Proposal->lihatTahun($Tahun);
+				$Tahun = $_GET['Tahun'];
+				$ket = 'Data Proposal Tahun ' . $Tahun;
+				$proposal = $data['dataProposal'] = $this->Model_Proposal->lihatTahun($Tahun);
+			} elseif ($filter == '2') {
+				$NIP = $_GET['NIP'];
+				$ket = 'Data Proposal Dosen Pembimbing' . $NIP;
+				$proposal = $data['dataProposal'] = $this->Model_Proposal->getbydataNIP($NIP);
+			}
+		} else {
+			$ket = 'Data Semua Proposal ';
+			$proposal = $data['dataProposal'] = $this->Model_Proposal->getAllAdmin();
+		}
 
-        	} elseif($filter == '2') {
-        		$NIP = $_GET['NIP'];
-        		$ket = 'Data Proposal Dosen Pembimbing'.$NIP;
-        		$proposal = $data['dataProposal'] = $this->Model_Proposal->getbydataNIP($NIP);
-        	}
-        } else {
-            $ket = 'Data Semua Proposal ';
-        	$proposal = $data['dataProposal'] = $this->Model_Proposal->getAllAdmin();
-        }
+		$data['ket'] = $ket;
+		$data['proposal'] = $proposal;
 
- 		$data['ket'] = $ket;
-        $data['proposal'] = $proposal;
-
-  //       $this->load->library('mypdf');
+		//       $this->load->library('mypdf');
 		// $this->mypdf->generate('Cetak/proposal', $data);
-        $this->load->view('Cetak/test', $data); 
-        
+		$this->load->view('Cetak/test', $data);
 	}
 
 	public function suratPengantar()
-	  {
-	  	$Id = $this->Model_Jadwal->getAll();
+	{
+		$Id = $this->Model_Jadwal->getAll();
 		foreach ($Id as $data) {
 			$Id = $data->Id_pelaksanaan;
 		}
 
 		$Id_pelaksanaan = $Id;
-	  	$data = [
+		$data = [
 			'title'  => 'Admin | Surat Pengantar',
 			'proposal'	=> $this->Model_Proposal->caribyId($Id_pelaksanaan),
 			'kpdua' => $this->Model_Kpdua->getAll()
 		];
-	  	$this->load->view('admin/tampil_dataDua', $data);
-
+		$this->load->view('admin/tampil_dataDua', $data);
 	}
 
 	// surat pengantar
@@ -115,7 +113,7 @@ class Proposal extends CI_Controller {
 		$data['title']  = 'Admin | KP-TI-A02';
 		$Id_Kpdua	= $this->input->post('Id');
 		$data['ubah'] 	= $this->Model_Kpdua->getbyId($Id_Kpdua);
-		
+
 
 		$config['upload_path'] = 'assets/KP_TI_A02/file/';
 		$config['allowed_types'] = 'pdf';
@@ -123,17 +121,16 @@ class Proposal extends CI_Controller {
 		$this->load->library('upload', $config);
 
 		// Cek apakah ada berkas yang diuploud atau tidak
-		if(!empty($_FILES['File']['name']))
-		{
+		if (!empty($_FILES['File']['name'])) {
 			// Cek apakah Filei sudah sesuai dengan konfigurasi
 			if (!$this->upload->do_upload('File')) {
-				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">File tidak sesuai</div>' );
+				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">File tidak sesuai</div>');
 				$this->load->view('admin/tambah_dataDuaaa', $data);
-			}else{
-					
-	        	$Id_Kpdua 	 = $this->input->post('Id');
+			} else {
+
+				$Id_Kpdua 	 = $this->input->post('Id');
 				$data 		 = $this->Model_Kpdua->getDatabyId($Id_Kpdua);
-				$proses 	 = 'assets/KP_TI_A02/file/'.$data->File;
+				$proses 	 = 'assets/KP_TI_A02/file/' . $data->File;
 				unlink($proses);
 
 				$result         = $this->upload->data();
@@ -145,9 +142,9 @@ class Proposal extends CI_Controller {
 				$this->Model_Kpdua->ubahData($Id_Kpdua, $NIM, $nama, $File, $Tanggal);
 				$this->session->set_flashdata('flash', 'Diubah');
 				redirect('admin/proposal/suratPengantar');
-				}
-		// Kondisi dimana tidak ada file terbaru yg diuploud. Maka yg diuploud adalah file yg lama
-		}else {
+			}
+			// Kondisi dimana tidak ada file terbaru yg diuploud. Maka yg diuploud adalah file yg lama
+		} else {
 			$Id_Kpdua 		= $this->input->post('Id');
 			$NIM 			= htmlspecialchars($this->input->post('NIM'));
 			$nama 			= htmlspecialchars($this->input->post('nama'));
@@ -165,15 +162,13 @@ class Proposal extends CI_Controller {
 	{
 		// $Id  = $_GET['Id'];
 		$data = $this->Model_Kpdua->getDatabyId($Id_Kpdua);
-		$proses = 'assets/KP_TI_A02/file/'.$data->File;
-		if(is_readable($proses) && unlink($proses)) {
-		$hapus =	$this->Model_Kpdua->hapusData($Id_Kpdua);
-        $this->session->set_flashdata('flash', 'Dihapus');
-        redirect('admin/KP_TI_A02');
+		$proses = 'assets/KP_TI_A02/file/' . $data->File;
+		if (is_readable($proses) && unlink($proses)) {
+			$hapus =	$this->Model_Kpdua->hapusData($Id_Kpdua);
+			$this->session->set_flashdata('flash', 'Dihapus');
+			redirect('admin/KP_TI_A02');
 		} else {
 			'error';
 		}
-        
 	}
 }
-

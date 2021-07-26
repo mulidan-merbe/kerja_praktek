@@ -10,7 +10,7 @@ class BeritaAcara extends CI_Controller
         $this->load->model(['Model_Kpempat', 'Model_Kpempat_a', 'Model_Kpempat_b', 'Model_Kpempat_c', 'Model_Jadwal', 'Model_Laporan']);
         $this->load->library('form_validation');
         if (is_null($this->session->userdata('Admin'))) {
-            redirect(base_url("auth_admin"));
+            redirect(base_url("admin/login"));
         }
     }
 

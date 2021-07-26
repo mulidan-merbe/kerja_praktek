@@ -7,10 +7,10 @@ class Seminar extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model(['Model_Kptiga', 'Model_Jadwal','Model_Syarat','Model_Kpempat']);
+        $this->load->model(['Model_Kptiga', 'Model_Jadwal', 'Model_Syarat', 'Model_Kpempat']);
         $this->load->library('form_validation');
         if (is_null($this->session->userdata('Admin'))) {
-            redirect(base_url("auth_admin"));
+            redirect(base_url("admin/login"));
         }
     }
 
@@ -32,12 +32,11 @@ class Seminar extends CI_Controller
     }
 
     public function jadwal()
-      {
+    {
         $data['title']  = 'Admin | Jadwal Seminar';
         $data['kpempat'] = $this->Model_Kpempat->getAdmin();
         $this->load->view('admin/tampil_dataEmpat', $data);
-
-      }
+    }
 
     public function syaratPengajuan()
     {
@@ -46,13 +45,12 @@ class Seminar extends CI_Controller
             'syarat'    => $this->Model_Syarat->getSyarat(),
             'jadwal'    => $this->Model_Jadwal->getAll()
         ];
-         
+
         $this->form_validation->set_rules('Jumlah', 'Jumlah', 'trim|required');
-        if($this->form_validation->run() == false ) 
-        {
+        if ($this->form_validation->run() == false) {
             $this->load->view('admin/tampil_dataSyarat', $data);
         } else {
-          
+
             $Id_pelaksanaan   = $this->input->post('Id_pelaksanaan');
             $Jumlah           = htmlspecialchars($this->input->post('Jumlah', true));
             $Tanggal          = date('Y-m-d');
@@ -76,8 +74,7 @@ class Seminar extends CI_Controller
         $this->form_validation->set_rules('Tanggal_seminar', 'Tanggal seminar', 'trim|required');
         $this->form_validation->set_rules('Waktu', 'Waktu', 'trim|required');
         $this->form_validation->set_rules('Ruangan', 'Ruangan', 'trim|required');
-        if($this->form_validation->run() == false )
-        {
+        if ($this->form_validation->run() == false) {
             $this->load->view('admin/tambah_dataEmpat', $data);
         } else {
             $NIM                = htmlspecialchars($this->input->post('NIM', true));
@@ -89,7 +86,7 @@ class Seminar extends CI_Controller
             $Ruangan            = htmlspecialchars($this->input->post('Ruangan', true));
             $Tanggal            = date('Y-m-d');
 
-            $this->kpempat->simpanData($NIM, $NIP, $No_identitas, $Hari, $Tanggal_seminar, $Waktu, $Ruangan, $Tanggal );
+            $this->kpempat->simpanData($NIM, $NIP, $No_identitas, $Hari, $Tanggal_seminar, $Waktu, $Ruangan, $Tanggal);
             $this->session->set_flashdata('flash', 'Ditambahkan');
             redirect('admin/seminar/jadwal');
         }
@@ -111,11 +108,10 @@ class Seminar extends CI_Controller
         ];
 
         $this->form_validation->set_rules('Jumlah', 'Jumlah', 'trim|required');
-        if($this->form_validation->run() == false ) 
-        {
+        if ($this->form_validation->run() == false) {
             $this->load->view('admin/tampil_dataSyarat', $data);
         } else {
-          
+
             $Id         = $this->input->post('Id');
             $Jumlah     = htmlspecialchars($this->input->post('Jumlah', true));
             $Tanggal    = date('Y-m-d');
@@ -132,5 +128,4 @@ class Seminar extends CI_Controller
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('admin/KP_TI_A03/syaratPengajuan');
     }
-
 }

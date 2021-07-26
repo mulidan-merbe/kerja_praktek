@@ -1,24 +1,25 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Jadwal extends CI_Controller {
+class Jadwal extends CI_Controller
+{
 
-	function __construct() {
-        parent::__construct();
+	function __construct()
+	{
+		parent::__construct();
 		$this->load->model('Model_Kpempat', 'kpempat');
 		$this->load->library('form_validation');
-		if(is_null($this->session->userdata('Admin'))) {
-	    	redirect(base_url("auth_admin"));
-	    }
-    }
+		if (is_null($this->session->userdata('Admin'))) {
+			redirect(base_url("admin/login"));
+		}
+	}
 
 	public function index()
-	  {
-	  	$data['title']  = 'Admin | KP-TI-A04';
-     	$data['kpempat'] = $this->kpempat->getAdmin();
-	    $this->load->view('admin/tampil_dataEmpat', $data);
-
-	  }
+	{
+		$data['title']  = 'Admin | KP-TI-A04';
+		$data['kpempat'] = $this->kpempat->getAdmin();
+		$this->load->view('admin/tampil_dataEmpat', $data);
+	}
 
 	public function tambah()
 	{
@@ -30,8 +31,7 @@ class Jadwal extends CI_Controller {
 		$this->form_validation->set_rules('Tanggal_seminar', 'Tanggal seminar', 'trim|required');
 		$this->form_validation->set_rules('Waktu', 'Waktu', 'trim|required');
 		$this->form_validation->set_rules('Ruangan', 'Ruangan', 'trim|required');
-		if($this->form_validation->run() == false )
-		{
+		if ($this->form_validation->run() == false) {
 			$this->load->view('admin/tambah_dataEmpat', $data);
 		} else {
 			$NIM 				= htmlspecialchars($this->input->post('NIM', true));
@@ -43,7 +43,7 @@ class Jadwal extends CI_Controller {
 			$Ruangan 			= htmlspecialchars($this->input->post('Ruangan', true));
 			$Tanggal 			= date('Y-m-d');
 
-			$this->kpempat->simpanData($NIM, $NIP, $No_identitas, $Hari, $Tanggal_seminar, $Waktu, $Ruangan, $Tanggal );
+			$this->kpempat->simpanData($NIM, $NIP, $No_identitas, $Hari, $Tanggal_seminar, $Waktu, $Ruangan, $Tanggal);
 			$this->session->set_flashdata('flash', 'Ditambahkan');
 			redirect('admin/jadwal');
 		}
@@ -51,7 +51,6 @@ class Jadwal extends CI_Controller {
 
 	public function tambahData()
 	{
-		
 	}
 
 	public function ubah($Id_Kpempat)
@@ -75,8 +74,7 @@ class Jadwal extends CI_Controller {
 		$this->form_validation->set_rules('Tanggal_seminar', 'Tanggal seminar', 'trim|required');
 		$this->form_validation->set_rules('Waktu', 'Waktu', 'trim|required');
 		$this->form_validation->set_rules('Ruangan', 'Ruangan', 'trim|required');
-		if($this->form_validation->run() == false )
-		{
+		if ($this->form_validation->run() == false) {
 			$this->load->view('admin/ubah_dataEmpat', $data);
 		} else {
 			$Id_Kpempat = $this->input->post('Id_Kpempat');
@@ -89,7 +87,7 @@ class Jadwal extends CI_Controller {
 			$Ruangan 			= htmlspecialchars($this->input->post('Ruangan', true));
 			$Tanggal 			= date('Y-m-d');
 
-			$this->kpempat->ubahData($Id_Kpempat, $NIM, $NIP, $No_identitas, $Hari, $Tanggal_seminar, $Waktu, $Ruangan, $Tanggal );
+			$this->kpempat->ubahData($Id_Kpempat, $NIM, $NIP, $No_identitas, $Hari, $Tanggal_seminar, $Waktu, $Ruangan, $Tanggal);
 			$this->session->set_flashdata('flash', 'Diubah');
 			redirect('admin/jadwal');
 		}
@@ -102,5 +100,4 @@ class Jadwal extends CI_Controller {
 		$this->session->set_flashdata('flash', 'Dihapus');
 		redirect('admin/jadwal');
 	}
-
 }
