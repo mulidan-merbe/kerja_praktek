@@ -19,7 +19,7 @@
                   <div class="dropdown-menu dropdown-menu-small">
                     <a class="dropdown-item" href="user-profile-lite.html" href="<?= base_url('logout') ?>">
                       <i class="material-icons"  >&#xE7FD;</i> Profile</a>
-                    <a class="dropdown-item text-danger" href="<?= base_url('auth_mahasiswa/logout') ?>">
+                    <a class="dropdown-item text-danger" href="<?= base_url('mahasiswa/login/logout') ?>">
                       <i class="material-icons text-danger">&#xE879;</i> Logout </a>
                   </div>
                 </li>

@@ -8,7 +8,7 @@ class PembimbingLapangan extends CI_Controller {
 		$this->load->model(['Model_Pembimbing_lapangan', 'Model_Kpdua','Model_Jadwal','Model_Proposal']);
 		$this->load->library('form_validation');
 		if(is_null($this->session->userdata('Login'))) {
-	    	redirect(base_url("auth_mahasiswa"));
+	    	redirect(base_url("mahasiswa/login"));
 	    }
 	}
 

@@ -7,7 +7,7 @@ class Rencana_topik extends CI_Controller {
         parent::__construct();
 		$this->load->model('Model_rencanaTopik', 'rencanatopik');
 		if(is_null($this->session->userdata('Dosen'))) {
-	    	redirect(base_url("auth_dosen"));
+	    	redirect(base_url("dosen/login"));
 	    }
     }
 

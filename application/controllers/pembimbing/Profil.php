@@ -8,16 +8,16 @@ class Profil extends CI_Controller {
 		$this->load->model('Model_userPembimbing');
 		$this->load->library('form_validation');
 		if(is_null($this->session->userdata('Pembimbing'))) {
-	    	redirect(base_url("auth_pembimbing"));
+	    	redirect(base_url("pembimbing/login"));
 	    }
     }
 
     public function index()
     {
-    	  $data['title']  	= 'Pembimbing | Profil';
-    	  $No_identitas 	= $this->session->userdata('No_identitas');
-    	  $data['profil']	= $this->Model_userPembimbing->getPembimbing($No_identitas);
-    	  $this->load->view('pembimbing/tampil_dataProfil', $data);
+    	$data['title']  	= 'Pembimbing | Profil';
+    	$No_identitas 	= $this->session->userdata('No_identitas');
+    	$data['profil']	= $this->Model_userPembimbing->getPembimbing($No_identitas);
+    	$this->load->view('pembimbing/tampil_dataProfil', $data);
     }
 
     public function ubah()

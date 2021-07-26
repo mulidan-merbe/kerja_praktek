@@ -67,15 +67,22 @@ class Model_Proposal extends CI_Model {
         return $query->result();
     }
 
-    public function get_tanggal($tgl_awal, $tgl_akhir)
+    public function get_terbaru($Id_pelaksanaan)
     {
         $this->db->from('tbl_proposal');
-        $this->db->where('Tanggal_upload >=', $tgl_awal);
-        $this->db->where('Tanggal_upload <=', $tgl_akhir);
+        $this->db->where('Id_pelaksanaan >=', $Id_pelaksanaan);
         $this->db->where('Status', 1);
         $query = $this->db->get();
         return $query->num_rows();
     }
+
+    public function get_periode($Id_pelaksanaan)
+    {
+        $this->db->from('tbl_proposal');
+        $this->db->where('Id_pelaksanaan >=', $Id_pelaksanaan);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }    
 
       public function cekdata($Id_mahasiswa) 
     {

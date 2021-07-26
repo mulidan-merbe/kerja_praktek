@@ -18,7 +18,7 @@
 					<li><a href="#" class="nav-link active">Beranda</a></li>
 					<li><a href="https://drive.google.com/drive/folders/1AnoxSf9wQCTus4UmggUiA4gZei0klCnb" class="nav-link ">SOP</a></li>
 					<li><a href="#" class="nav-link ">Jadwal</a></li>		
-					<!-- <li><a href="#" class="nav-link">Kontak</a></li> -->
+					<li><a href="#" class="nav-link">Topik</a></li>
 				</ul>
 			</div>
 			<div class="burger">

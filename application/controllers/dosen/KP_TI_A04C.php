@@ -8,7 +8,7 @@ class KP_TI_A04C extends CI_Controller {
 		$this->load->model(['Model_Kpempat','Model_Kpdua_c','Model_Kpempat_a','Model_Kpempat_b', 'Model_Kpempat_c','Model_Laporan']);
 		$this->load->library('form_validation');
 		if(is_null($this->session->userdata('Dosen'))) {
-	    	redirect(base_url("auth_dosen"));
+	    	redirect(base_url("dosen/login"));
 	    }
     }
 

@@ -7,7 +7,7 @@ class Topik extends CI_Controller {
         parent::__construct();
 		$this->load->model(['Model_tawaranTopik', 'Model_Jadwal','Model_rencanaTopik']);
 		if(is_null($this->session->userdata('Dosen'))) {
-	    	redirect(base_url("auth_dosen"));
+	    	redirect(base_url("dosen/login"));
 	    }
     }
 

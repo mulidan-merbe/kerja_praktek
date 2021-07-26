@@ -1,12 +1,40 @@
-.bg-light{
-	background-color: fff !important;
+@import url("https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+
+body {
+	font-family: "Montserrat", sans-serif;
+	font-size: 12px;
 }
 
-.image img{
+.navbar-nav {
+	display: flex;
+	justify-content: flex-end;
+}
+.navbar-nav a,
+.dropdown-item {
+	color: #02c9e8;
+	font-weight: 700px;
+}
 
+.navbar-nav .active,
+.navbar-nav a:hover {
+	font-weight: 700px;
+	border-bottom: 2px solid #f0bf0e;
+	color: #f0bf0e;
+	transition: left 2s;
+}
+
+.left h1 {
+	font-size: 35px;
+}
+
+.left h3 {
+	font-size: 18px;
+}
+
+.image img {
 	width: 530px;
 	border-radius: 50px;
-	box-shadow: 0 10px 20px #00000038;
+	box-shadow: 0 10px 20px #0000;
 }
 
 h3 {
@@ -14,5 +42,138 @@ h3 {
 }
 
 .tombol button {
-	border-radius: 10px solid;
+	margin-right: 5px;
+	border-radius: 25px;
+	border: none;
+	padding: 12px 35px 12px 35px;
+}
+
+.tombol .tombol-login {
+	font-weight: normal;
+}
+
+.right img {
+	border-radius: 25px;
+	box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+	font-size: 16px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	border-radius: 2px;
+	padding: 16px 28px;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.14);
+	text-transform: uppercase;
+	box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.2);
+}
+
+.btn-sm {
+	font-size: 11px;
+	font-weight: 600;
+	padding: 11px 20px;
+}
+.btn-radius {
+	border-radius: 100px !important;
+}
+.btn-info {
+	background: #01a8c1;
+	background: -moz-linear-gradient(
+		-45deg,
+		#01a8c1 0%,
+		#2adbf7 50%,
+		#00b5d1 51%,
+		#0aafc9 71%,
+		#0599b1 100%
+	);
+	background: -webkit-linear-gradient(
+		-45deg,
+		#01a8c1 0%,
+		#2adbf7 50%,
+		#00b5d1 51%,
+		#0aafc9 71%,
+		#0599b1 100%
+	);
+	background: linear-gradient(
+		135deg,
+		#01a8c1 0%,
+		#2adbf7 50%,
+		#00b5d1 51%,
+		#0aafc9 71%,
+		#0599b1 100%
+	);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#01a8c1', endColorstr='#0599b1',GradientType=1 );
+	background-size: 400% 400%;
+	-webkit-animation: AnimationName 3s ease infinite;
+	-moz-animation: AnimationName 3s ease infinite;
+	animation: AnimationName 3s ease infinite;
+	-webkit-animation: AnimationName 3s ease infinite;
+	-moz-animation: AnimationName 3s ease infinite;
+	animation: AnimationName 3s ease infinite;
+	border: medium none;
+}
+
+.jadwal {
+	background-color: #f3f5f5;
+	min-height: 400px;
+}
+
+table tr th {
+	height: 50px;
+}
+/* // topik */
+
+.atas {
+	background-image: linear-gradient(to right, #b2fefa, #0ed2f7);
+	/* background-color: #02c9e8; */
+	height: 250px;
+}
+
+.topik {
+	min-height: 450px;
+}
+.form-inputan {
+	margin-top: -120px;
+	min-height: 650px;
+}
+
+.footer {
+	background-color: #0ed2f7;
+}
+
+.footer p {
+	color: #fff;
+}
+@-webkit-keyframes AnimationName {
+	0% {
+		background-position: 0% 31%;
+	}
+	50% {
+		background-position: 100% 70%;
+	}
+	100% {
+		background-position: 0% 31%;
+	}
+}
+@-moz-keyframes AnimationName {
+	0% {
+		background-position: 0% 31%;
+	}
+	50% {
+		background-position: 100% 70%;
+	}
+	100% {
+		background-position: 0% 31%;
+	}
+}
+@keyframes AnimationName {
+	0% {
+		background-position: 0% 31%;
+	}
+	50% {
+		background-position: 100% 70%;
+	}
+	100% {
+		background-position: 0% 31%;
+	}
 }

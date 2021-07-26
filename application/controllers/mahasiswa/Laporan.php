@@ -8,7 +8,7 @@ class Laporan extends CI_Controller {
 		$this->load->model(['Model_Laporan', 'Model_Pembimbing_lapangan', 'Model_Proposal','Model_Kpempat_c','Model_Kpempat_a','Model_Kpempat_b','Model_Jadwal']);
 		$this->load->library('form_validation');
 		if(is_null($this->session->userdata('Login'))) {
-	    	redirect(base_url("auth_mahasiswa"));
+	    	redirect(base_url("mahasiswa/login"));
 	    }
     }
 

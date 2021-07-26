@@ -10,7 +10,7 @@ class PenilaianLapangan extends CI_Controller{
 			$this->load->model(['Model_Kpdua_c','Model_Kpdua_b']);
 			$this->load->library('form_validation');
 			if(is_null($this->session->userdata('Pembimbing'))) {
-	    	redirect(base_url("auth_pembimbing"));
+	    	redirect(base_url("pembimbing/login"));
 	    	}
 
 		}

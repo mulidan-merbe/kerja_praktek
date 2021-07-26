@@ -7,7 +7,7 @@ class Beranda extends CI_Controller {
         parent::__construct();
 		$this->load->model(['Model_Jadwal', 'Model_rencanaTopik', 'Model_Proposal','Model_Kpdua_a','Model_Kptiga','Model_Kpempat','Model_Laporan']);
 		if(is_null($this->session->userdata('Dosen'))) {
-	    	redirect(base_url("auth_dosen"));
+	    	redirect(base_url("dosen/login"));
 	    }
     }
 
@@ -19,13 +19,14 @@ class Beranda extends CI_Controller {
 		foreach ($data['jadwal'] as $data) {
 			$tgl_awal	= $data->Tanggal_mulai;
 			$tgl_akhir	=  $data->Tanggal_selesai;
+			$Id_pelaksanaan = $data->Id_pelaksanaan;
 		}
 
 		$data = [
 			'title'			=> 'Dosen | Beranda',
 			'jadwal' 		=> $this->Model_Jadwal->getAll(),
 			'rencanaTopik'  => $this->Model_rencanaTopik->cek_status($NIP),
-			'proposal'		=> $this->Model_Proposal->get_tanggal($tgl_awal, $tgl_akhir),
+			'proposal'		=> $this->Model_Proposal->get_periode($Id_pelaksanaan),
 			'duaA'			=> $this->Model_Kpdua_a->cek_status($NIP),
 			'tiga'			=> $this->Model_Kptiga->cek_statusDosen($NIP),
 			'empat'			=> $this->Model_Kpempat->get_tanggal($tgl_awal, $tgl_akhir),

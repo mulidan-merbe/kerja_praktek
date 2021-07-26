@@ -63,7 +63,7 @@
                           <td class="text-center">
                             <div class="btn-group btn-group-sm" role="group" aria-label="Table row actions">
                               <a class="mb-2 btn btn-success " data-toggle="modal" data-target="#modal-lihat<?=$data->Id_duaC; ?>" data-placement="top" title="Lihat" ><i class="fas fa-eye"></i></a>
-                              <a class="mb-2 btn btn-info " href="<?= base_url() ?>pembimbing/penilaianLapangan/ubah/<?= $data->Id_duaC ?>"><i class="fas fa-edit"></i></a>
+                              <a class="mb-2 btn btn-info " href="<?= base_url() ?>pembimbing/penilaianLapangan/ubah/<?= $data->Id_duaC ?>"><i class="material-icons">&#xE254;</i></a>
                             </div>
                           </td>
                         </tr>

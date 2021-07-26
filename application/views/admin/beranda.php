@@ -23,55 +23,111 @@
               <div class="row">
                 <div class="col-md-3">
                   <div class="card card-small mb-4">
-                    <div class="card-header border-bottom">
-                     <h6 class="m-0">Proposal</h6>
-                        
+                    <div class="card-header">
+                     <h6 class="m-0 text-center">Proposal</h6>
                     </div>
-                    <div class="card-body border-bottom" style="min-height: 100px">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="card card-small mb-4">
-                    <div class="card-header ">
-                     <h6 class="m-0">Pernyataan Siap Seminar</h6>
-                      
-                    </div>
-                    <div class="card-body border-bottom" style="min-height: 100px">
-                      <span class="badge badge-info mb-2">10 Data</span>
-
+                    <div class="card-body border-bottom">
+                      <?php if($proposal_periode > 0) { ?>
+                        <h1 class=" text-center"><?= $proposal_periode ?></h1>
+                      <?php } else { ?>
+                        <h1 class=" text-center">0</h1>
+                      <?php } ?>
                     </div>
                     <div class="card-footer">
-                       <?php if($tiga > 0) { ?>
-                     <!--  <div class="alert alert-info" role="alert"> -->
-                        <h6><b>Data terbaru</b>                         <span class="badge badge-pill badge-primary"><?=  $tiga ?></span><a href="<?= base_url('admin/KP_TI_A03') ?>" class="alert-link float-right">Lihat</a></h6>
-
-                      <!-- </div> -->
+                       <?php if($proposal > 0) { ?>
+                        <h6><b>Data terbaru</b>                         
+                          <span class="badge badge-pill badge-primary"><?=  $proposal ?></span>
+                          <a href="<?= base_url('admin/proposal') ?>" class="alert-link float-right">Lihat</a>
+                        </h6>
+                      <?php } else { ?>
+                        <h6><b>Data terbaru</b>                         
+                          <span class="badge badge-pill badge-primary">0</span>
+                          <a href="<?= base_url('admin/proposal') ?>" class="alert-link float-right">Lihat</a>
+                        </h6>
                       <?php } ?>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="card card-small mb-4">
-                    <div class="card-header border-bottom">
-                     <h6 class="m-0">Laporan</h6>
-                      
+                    <div class="card-header">
+                     <h6 class="m-0 text-center">Pernyataan Siap Seminar</h6>
                     </div>
-                    <div class="card-body" style="min-height: 100px">
-                      aaa
+                    <div class="card-body border-bottom">
+                      <?php if($tiga > 0) { ?>
+                        <h1 class=" text-center"><?= $tiga ?></h1>
+                      <?php } else { ?>
+                        <h1 class=" text-center">0</h1>
+                      <?php } ?>
+                    </div>
+                    <div class="card-footer">
+                       <?php if($tiga > 0) { ?>
+                        <h6><b>Data terbaru</b>                         
+                          <span class="badge badge-pill badge-primary"><?=  $tiga ?></span>
+                          <a href="<?= base_url('admin/pembimbingLapangan') ?>" class="alert-link float-right">Lihat</a>
+                        </h6>
+                      <?php } else { ?>
+                        <h6><b>Data terbaru</b>                         
+                          <span class="badge badge-pill badge-primary">0</span>
+                          <a href="<?= base_url('admin/pembimbingLapangan') ?>" class="alert-link float-right">Lihat</a>
+                        </h6>
+                      <?php } ?>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="card card-small mb-4">
-                    <div class="card-header border-bottom">
-                     <h6 class="m-0">BA & DPNA</h6>
-                      
+                    <div class="card-header">
+                     <h6 class="m-0 text-center">Laporan</h6>
                     </div>
-                    <div class="card-body" style="min-height: 100px">
-                      aaa
+                    <div class="card-body border-bottom">
+                      <?php if($laporan > 0) { ?>
+                        <h1 class=" text-center"><?= $laporan ?></h1>
+                      <?php } else { ?>
+                        <h1 class=" text-center">0</h1>
+                      <?php } ?>
                     </div>
-                  </div> 
+                    <div class="card-footer">
+                       <?php if($laporan > 0) { ?>
+                        <h6><b>Data terbaru</b>                         
+                          <span class="badge badge-pill badge-primary"><?=  $laporan ?></span>
+                          <a href="<?= base_url('admin/laporan') ?>" class="alert-link float-right">Lihat</a>
+                        </h6>
+                      <?php } else { ?>
+                        <h6><b>Data terbaru</b>                         
+                          <span class="badge badge-pill badge-primary">0</span>
+                          <a href="<?= base_url('admin/laporan') ?>" class="alert-link float-right">Lihat</a>
+                        </h6>
+                      <?php } ?>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card card-small mb-4">
+                    <div class="card-header">
+                     <h6 class="m-0 text-center">BA & DPNA</h6>
+                    </div>
+                    <div class="card-body border-bottom">
+                      <?php if($empatC > 0) { ?>
+                        <h1 class=" text-center"><?= $empatC ?></h1>
+                      <?php } else { ?>
+                        <h1 class=" text-center">0</h1>
+                      <?php } ?>
+                    </div>
+                    <div class="card-footer">
+                       <?php if($empatC > 0) { ?>
+                        <h6><b>Data terbaru</b>                         
+                          <span class="badge badge-pill badge-primary"><?=  $empatC ?></span>
+                          <a href="<?= base_url('admin/beritaAcara') ?>" class="alert-link float-right">Lihat</a>
+                        </h6>
+                      <?php } else { ?>
+                        <h6><b>Data terbaru</b>                         
+                          <span class="badge badge-pill badge-primary">0</span>
+                          <a href="<?= base_url('admin/beritaAcara') ?>" class="alert-link float-right">Lihat</a>
+                        </h6>
+                      <?php } ?>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="row">
@@ -131,7 +187,7 @@
                 <div class="col-md-6">
                   <div class="card card-small mb-4">
                     <div class="card-header border-bottom">
-                      <h6 class="m-0">Data terbaru</h5> 
+                      <h6 class="m-0">Jadwal Seminar</h5> 
                     </div>
                     <div class="card-body" style="min-height: 375px"> 
                       <?php if($proposal > 0) { ?>

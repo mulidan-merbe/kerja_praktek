@@ -7,7 +7,7 @@ class Beranda extends CI_Controller {
         parent::__construct();
 		$this->load->model(['Model_Jadwal','Model_Kpdua_b','Model_Kpempat']);
 		if(is_null($this->session->userdata('Pembimbing'))) {
-	    	redirect(base_url("auth_pembimbing"));
+	    	redirect(base_url("pembimbing/login"));
 	    }
     }
 

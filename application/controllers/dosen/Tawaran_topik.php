@@ -8,7 +8,7 @@ class tawaran_topik extends CI_Controller {
 		$this->load->model(['Model_tawaranTopik', 'Model_Jadwal']);
 		$this->load->library('form_validation');
 		if(is_null($this->session->userdata('Dosen'))) {
-	    	redirect(base_url("auth_dosen"));
+	    	redirect(base_url("dosen/login"));
 	    }
     }
 

@@ -12,6 +12,6 @@ class Utama extends CI_Controller {
 	 public function index()
     {
         $data['title']  = 'Selamat Datang | Sistem Informasi Manajemen Kerja Praktek';
-        $this->load->view('v_utama', $data);
+        $this->load->view('utama/index', $data);
     }
 }

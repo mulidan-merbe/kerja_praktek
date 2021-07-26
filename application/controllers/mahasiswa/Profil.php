@@ -7,7 +7,7 @@ class Profil extends CI_Controller {
         parent::__construct();
 		$this->load->model('Model_admin', 'admin');
 		if(is_null($this->session->userdata('Login'))) {
-	    	redirect(base_url("auth_mahasiswa"));
+	    	redirect(base_url("mahasiswa/login"));
 	    }
 
 	 //    if($this->session->userdata('Mahasiswa') != TRUE) {

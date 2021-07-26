@@ -8,7 +8,7 @@ class Penilaian extends CI_Controller {
 		$this->load->model(['Model_Kpempat_a', 'Model_Kpempat_b','Model_Kpdua_c']);
 		$this->load->library('form_validation');
 		if(is_null($this->session->userdata('Login'))) {
-	    	redirect(base_url("login"));
+	    	redirect(base_url("mahasiswa/login"));
 	    }
     }
 

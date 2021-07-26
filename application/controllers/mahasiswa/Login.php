@@ -14,7 +14,7 @@ class Login extends CI_Controller {
     {
         $data['title']  = 'Mahasiswa | Login';
 
-        $this->load->view('mahasiswa/login', $data);
+        $this->load->view('utama/login_mahasiswa', $data);
     }
     public function Auth()
     {
@@ -24,7 +24,7 @@ class Login extends CI_Controller {
 
     	if($this->form_validation->run() == false ) {
 
-    		$this->load->view('mahasiswa/login', $data);
+    		$this->load->view('utama/login_mahasiswa', $data);
 
     	} else {
 

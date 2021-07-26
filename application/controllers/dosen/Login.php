@@ -14,7 +14,7 @@ class Login extends CI_Controller {
     {
         $data['title']  = 'Dosen | Login';
 
-        $this->load->view('dosen/login', $data);
+        $this->load->view('utama/login_dosen', $data);
     }
     public function Auth()
     {
@@ -24,7 +24,7 @@ class Login extends CI_Controller {
 
     	if($this->form_validation->run() == false ) {
 
-    		$this->load->view('dosen/login', $data);
+    		$this->load->view('utama/login_dosen', $data);
 
     	} else {
 

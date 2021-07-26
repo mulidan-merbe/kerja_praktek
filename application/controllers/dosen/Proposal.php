@@ -8,7 +8,7 @@ class Proposal extends CI_Controller {
         parent::__construct();
 		$this->load->model('Model_Proposal', 'proposal');
 		if(is_null($this->session->userdata('Dosen'))) {
-	    	redirect(base_url("auth_dosen"));
+	    	redirect(base_url("dosen/login"));
 	    }
     }
  

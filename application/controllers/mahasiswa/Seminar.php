@@ -8,7 +8,7 @@ class Seminar extends CI_Controller {
 		$this->load->model(['Model_Kptiga', 'Model_Kpdua_a', 'Model_Proposal','Model_Syarat','Model_Kpempat']);
 		$this->load->library('form_validation');
 		if(is_null($this->session->userdata('Login'))) {
-	    	redirect(base_url("auth_mahasiswa"));
+	    	redirect(base_url("mahasiswa/login"));
 	    }
     }
 

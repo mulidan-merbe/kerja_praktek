@@ -36,6 +36,7 @@ class Model_Pembimbing_lapangan extends CI_Model {
         return $query->num_rows();
     }
 
+
     public function tambahData($Id_pelaksanaan, $NIM, $File, $Username, $No_identitas, $Password, $Jabatan, $Alamat_kantor, $No_hp, $Tanggal) 
     {
 

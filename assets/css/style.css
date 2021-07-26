@@ -59,7 +59,7 @@ nav{
 }
 .nav-link:hover{
 	font-weight: 700;
-	border-radius: 3px solid #00a6ed;
+	border-bottom: 3px solid #00a6ed;
 	transition: 1s;
 }
 
@@ -72,6 +72,7 @@ section.home{
 .text-section{
 	padding-top: 100px;
 }
+
 h1.title{
 	font-size: 35px;
 	color: #232323;
