@@ -26,16 +26,40 @@ class Model_Pengajuan extends CI_Model
         return $query->row_array();
     }
 
-    public function konfirmasi($nilai, $id)
-    {
-    }
+
 
     public function getAll()
     {
-        $this->db->from('tbl_pengajuan t');
-        // $this->db->join('tbl_pelaksanaan p', 'p.Id_pelaksanaan = t.Id_pelaksanaan');
-        $this->db->order_by('Id', 'DESC');
+        $this->db->from('tbl_pengajuan p');
+        $this->db->join('tbl_status t', 't.Id = p.Konfirmasi');
+        $this->db->order_by('p.Id', 'DESC');
         $query = $this->db->get();
         return $query->result();
+    }
+
+    public function getbyId($Id)
+    {
+        $this->db->from('tbl_pengajuan');
+        $this->db->where('Id', $Id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function setuju($Id, $Status)
+    {
+        $data = [
+            'Status' => $Status
+        ];
+        $this->db->update('tbl_pengajuan', $data);
+        $this->db->where('Id', $Id);
+    }
+
+    public function konfirmasi($id, $nilai)
+    {
+        $data = [
+            'Konfirmasi' => $nilai
+        ];
+        $this->db->update('tbl_pengajuan', $data);
+        $this->db->where('Id', $id);
     }
 }

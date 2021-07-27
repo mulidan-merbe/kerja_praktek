@@ -15,6 +15,7 @@
                 <!-- / .main-navbar -->
                 <div class="main-content-container container-fluid px-4">
                     <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+                    <?= $this->session->unset_userdata('flash'); ?>
                     <!-- Page Header -->
                     <div class="page-header row no-gutters py-4">
                         <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
@@ -41,11 +42,11 @@
                                         <table id="dtBasicExample" class="table mb-0 table-bordered table-striped">
                                             <thead class="">
                                                 <tr>
-                                                    <th class="text-center"><b>No. </b></th>
+                                                    <th class="text-center col-1"><b>No. </b></th>
                                                     <th class="text-center"><b>Pengirim</b></th>
                                                     <th class="text-center col-4"><b>Topik</b></th>
                                                     <th class="text-center"><b>Jumlah</b></th>
-                                                    <th class="text-center"><b>Email</b></th>
+                                                    <th class="text-center"><b>Status</b></th>
                                                     <th class="text-center"><b>Tanggal</b></th>
                                                     <th class="text-center"><b>Aksi</b></th>
                                                 </tr>
@@ -59,13 +60,13 @@
                                                         <td class=""><?= $data->Topik ?></td>
                                                         <td style="text-align: "><?= $data->Topik ?></td>
                                                         <td class="text-center"><?= $data->Jumlah ?></td>
-                                                        <td class=""><?= $data->Email ?></td>
+                                                        <td class="text-center"><?= $data->Icon ?></td>
                                                         <td class="text-center"><?= $format1 = format_indo(date('Y-m-d', strtotime($data->Tanggal))); ?></td>
                                                         <td>
-                                                            <div class="btn-group btn-group-sm d-flex justify-content-end" role="group" aria-label="Table row actions">
+                                                            <div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Table row actions">
                                                                 <a class="mb-2 btn  btn-info" data-toggle="modal" data-target="#modal-lihat<?= $data->Id; ?>" data-placement="top" title="Lihat"><i class="fas fa-eye"></i></a>
-                                                                <a class="mb-2 btn  btn-success" href="<?= base_url('') ?>admin/rencana_topik/setuju?setujui=<?= $data->Id ?>" data-placement="top" title="Lihat"><i class="fas fa-check"></i></a>
-                                                                <a class="mb-2 btn  btn-danger" href="<?= base_url('') ?>admin/rencana_topik/tolak?ditolak=<?= $data->Id ?>" data-placement="top" title="Lihat"><i class="fas fa-times"></i></a>
+                                                                <a class="mb-2 btn  btn-success" href="<?= base_url('') ?>admin/topik/setuju?setujui=<?= $data->Id ?>" data-placement="top" title="Lihat"><i class="fas fa-check"></i></a>
+                                                                <a class="mb-2 btn  btn-danger" href="<?= base_url('') ?>admin/topik/tolak?ditolak=<?= $data->Id ?>" data-placement="top" title="Lihat"><i class="fas fa-times"></i></a>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -103,7 +104,10 @@
                                             <label>Alamat :</label>
                                             <textarea name="Uraian" type="text" class="form-control" cols="90" rows="5" placeholder="<?= $data->Alamat ?>" readonly></textarea>
                                         </div>
-
+                                        <div class="form-group">
+                                            <label>Email :</label>
+                                            <input type="text" class="form-control" value="<?= $data->Email ?>" readonly>
+                                        </div>
                                     </div>
 
                                     <div class="modal-footer d-flex justify-content-center">

@@ -15,6 +15,7 @@
         <!-- / .main-navbar -->
         <div class="main-content-container container-fluid px-4">
           <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+          <?= $this->session->unset_userdata('flash'); ?>
           <!-- Page Header -->
           <div class="page-header row no-gutters py-4">
             <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
@@ -43,11 +44,11 @@
                       <thead class="">
                         <tr>
                           <th class="text-center"><b>No. </b></th>
-                          <th class="text-center"><b>Dosen</b></th>
+                          <th class="text-center"><b>Nama</b></th>
                           <th class="text-center"><b>Topik</b></th>
                           <th class="text-center"><b>Instansi </b></th>
-                          <th class="text-center"><b>Alamat </b></th>
-                          <th class="text-center"><b>Jumlah</b></th>
+                          <!-- <th class="text-center"><b>Alamat </b></th>
+                          <th class="text-center"><b>Jumlah</b></th> -->
                           <th class="text-center"><b>Periode</b></th>
                           <th class="text-center"><b>Tanggal</b></th>
                           <th class="text-center"><b>Aksi</b></th>
@@ -59,20 +60,26 @@
                         foreach ($tawaranJudul as $data) { ?>
                           <tr>
                             <td class="text-center"><?= $no++ ?>.</td>
-                            <td class="text-center"><?= $data->Username ?></td>
-                            <td style="text-align: "><?= $data->topik ?></td>
+                            <td class=""><?= $data->Username ?></td>
+                            <td><?= $data->topik ?></td>
                             <td class="text-center"><?= $data->Instansi ?></td>
-                            <td class="text-center"><?= $data->Alamat ?></td>
-                            <td class="text-center"><?= $data->Jumlah ?></td>
+                            <!-- <td class="text-center"><?= $data->Alamat ?></td>
+                            <td class="text-center"><?= $data->Jumlah ?></td> -->
                             <td class="text-center"><b><?php if ($data->Periode == 1) { ?><span class="badge badge-success">BERJALAN</span><?php } elseif ($data->Periode == 2) { ?><span class="badge badge-info">LIBURAN</span><?php } ?></b></td>
                             <td class="text-center"><?= $data->Tanggal ?></td>
                             <td>
-                              <div class="btn-group btn-group-sm d-flex justify-content-end" role="group" aria-label="Table row actions">
-                                <a type="button" class="btn btn-info active-light" href="<?= base_url() ?>admin/tawaran_topik/ubah/<?= $data->Id_tawaranjudul ?>">
-                                  <i class="material-icons">&#xE254;</i>
-                                </a>
-                                <a type="button" class="btn btn-danger tombol-hapus" href="<?= base_url() ?>admin/tawaran_topik/hapus/<?= $data->Id_tawaranjudul ?>">
-                                  <i class="material-icons">&#xE872;</i>
+                              <div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Table row actions">
+
+
+                                <a class=" btn  btn-info" data-toggle="modal" data-target="#modal-lihat<?= $data->Id_tawaranjudul; ?>" data-placement="top" title="Lihat"><i class="fas fa-eye"></i></a>
+                                <?php if ($data->NIP == $this->session->userdata('No_identitas')) { ?>
+                                  <a type="button" class="btn btn-success active-light" href="<?= base_url() ?>admin/tawaran_topik/ubah/<?= $data->Id_tawaranjudul ?>">
+                                    <i class="material-icons">&#xE254;</i>
+                                  </a>
+                                  <a type="button" class="btn btn-danger tombol-hapus" href="<?= base_url() ?>admin/tawaran_topik/hapus/<?= $data->Id_tawaranjudul ?>">
+                                    <i class="material-icons">&#xE872;</i>
+                                  </a>
+                                <?php } ?>
                                 </a>
                               </div>
                             </td>
@@ -89,7 +96,36 @@
 
 
 
+        <?php foreach ($tawaranJudul as $data) { ?>
+          <div class="modal fade" id="modal-lihat<?= $data->Id_tawaranjudul; ?>" tabindex="-1" role="dialog" labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header text-center">
+                  <h4 class="modal-title w-100 font-weight-bold">DETAIL </h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form method="post" action="" enctype="multipart/form-data">
+                  <div class="modal-body mx-3">
+                    <div class="form-group">
+                      <label>Instansi/Organisasi :</label>
+                      <input type="text" class="form-control" value="<?= $data->Instansi ?>" readonly>
+                    </div>
+                    <div class="form-group">
+                      <label>Alamat :</label>
+                      <textarea name="Uraian" type="text" class="form-control" cols="90" rows="5" placeholder="<?= $data->Alamat ?>" readonly></textarea>
+                    </div>
+                  </div>
 
+                  <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">TUTUP</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        <?php } ?>
 
 
         <?php $this->load->view('admin/template/footer') ?>

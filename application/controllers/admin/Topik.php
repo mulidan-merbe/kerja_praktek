@@ -66,7 +66,7 @@ class Topik extends CI_Controller
 			$Tanggal     	 = format_indo(date('Y-m-d'));
 			$this->Model_tawaranTopik->tambahData($NIP, $topik, $Alamat, $Jumlah, $No_hp, $Instansi, $Username, $Id_pelaksanaan, $Tanggal);
 			$this->session->set_flashdata('flash', 'Ditambahkan');
-			redirect('admin/tawaran_topik');
+			redirect('admin/topik');
 		}
 	}
 
@@ -104,7 +104,7 @@ class Topik extends CI_Controller
 			$Tanggal     	 	= format_indo(date('Y-m-d'));
 			$this->Model_tawaranTopik->ubahData($Id_tawaranjudul, $topik, $Alamat, $Jumlah, $No_hp, $Instansi, $NIP, $Tanggal);
 			$this->session->set_flashdata('flash', 'Diubah');
-			redirect('admin/tawaran_topik');
+			redirect('admin/topik');
 		}
 	}
 
@@ -113,6 +113,32 @@ class Topik extends CI_Controller
 		$Id_tawaranjudul = $Id_tawaranjudul;
 		$this->Model_tawaranTopik->hapusDataJudul($Id_tawaranjudul);
 		$this->session->set_flashdata('flash', 'Dihapus');
-		redirect('admin/tawaran_topik');
+		redirect('admin/topik');
+	}
+
+	//pengajuan
+	public function setuju()
+	{
+		$Id = $_GET['setujui'];
+		$Status = 2;
+		$data['pengajuan'] = $this->Model_Pengajuan->getbyId($Id);
+		// $data['jadwal'] = $this->Model_Jadwal->getAll();
+
+		foreach ($data['pengajuan'] as $pengajuan) {
+			$Id = $pengajuan->Id;
+			$topik = $pengajuan->Topik;
+			$Jumlah = $pengajuan->Jumlah;
+			$Alamat = $pengajuan->Alamat;
+			$Instansi = $pengajuan->Instansi;
+		}
+		$NIP = '11111';
+		$Username = $this->session->userdata('Nama');
+		$Id_pelaksanaan = 14;
+		$No_hp = '08';
+		$Tanggal     	 	= format_indo(date('Y-m-d'));
+		$this->Model_tawaranTopik->tambahData($NIP, $topik, $Alamat, $Jumlah, $No_hp, $Instansi, $Username, $Id_pelaksanaan, $Tanggal);
+		$this->Model_Pengajuan->setuju($Id, $Status);
+		$this->session->set_flashdata('flash', 'Ditambahkan');
+		redirect('admin/topik');
 	}
 }

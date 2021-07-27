@@ -126,14 +126,14 @@ table tr th {
 .atas {
 	background-image: linear-gradient(to right, #b2fefa, #0ed2f7);
 	/* background-color: #02c9e8; */
-	height: 250px;
+	height: 200px;
 }
 
 .topik {
 	min-height: 450px;
 }
 .form-inputan {
-	margin-top: -120px;
+	margin-top: -100px;
 	min-height: 650px;
 }
 

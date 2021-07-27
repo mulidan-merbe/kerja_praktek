@@ -28,15 +28,20 @@ class Proposal extends CI_Controller
 			$filter = $_GET['filter'];
 
 			if ($filter == '1') {
-
+				$Tahun = $_GET['Tahun'];
+				$Periode = $_GET['Periode'];
+				$ket = 'Data Proposal Periode ' . $Tahun . '/' . $Periode;
+				$cetak	= 'proposal/cetak?filter1&Tahun=' . $Tahun . '&NIP=&Periode=' . $Periode;
+				$data['dataProposal'] = $this->Model_Proposal->lihatPeriode($Tahun, $Periode);
+			} elseif ($filter == '2') {
 				$Tahun = $_GET['Tahun'];
 				$ket = 'Data Proposal Tahun ' . $Tahun;
-				$cetak = 'proposal/cetak?filter=1&Tahun=' . $Tahun;
+				$cetak = 'proposal/cetak?filter=2&Tahun=' . $Tahun . '&NIP=&Periode=';
 				$data['dataProposal'] = $this->Model_Proposal->lihatTahun($Tahun);
-			} elseif ($filter == '2') {
+			} elseif ($filter == '3') {
 				$NIP = $_GET['NIP'];
 				$ket = $NIP;
-				$cetak = 'proposal/cetak?filter=2&Tahun=&NIP=' . $NIP;
+				$cetak = 'proposal/cetak?filter=3&Tahun=&NIP=' . $NIP . '&Periode=';
 				$data['dataProposal'] = $this->Model_Proposal->getbydataNIP($NIP);
 			}
 		} else {
@@ -56,21 +61,43 @@ class Proposal extends CI_Controller
 
 		$data['tahun'] = $this->Model_Jadwal->Tahun();
 
+		// if (isset($_GET['filter']) && !empty($_GET['filter'])) {
+		// 	$filter = $_GET['filter'];
+
+		// 	if ($filter == '1') {
+
+		// 		$Tahun = $_GET['Tahun'];
+		// 		$ket = 'Data Proposal Tahun ' . $Tahun;
+		// 		$proposal = $data['dataProposal'] = $this->Model_Proposal->lihatTahun($Tahun);
+		// 	} elseif ($filter == '2') {
+		// 		$NIP = $_GET['NIP'];
+		// 		$ket = 'Data Proposal Dosen Pembimbing' . $NIP;
+		// 		$proposal = $data['dataProposal'] = $this->Model_Proposal->getbydataNIP($NIP);
+		// 	}
+		// } else {
+		// 	$ket = 'Data Semua Proposal ';
+		// 	$proposal = $data['dataProposal'] = $this->Model_Proposal->getAllAdmin();
+		// }
+
 		if (isset($_GET['filter']) && !empty($_GET['filter'])) {
 			$filter = $_GET['filter'];
 
 			if ($filter == '1') {
-
+				$Tahun = $_GET['Tahun'];
+				$Periode = $_GET['Periode'];
+				$ket = 'Data Proposal Periode ' . $Tahun . '/' . $Periode;
+				$proposal = $data['dataProposal'] = $this->Model_Proposal->lihatPeriode($Tahun, $Periode);
+			} elseif ($filter == '2') {
 				$Tahun = $_GET['Tahun'];
 				$ket = 'Data Proposal Tahun ' . $Tahun;
 				$proposal = $data['dataProposal'] = $this->Model_Proposal->lihatTahun($Tahun);
-			} elseif ($filter == '2') {
+			} elseif ($filter == '3') {
 				$NIP = $_GET['NIP'];
-				$ket = 'Data Proposal Dosen Pembimbing' . $NIP;
+				$ket = $NIP;
 				$proposal = $data['dataProposal'] = $this->Model_Proposal->getbydataNIP($NIP);
 			}
 		} else {
-			$ket = 'Data Semua Proposal ';
+			$ket = 'Semua Data Proposal';
 			$proposal = $data['dataProposal'] = $this->Model_Proposal->getAllAdmin();
 		}
 
