@@ -40,6 +40,7 @@
           <span>Topik</span>
         </a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link <?php if ($this->uri->segment(2) == "proposal") {
                               echo "active";

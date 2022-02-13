@@ -7,11 +7,15 @@
 	<div class="depan mb-5" id="beranda">
 		<div class="container">
 			<div class="row">
-				<div class="right2 d-sm-block d-md-none col-sm-12 mt-5">
+				<div class="right d-sm-block d-md-none col-sm-12 mt-5">
 					<img src="<?= base_url() ?>assets/fotos/informatika.png" style="width: 100%" alt="">
 				</div>
+			</div>
+			<div class="row">
+
 				<div class="left d-md-block  col-md-6 col-sm-12 mt-5 ">
-					<h1 class="mt-5 mb-3 font-weight-bold animate__animated animate__zoomIn animate__slow">Sistem Informasi Manajemen Kerja Praktek</h1>
+					<!-- <h1 class="mt-5 mb-3 font-weight-bold animate__animated animate__zoomIn animate__slow">Sistem Informasi Manajemen Kerja Praktek</h1> -->
+					<h1 class="mt-5 mb-3 font-weight-bold ">Sistem Informasi Manajemen Kerja Praktek</h1>
 					<h3 class="font-weight-normal text-uppercase">Jurusan Informatika</h3>
 					<h3 class="text-uppercase">Fakultas Teknik Universitas Tanjungpura</h3>
 					<div class="tombol mt-5">
@@ -20,8 +24,8 @@
 
 					</div>
 				</div>
-				<div class=" right d-md-block d-sm-none   col-md-5 col-sm-12 offset-md-1 mt-5 ">
-					<img src=" <?= base_url() ?>assets/fotos/informatika.png" class="shadow" style="width: 100%" alt="">
+				<div class=" right  col-md-5 d-none d-md-block   offset-md-1 mt-5 ">
+					<img src=" <?= base_url() ?>assets/fotos/informatika.png" class="shadow " style="width: 100%" alt="">
 				</div>
 			</div>
 		</div>

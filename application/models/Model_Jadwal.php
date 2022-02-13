@@ -1,6 +1,6 @@
 <?php
 
-class Model_Jadwal extends CI_Model 
+class Model_Jadwal extends CI_Model
 {
 	public function getbyId($Id_pelaksanaan)
 	{
@@ -9,31 +9,33 @@ class Model_Jadwal extends CI_Model
 
 	public function get()
 	{
-		 $this->db->from('tbl_pelaksanaan');
-		 $this->db->order_by('Id_pelaksanaan', 'DESC');
-		 $query = $this->db->get();
-		 return $query->result();
+		$this->db->from('tbl_pelaksanaan');
+		$this->db->order_by('Id_pelaksanaan', 'DESC');
+		$query = $this->db->get();
+		return $query->result();
 	}
 
 	public function getAll()
 	{
-		 $this->db->from('tbl_pelaksanaan');
-		 $this->db->limit(1);
-		 $this->db->order_by('Id_pelaksanaan', 'DESC');
-		 $query = $this->db->get();
-		 return $query->result();
+		$this->db->from('tbl_pelaksanaan');
+		$this->db->limit(1);
+		$this->db->order_by('Id_pelaksanaan', 'DESC');
+		$query = $this->db->get();
+		return $query->result();
 	}
 
 	public function getAll2()
 	{
-		 $this->db->from('tbl_pelaksanaan');
-		 $query = $this->db->get();
-		 return $query->result();
+		$this->db->from('tbl_pelaksanaan');
+		$query = $this->db->get();
+		return $query->result();
 	}
 
 	public function Tahun()
 	{
+		$this->db->distinct();
 		$this->db->from('tbl_pelaksanaan');
+		$this->db->group_by('Tahun');
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -47,9 +49,9 @@ class Model_Jadwal extends CI_Model
 		return $query->result();
 	}
 
-	public function insertJadwal($Tahun, $Periode, $Tanggal_mulai, $Tanggal_selesai, $Pengajuan_seminar, $Pelaksanaan_seminar, $Revisi, $Tanggal) 
+	public function insertJadwal($Tahun, $Periode, $Tanggal_mulai, $Tanggal_selesai, $Pengajuan_seminar, $Pelaksanaan_seminar, $Revisi, $Tanggal)
 	{
-		$data = array (
+		$data = array(
 			'Tahun'					=> $Tahun,
 			'Periode'  				=> $Periode,
 			'Tanggal_mulai' 		=> $Tanggal_mulai,
@@ -64,9 +66,9 @@ class Model_Jadwal extends CI_Model
 		$this->db->insert('tbl_pelaksanaan', $data);
 	}
 
-	public function ubahJadwal($Id_pelaksanaan, $Tahun, $Periode, $Tanggal_mulai, $Tanggal_selesai, $Pengajuan_seminar, $Pelaksanaan_seminar, $Revisi, $Tanggal) 
+	public function ubahJadwal($Id_pelaksanaan, $Tahun, $Periode, $Tanggal_mulai, $Tanggal_selesai, $Pengajuan_seminar, $Pelaksanaan_seminar, $Revisi, $Tanggal)
 	{
-		$data = array (
+		$data = array(
 			'Tahun'					=> $Tahun,
 			'Periode'  				=> $Periode,
 			'Tanggal_mulai' 		=> $Tanggal_mulai,
@@ -82,11 +84,11 @@ class Model_Jadwal extends CI_Model
 	}
 
 	public function hapusData($Id_pelaksanaan)
-    {
-        $data = array(
-                'Id_pelaksanaan' => $Id_pelaksanaan
-        );
-           
-        $this->db->delete('tbl_pelaksanaan',$data); 
-    }
+	{
+		$data = array(
+			'Id_pelaksanaan' => $Id_pelaksanaan
+		);
+
+		$this->db->delete('tbl_pelaksanaan', $data);
+	}
 }

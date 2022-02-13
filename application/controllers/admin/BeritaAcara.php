@@ -19,13 +19,13 @@ class BeritaAcara extends CI_Controller
         if (isset($_GET['filter']) && !empty($_GET['filter'])) {
             $filter = $_GET['filter'];
 
-            if ($filter == '1') {
+            if ($filter == 1) {
                 $data['title']  = 'Admin | Berita Acara';
                 $NIM = $_GET['NIM'];
                 $ket = 'Data Proposal Mahasiswa ' . $NIM;
                 $cetak = 'beritaAcara/cetak?filter=1&NIM=' . $NIM;
                 $data['nilai'] = $this->Model_Kpempat_c->getbyNIM($NIM);
-            } elseif ($filter == '2') {
+            } elseif ($filter == 2) {
                 $data['title']  = 'Admin | Berita Acara';
                 $Periode = $_GET['Periode'];
                 $ket = 'Data Proposal Periode ' . $Periode;
@@ -44,8 +44,7 @@ class BeritaAcara extends CI_Controller
             ];
         }
 
-
-
+        $data['periode']   = $this->Model_Jadwal->get();
         $data['ket'] = $ket;
         $data['cetak'] = $cetak;
         $this->load->view('admin/tampil_dataEmpat_c', $data);
@@ -211,11 +210,16 @@ class BeritaAcara extends CI_Controller
     public function tolak()
     {
         $No_identitas      = $this->session->userdata('No_identitas');
-        $NIM                = $_GET['setujui'];
+        $NIM                = $_GET['ditolak'];
+        $data['id']     = $this->Model_Laporan->getbyNIMlimit($NIM);
+        foreach ($data['id'] as $data) {
+            $Id_periode = $data->Id_pelaksanaan;
+        }
+
         $Status_kaprodi     = 3;
         $Tanggal_kaprodi    = date('Y-m-d');
 
-        $this->Model_Kpempat_c->tambahDataKaprodi($NIM, $No_identitas, $Status_kaprodi, $Tanggal_kaprodi);
+        $this->Model_Kpempat_c->tambahDataKaprodi($Id_periode, $NIM, $No_identitas, $Status_kaprodi, $Tanggal_kaprodi);
         $this->session->set_flashdata('flash', 'Ditambahkan');
         redirect('admin/beritaAcara');
     }

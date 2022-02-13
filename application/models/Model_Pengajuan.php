@@ -3,7 +3,7 @@
 class Model_Pengajuan extends CI_Model
 {
 
-    public function simpanData($Topik, $Abstrak, $Jumlah, $Instansi, $Alamat, $Narahubung, $Email, $Tanggal)
+    public function simpanData($Topik, $Abstrak, $Jumlah, $Instansi, $Alamat, $Narahubung, $Email, $Konfirmasi, $Tanggal)
     {
         $data = [
             'Topik' => $Topik,
@@ -13,6 +13,8 @@ class Model_Pengajuan extends CI_Model
             'Alamat'    => $Alamat,
             'Narahubung'    => $Narahubung,
             'Email' => $Email,
+            'Konfirmasi' => $Konfirmasi,
+            'Status' => $Konfirmasi,
             'Tanggal' => $Tanggal
         ];
 
@@ -31,8 +33,8 @@ class Model_Pengajuan extends CI_Model
     public function getAll()
     {
         $this->db->from('tbl_pengajuan p');
-        $this->db->join('tbl_status t', 't.Id = p.Konfirmasi');
-        $this->db->order_by('p.Id', 'DESC');
+        $this->db->join('tbl_status t', 't.Id = p.Status');
+        $this->db->order_by('p.Id_pengajuan', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
@@ -40,18 +42,19 @@ class Model_Pengajuan extends CI_Model
     public function getbyId($Id)
     {
         $this->db->from('tbl_pengajuan');
-        $this->db->where('Id', $Id);
+        $this->db->where('Id_pengajuan', $Id);
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function setuju($Id, $Status)
+    public function status($Id, $Status)
     {
-        $data = [
+        $data = array(
             'Status' => $Status
-        ];
+
+        );
+        $this->db->where('Id_Pengajuan', $Id);
         $this->db->update('tbl_pengajuan', $data);
-        $this->db->where('Id', $Id);
     }
 
     public function konfirmasi($id, $nilai)
@@ -59,7 +62,7 @@ class Model_Pengajuan extends CI_Model
         $data = [
             'Konfirmasi' => $nilai
         ];
+        $this->db->where('Id_pengajuan', $id);
         $this->db->update('tbl_pengajuan', $data);
-        $this->db->where('Id', $id);
     }
 }

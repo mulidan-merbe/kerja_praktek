@@ -66,12 +66,12 @@
                   <?php if ($tiga > 0) { ?>
                     <h6><b>Data terbaru</b>
                       <span class="badge badge-pill badge-primary"><?= $tiga ?></span>
-                      <a href="<?= base_url('admin/pembimbingLapangan') ?>" class="alert-link float-right">Lihat</a>
+                      <a href="<?= base_url('admin/seminar') ?>" class="alert-link float-right">Lihat</a>
                     </h6>
                   <?php } else { ?>
                     <h6><b>Data terbaru</b>
                       <span class="badge badge-pill badge-primary">0</span>
-                      <a href="<?= base_url('admin/pembimbingLapangan') ?>" class="alert-link float-right">Lihat</a>
+                      <a href="<?= base_url('admin/seminar') ?>" class="alert-link float-right">Lihat</a>
                     </h6>
                   <?php } ?>
                 </div>

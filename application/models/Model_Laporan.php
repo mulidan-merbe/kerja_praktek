@@ -1,6 +1,7 @@
 <?php
 
-class Model_Laporan extends CI_Model{
+class Model_Laporan extends CI_Model
+{
 
 	public function getAll()
 	{
@@ -13,14 +14,28 @@ class Model_Laporan extends CI_Model{
 
 	public function getbyNIM($NIM)
 	{
-		return $this->db->get_where('tbl_laporan', ['NIM' => $NIM])->result();
+		$this->db->from('tbl_laporan ');
+		$this->db->where('NIM', $NIM);
+		$this->db->order_by('Id_laporan', 'DESC');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	public function getbyNIM2($NIM)
+	{
+		return $this->db->get_where('tbl_laporan', ['NIM' => $NIM])->num_rows();
+	}
+
+	public function getbyId($Id_laporan)
+	{
+		return $this->db->get_where('tbl_laporan', ['Id_laporan' => $Id_laporan])->result();
 	}
 
 	public function getbyNIMlimit($NIM)
 	{
 		$this->db->from('tbl_laporan ');
 		$this->db->limit(1);
-		$this->db->order_by('Id_laporan','DESC');
+		$this->db->order_by('Id_laporan', 'DESC');
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -48,31 +63,40 @@ class Model_Laporan extends CI_Model{
 	public function getbydataNIP($NIP)
 	{
 		$this->db->from('tbl_laporan r');
-        $this->db->join('tbl_pelaksanaan t', 't.Id_pelaksanaan = r.Id_pelaksanaan');
-        $this->db->join('tbl_proposal l', 'l.NIM = r.NIM');
-        $this->db->where('r.NIP ', $NIP);
+		$this->db->join('tbl_pelaksanaan t', 't.Id_pelaksanaan = r.Id_pelaksanaan');
+		$this->db->join('tbl_proposal l', 'l.NIM = r.NIM');
+		$this->db->where('r.NIP ', $NIP);
 
-        $query = $this->db->get();
-        return $query->result();
+		$query = $this->db->get();
+		return $query->result();
 	}
 
 	public function get_tanggal($tgl_awal, $tgl_akhir)
-    {
-        $this->db->from('tbl_laporan');
-        $this->db->where('Tanggal >=', $tgl_awal);
-        $this->db->where('Tanggal <=', $tgl_akhir);
-        $query = $this->db->get();
-        return $query->num_rows();
-    }
+	{
+		$this->db->from('tbl_laporan');
+		$this->db->where('Tanggal >=', $tgl_awal);
+		$this->db->where('Tanggal <=', $tgl_akhir);
+		$query = $this->db->get();
+		return $query->num_rows();
+	}
 
-    public function lihatTahun($Tahun){
-    	$this->db->from('tbl_laporan s');
-        $this->db->join('tbl_pelaksanaan p', 'p.Id_pelaksanaan = s.Id_pelaksanaan');
-        $this->db->join('tbl_proposal l', 'l.NIM = s.NIM');
-        $this->db->where('Tahun ', $Tahun);
-        $query = $this->db->get();
-        return $query->result();
-    }
+	public function cek_status($NIP)
+	{
+		$this->db->from('tbl_laporan');
+		$this->db->where('NIP', $NIP);
+		$query = $this->db->get();
+		return $query->num_rows();
+	}
+
+	public function lihatTahun($Tahun)
+	{
+		$this->db->from('tbl_laporan s');
+		$this->db->join('tbl_pelaksanaan p', 'p.Id_pelaksanaan = s.Id_pelaksanaan');
+		$this->db->join('tbl_proposal l', 'l.NIM = s.NIM');
+		$this->db->where('Tahun ', $Tahun);
+		$query = $this->db->get();
+		return $query->result();
+	}
 
 	public function tambahData($Id_pelaksanaan, $NIM, $NIP, $No_identitas, $Keterangan, $Berkas, $Tanggal)
 	{

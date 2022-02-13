@@ -1,6 +1,7 @@
 <?php
 
-class Model_Kpdua_c extends CI_Model{
+class Model_Kpdua_c extends CI_Model
+{
 
 	public function getPembimbing($No_identitas)
 	{
@@ -15,8 +16,7 @@ class Model_Kpdua_c extends CI_Model{
 	public function getbyNIM($NIM)
 	{
 		$this->db->from('tbl_kpdua_c c');
-		$this->db->join('tbl_proposal p', 'p.NIM = c.NIM');
-		$this->db->where('c.NIM', $NIM);
+		$this->db->where('NIM', $NIM);
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -63,7 +63,7 @@ class Model_Kpdua_c extends CI_Model{
 			'Nilai_lima'	=> $Nilai_lima,
 			'Tanggal'		=> $Tanggal
 		);
-		
+
 		$this->db->where('Id_duaC', $Id_duaC);
 		$this->db->update('tbl_kpdua_c', $data);
 	}

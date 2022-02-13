@@ -2,7 +2,8 @@
 
 use GuzzleHttp\Client;
 
-class Model_tawaranTopik extends CI_Model {
+class Model_tawaranTopik extends CI_Model
+{
 
     // public function getAll()
     // {
@@ -17,23 +18,34 @@ class Model_tawaranTopik extends CI_Model {
     //     return $query->result();
     // }
 
-    public function getAll() {
-        
+    public function getAll()
+    {
+
         $this->db->from('tbl_tawaranjudul t');
         $this->db->join('tbl_pelaksanaan p', 'p.Id_pelaksanaan = t.Id_pelaksanaan');
         $this->db->order_by('Id_tawaranjudul', 'DESC');
         $query = $this->db->get();
-        return $query->result();   
+        return $query->result();
     }
-    
-    public function getAllTopik($NIP) {
+
+    public function getbyPeriode($Id)
+    {
+        $this->db->from('tbl_tawaranjudul t');
+        $this->db->join('tbl_pelaksanaan p', 'p.Id_pelaksanaan = t.Id_pelaksanaan');
+        $this->db->where('t.Id_pelaksanaan', $Id);
+        $this->db->order_by('Id_tawaranjudul', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getAllTopik($NIP)
+    {
         $this->db->select('*');
         $this->db->from('tbl_tawaranjudul t');
         $this->db->join('tbl_pelaksanaan p', 'p.Id_pelaksanaan = t.Id_pelaksanaan');
         $this->db->where('t.NIP', $NIP);
         $this->db->order_by('Id_tawaranjudul', 'DESC');
         $query = $this->db->get();
-		return $query->result();   
+        return $query->result();
     }
 
     public function getbyId($Id_tawaranjudul)
@@ -42,13 +54,14 @@ class Model_tawaranTopik extends CI_Model {
         $this->db->join('tbl_pelaksanaan p', 'p.Id_pelaksanaan = t.Id_pelaksanaan');
         $this->db->where('t.Id_tawaranjudul', $Id_tawaranjudul);
         $query = $this->db->get();
-        return $query->result();  
+        return $query->result();
     }
 
-    
 
 
-    public function tambahData( $NIP, $topik, $Alamat, $Jumlah, $No_hp, $Instansi, $Username, $Id_pelaksanaan, $Tanggal) {
+
+    public function tambahData($NIP, $topik, $Alamat, $Jumlah, $No_hp, $Instansi, $Username, $Id_pelaksanaan, $Tanggal)
+    {
         $data = array(
             'NIP'               => $NIP,
             'topik'             => $topik,
@@ -59,14 +72,15 @@ class Model_tawaranTopik extends CI_Model {
             'Username'          => $Username,
             'Id_pelaksanaan'    => $Id_pelaksanaan,
             'Tanggal'           => $Tanggal
-           
+
         );
 
         $this->db->insert('tbl_tawaranjudul', $data);
     }
 
 
-    public function ubahData($Id_tawaranjudul, $topik, $Alamat, $Jumlah, $No_hp, $Instansi, $NIP,  $Tanggal) {
+    public function ubahData($Id_tawaranjudul, $topik, $Alamat, $Jumlah, $No_hp, $Instansi, $NIP,  $Tanggal)
+    {
         $data = array(
             'topik'             => $topik,
             'Alamat'            => $Alamat,
@@ -75,7 +89,7 @@ class Model_tawaranTopik extends CI_Model {
             'Instansi'          => $Instansi,
             'NIP'               => $NIP,
             'Tanggal'           => $Tanggal
-           
+
         );
 
         $this->db->where('Id_tawaranjudul', $Id_tawaranjudul);
@@ -84,12 +98,10 @@ class Model_tawaranTopik extends CI_Model {
 
     public function hapusDataJudul($Id_tawaranjudul)
     {
-        $data = array (
-                'Id_tawaranjudul' => $Id_tawaranjudul,
+        $data = array(
+            'Id_tawaranjudul' => $Id_tawaranjudul,
         );
 
         $this->db->delete('tbl_tawaranjudul', $data);
     }
-
-
 }

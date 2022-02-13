@@ -65,8 +65,8 @@
                                                         <td>
                                                             <div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Table row actions">
                                                                 <a class="mb-2 btn  btn-info" data-toggle="modal" data-target="#modal-lihat<?= $data->Id; ?>" data-placement="top" title="Lihat"><i class="fas fa-eye"></i></a>
-                                                                <a class="mb-2 btn  btn-success" href="<?= base_url('') ?>admin/topik/setuju?setujui=<?= $data->Id ?>" data-placement="top" title="Lihat"><i class="fas fa-check"></i></a>
-                                                                <a class="mb-2 btn  btn-danger" href="<?= base_url('') ?>admin/topik/tolak?ditolak=<?= $data->Id ?>" data-placement="top" title="Lihat"><i class="fas fa-times"></i></a>
+                                                                <a class="mb-2 btn  btn-success" href="<?= base_url('') ?>admin/topik/setuju/<?= $data->Id_pengajuan ?>" data-placement="top" title="Lihat"><i class="fas fa-check"></i></a>
+                                                                <a class="mb-2 btn  btn-danger" href="<?= base_url('') ?>admin/topik/tolak/<?= $data->Id_pengajuan ?>" data-placement="top" title="Lihat"><i class="fas fa-times"></i></a>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -107,6 +107,10 @@
                                         <div class="form-group">
                                             <label>Email :</label>
                                             <input type="text" class="form-control" value="<?= $data->Email ?>" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Narahubung :</label>
+                                            <input type="text" class="form-control" value="<?= $data->Narahubung ?>" readonly>
                                         </div>
                                     </div>
 

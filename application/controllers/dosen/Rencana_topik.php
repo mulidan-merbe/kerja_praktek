@@ -1,15 +1,17 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Rencana_topik extends CI_Controller {
+class Rencana_topik extends CI_Controller
+{
 
-	function __construct() {
-        parent::__construct();
+	function __construct()
+	{
+		parent::__construct();
 		$this->load->model('Model_rencanaTopik', 'rencanatopik');
-		if(is_null($this->session->userdata('Dosen'))) {
-	    	redirect(base_url("dosen/login"));
-	    }
-    }
+		if (is_null($this->session->userdata('Dosen'))) {
+			redirect(base_url("dosen/login"));
+		}
+	}
 
 	public function index()
 	{
@@ -21,7 +23,7 @@ class Rencana_topik extends CI_Controller {
 
 	public function pilihRencanaJudul()
 	{
-	
+
 		$Id_rencanajudul = $_GET['Id_rencanajudul'];
 		// $Id_rencanajudul = array ( 'Id_rencanajudul', $Id_rencanajudul);
 		$dataa['status'] = $this->rencanatopik->getbyId($Id_rencanajudul);
@@ -46,7 +48,7 @@ class Rencana_topik extends CI_Controller {
 
 		$this->rencanatopik->setuju($Status, $Id_rencanajudul);
 		$this->session->set_flashdata('flash', ' dipilih');
-		redirect('dosen/rencana_topik');
+		redirect('dosen/topik/rencana');
 	}
 
 	public function tolak()
@@ -56,7 +58,7 @@ class Rencana_topik extends CI_Controller {
 
 		$this->rencanatopik->setuju($Status, $Id_rencanajudul);
 		$this->session->set_flashdata('flash', ' dipilih');
-		redirect('dosen/rencana_topik');
+		redirect('dosen/topik/rencana');
 	}
 
 	public function detail($Id_tawaranjudul)
@@ -68,5 +70,4 @@ class Rencana_topik extends CI_Controller {
 
 		$this->load->view('dosen/tampil_detailRencana', $data);
 	}
-
 }

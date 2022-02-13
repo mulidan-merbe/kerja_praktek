@@ -76,7 +76,7 @@ h3 {
 .btn-radius {
 	border-radius: 100px !important;
 }
-.btn-info {
+/* .btn-info {
 	background: #01a8c1;
 	background: -moz-linear-gradient(
 		-45deg,
@@ -111,7 +111,7 @@ h3 {
 	-moz-animation: AnimationName 3s ease infinite;
 	animation: AnimationName 3s ease infinite;
 	border: medium none;
-}
+} */
 
 .jadwal {
 	background-color: #f3f5f5;
@@ -144,7 +144,7 @@ table tr th {
 .footer p {
 	color: #fff;
 }
-@-webkit-keyframes AnimationName {
+/* @-webkit-keyframes AnimationName {
 	0% {
 		background-position: 0% 31%;
 	}
@@ -176,4 +176,4 @@ table tr th {
 	100% {
 		background-position: 0% 31%;
 	}
-}
+} */

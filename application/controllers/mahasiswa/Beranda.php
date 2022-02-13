@@ -1,33 +1,35 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Beranda extends CI_Controller {
+class Beranda extends CI_Controller
+{
 
-	function __construct() {
-        parent::__construct();
-		$this->load->model(['Model_Jadwal', 'Model_Draft','Model_beranda','Model_Kpdua','Model_Kpempat','Model_rencanaTopik']);
-		if(is_null($this->session->userdata('Login'))) {
-	    	redirect(base_url("mahasiswa/login"));
-	    }
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->model(['Model_Jadwal', 'Model_Draft', 'Model_beranda', 'Model_Kpdua', 'Model_Kpempat', 'Model_rencanaTopik']);
+		if (is_null($this->session->userdata('Login'))) {
+			redirect(base_url("mahasiswa/login"));
+		}
 
-	 //    if($this->session->userdata('Mahasiswa') != TRUE) {
+		//    if($this->session->userdata('Mahasiswa') != TRUE) {
 		// 	redirect(base_url("login"));
 		// }
 
-    }
+	}
 
 	public function index()
 	{
 		// $id = 18;
 		// $Draft = file_get_contents('http://informatika.untan.ac.id/API/public/dataKP.php?key=MfQE6ej2ffxEKgVx7YXVA3HbHg3d4hRhXyBnRnYgkjwuSaLNW2V5PxeVSKWySUsbbhVyEWVSs');
-  //       $dataDraft = json_decode($Draft, true);
+		//       $dataDraft = json_decode($Draft, true);
 
-  //       $Draft2 = file_get_contents('http://informatika.untan.ac.id/API/public/dataKPbyNIM.php?key=MfQE6ej2ffxEKgVx7YXVA3HbHg3d4hRhXyBnRnYgkjwuSaLNW2V5PxeVSKWySUsbbhVyEWVSs&nim=D1041131036');
+		//       $Draft2 = file_get_contents('http://informatika.untan.ac.id/API/public/dataKPbyNIM.php?key=MfQE6ej2ffxEKgVx7YXVA3HbHg3d4hRhXyBnRnYgkjwuSaLNW2V5PxeVSKWySUsbbhVyEWVSs&nim=D1041131036');
 
 		$NIM = $this->session->userdata('NIM');
 		$nim = 'D1041131036';
 
- 		$data['jadwal'] = $this->Model_Jadwal->getAll();
+		$data['jadwal'] = $this->Model_Jadwal->getAll();
 
 		foreach ($data['jadwal'] as $data) {
 			$tgl_awal	= $data->Tanggal_mulai;
@@ -40,11 +42,11 @@ class Beranda extends CI_Controller {
 			'rencanaTopik'  => $this->Model_rencanaTopik->cek_statuss($NIM),
 			'dua'			=> $this->Model_Kpdua->cek_status($NIM),
 			'empat'			=> $this->Model_Kpempat->get_tanggal($tgl_awal, $tgl_akhir),
-			'draft' 		=> $this->Model_beranda->getMahasiswa($nim)
+			'empat'			=> $this->Model_Kpempat->getbyNIM2($NIM),
+			'draft' 		=> $this->Model_Draft->getMahasiswa($NIM)
 		];
-        $this->load->view('mahasiswa/beranda', $data);
-        // var_dump($data['draft']);
-        // die;
+		$this->load->view('mahasiswa/beranda', $data);
+		// var_dump($data['draft']);
+		// die;
 	}
-
 }

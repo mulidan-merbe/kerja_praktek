@@ -88,7 +88,7 @@ class Tawaran_topik extends CI_Controller
 			$Tanggal     	 	= format_indo(date('Y-m-d'));
 			$this->Model_tawaranTopik->ubahData($Id_tawaranjudul, $topik, $Alamat, $Jumlah, $No_hp, $Instansi, $NIP, $Tanggal);
 			$this->session->set_flashdata('flash', 'Diubah');
-			redirect('admin/tawaran_topik');
+			redirect('admin/topik');
 		}
 	}
 
@@ -97,6 +97,6 @@ class Tawaran_topik extends CI_Controller
 		$Id_tawaranjudul = $Id_tawaranjudul;
 		$this->Model_tawaranTopik->hapusDataJudul($Id_tawaranjudul);
 		$this->session->set_flashdata('flash', 'Dihapus');
-		redirect('admin/tawaran_topik');
+		redirect('admin/topik');
 	}
 }

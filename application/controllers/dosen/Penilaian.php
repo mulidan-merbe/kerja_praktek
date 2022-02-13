@@ -1,35 +1,37 @@
 
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Penilaian extends CI_Controller {
+class Penilaian extends CI_Controller
+{
 
-	function __construct() {
+    function __construct()
+    {
         parent::__construct();
-		$this->load->model(['Model_Kpempat_a','Model_Kpempat','Model_Jadwal']);
-		$this->load->library('form_validation');
-		if(is_null($this->session->userdata('Dosen'))) {
-	    	redirect(base_url("dosen/login"));
-	    }
+        $this->load->model(['Model_Kpempat_a', 'Model_Kpempat', 'Model_Jadwal', 'Model_Kpdua_c', 'Model_Kpempat_b', 'Model_Laporan', 'Model_Kpempat_c']);
+        $this->load->library('form_validation');
+        if (is_null($this->session->userdata('Dosen'))) {
+            redirect(base_url("dosen/login"));
+        }
     }
 
     public function index()
     {
         $data['title']  = 'Dosen | Penilaian Seminar';
-    	$NIP = $this->session->userdata('NIP');
-    	$data['jadwal'] = $this->Model_Kpempat->getbyNIP($NIP);
-    	$data['seminar'] = $this->Model_Kpempat_a->getbyNIP($NIP);
-    	$this->load->view('dosen/tampil_dataEmpat_A', $data);
-    	// $this->load->view('dosen/tampil_dataEmpat_A');
+        $NIP = $this->session->userdata('NIP');
+        $data['jadwal'] = $this->Model_Kpempat->getbyNIP($NIP);
+        $data['seminar'] = $this->Model_Kpempat_a->getbyNIP($NIP);
+        $this->load->view('dosen/tampil_dataEmpat_A', $data);
+        // $this->load->view('dosen/tampil_dataEmpat_A');
     }
 
     public function jadwal()
     {
         $data['title']  = 'Dosen | Penilaian Seminar';
-    	$NIP = $this->session->userdata('NIP');
+        $NIP = $this->session->userdata('NIP');
 
-    	$data['jadwal'] = $this->Model_Kpempat->getbyNIP($NIP);
-    	$this->load->view('dosen/tampil_jadwalSeminar', $data);
+        $data['jadwal'] = $this->Model_Kpempat->getbyNIP($NIP);
+        $this->load->view('dosen/tampil_jadwalSeminar', $data);
     }
 
 
@@ -48,35 +50,35 @@ class Penilaian extends CI_Controller {
     {
         $NIP            = $this->session->userdata('NIP');
         $NIM            = $this->input->post('NIM');
-    	$data = [
+        $data = [
             'title'     => 'Dosen | Penilaian Seminar',
             'nilai'     => $this->Model_Kpempat_a->getbyNIM($NIM),
             'jadwal'    => $this->Model_Kpempat->getbyNIM($NIM)
         ];
 
-    	$this->form_validation->set_rules('Nilai_satu', 'Nilai', 'trim|required');
-    	$this->form_validation->set_rules('Nilai_dua', 'Nilai', 'trim|required');
-    	$this->form_validation->set_rules('Nilai_tiga', 'Nilai', 'trim|required');
-    	$this->form_validation->set_rules('Nilai_empat', 'Nilai', 'trim|required');
-    	$this->form_validation->set_rules('Nilai_lima', 'Nilai', 'trim|required');
+        $this->form_validation->set_rules('Nilai_satu', 'Nilai', 'trim|required');
+        $this->form_validation->set_rules('Nilai_dua', 'Nilai', 'trim|required');
+        $this->form_validation->set_rules('Nilai_tiga', 'Nilai', 'trim|required');
+        $this->form_validation->set_rules('Nilai_empat', 'Nilai', 'trim|required');
+        $this->form_validation->set_rules('Nilai_lima', 'Nilai', 'trim|required');
 
-    	if($this->form_validation->run() == false ){
-    		$this->load->view('dosen/tambah_dataEmpat_A', $data);
-    	} else {
-    		$NIP 			= $this->session->userdata('NIP');
-    		$NIM 			= $this->input->post('NIM');
-    		$Nilai_satu		= htmlspecialchars($this->input->post('Nilai_satu', true));
-    		$Nilai_dua		= htmlspecialchars($this->input->post('Nilai_dua', true));
-    		$Nilai_tiga		= htmlspecialchars($this->input->post('Nilai_tiga', true));
-    		$Nilai_empat	= htmlspecialchars($this->input->post('Nilai_empat', true));
-    		$Nilai_lima		= htmlspecialchars($this->input->post('Nilai_lima', true));
+        if ($this->form_validation->run() == false) {
+            $this->load->view('dosen/tambah_dataEmpat_A', $data);
+        } else {
+            $NIP             = $this->session->userdata('NIP');
+            $NIM             = $this->input->post('NIM');
+            $Nilai_satu        = htmlspecialchars($this->input->post('Nilai_satu', true));
+            $Nilai_dua        = htmlspecialchars($this->input->post('Nilai_dua', true));
+            $Nilai_tiga        = htmlspecialchars($this->input->post('Nilai_tiga', true));
+            $Nilai_empat    = htmlspecialchars($this->input->post('Nilai_empat', true));
+            $Nilai_lima        = htmlspecialchars($this->input->post('Nilai_lima', true));
             $Catatan        = htmlspecialchars($this->input->post('Catatan', true));
-    		$Tanggal		= date('Y-m-d');
+            $Tanggal        = date('Y-m-d');
 
-    		$this->Model_Kpempat_a->tambahData($NIP, $NIM, $Nilai_satu, $Nilai_dua, $Nilai_tiga, $Nilai_empat, $Nilai_lima, $Catatan,  $Tanggal);
-    		$this->session->set_flashdata('flash', 'Ditambahkan');
-    		redirect('dosen/Penilaian');
-    	}
+            $this->Model_Kpempat_a->tambahData($NIP, $NIM, $Nilai_satu, $Nilai_dua, $Nilai_tiga, $Nilai_empat, $Nilai_lima, $Catatan,  $Tanggal);
+            $this->session->set_flashdata('flash', 'Ditambahkan');
+            redirect('dosen/seminar/penilaian');
+        }
     }
 
     public function ubah($NIM)
@@ -101,7 +103,7 @@ class Penilaian extends CI_Controller {
         $this->form_validation->set_rules('Nilai_empat', 'Nilai', 'trim|required');
         $this->form_validation->set_rules('Nilai_lima', 'Nilai', 'trim|required');
 
-        if($this->form_validation->run() == false ){
+        if ($this->form_validation->run() == false) {
             $this->load->view('dosen/ubah_dataEmpat_A', $data);
         } else {
             $Id_empatA      = htmlspecialchars($this->input->post('Id_empatA'));
@@ -117,8 +119,24 @@ class Penilaian extends CI_Controller {
             // var_dump($data);
             // die;
             $this->session->set_flashdata('flash', 'Diubah');
-            redirect('dosen/Penilaian');
+            redirect('dosen/penilaian');
         }
     }
-}
 
+    public function Detail($NIM)
+    {
+        $NIP = $this->session->userdata('NIP');
+        $NIM    = $NIM;
+        $data = [
+            'title'  => 'Dosen | Berita Acara',
+            'duaC'      => $this->Model_Kpdua_c->getbyNIM($NIM),
+            'empatA' => $this->Model_Kpempat_a->getbyNIM($NIM),
+            'empatB' => $this->Model_Kpempat_b->getbyNIM($NIM),
+            'laporan' => $this->Model_Laporan->getbyNIM2($NIM),
+            'persentase' => $this->Model_Kpempat_c->getPersentase(),
+            'cek'   => $this->Model_Kpempat_c->getbyNIM3($NIM)
+        ];
+
+        $this->load->view('dosen/tampil_detailMahasiswa', $data);
+    }
+}

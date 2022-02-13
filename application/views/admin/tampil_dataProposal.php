@@ -15,6 +15,7 @@
         <!-- / .main-navbar -->
         <div class="main-content-container container-fluid px-4">
           <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+          <?= $this->session->unset_userdata('flash'); ?>
           <!-- Page Header -->
           <div class="page-header row no-gutters py-4">
             <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
@@ -124,7 +125,7 @@
                             <td class="text-center"><?= $data->NIP ?></td>
                             <td class=""><?= $data->NamaDosen ?></td>
                             <td style="text-align: "><?= $data->topik ?></td>
-                            <td class="text-center"><a class="btn btn-sm btn-light" href="<?= base_url('assets/proposal/file/') . $data->Berkas ?>"><img width="20" class="user-avatar rounded-circle mr-2" src="<?= base_url('assets/back') ?>/images/avatars/pdf.svg" alt="User Avatar"></a></td>
+                            <td class="text-center"><a class="btn btn-sm btn-light" href="<?= base_url('assets/proposal/') . $data->Berkas ?>"><img width="20" class="user-avatar rounded-circle mr-2" src="<?= base_url('assets/back') ?>/images/avatars/pdf.svg" alt="User Avatar"></a></td>
                             <td style="text-align: "><?= $data->Icon ?></td>
                             <td class="text-center"><?= $format1 = format_indo(date('Y-m-d', strtotime($data->Tanggal_upload))); ?></td>
                             <!-- <td class="text-center">
@@ -161,7 +162,7 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header text-center">
-                  <h4 class="modal-title w-100 font-weight-bold">Tambah Surat Pernyataan </h4>
+                  <h4 class="modal-title w-100 font-weight-bold">Tambah Surat Pengantar </h4>
                   <?php if ($this->session->flashdata('msg')) {
                     echo $this->session->flashdata('msg');
                   } ?>
@@ -169,7 +170,7 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <form method="post" action="<?= base_url('admin/KP_TI_A02/tambah') ?>" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url('admin/proposal/tambahSuratPengantar') ?>" enctype="multipart/form-data">
                   <div class="modal-body mx-3">
                     <div class="form-group">
                       <label>NIM :</label><br>
@@ -180,10 +181,10 @@
                     </div>
                     <div class="form-group">
                       <label for="email">Berkas :</label><br>
-                      <?php echo $this->session->flashdata('message'); ?>
-                      <?= $this->session->unset_userdata('message'); ?>
                       <input type="file" class="form-control" name="File" value="<?= set_value('File') ?>" multiple>
                       <?= form_error('File', '<small class="text-danger pl-3">', '</small>') ?>
+                      <?php echo $this->session->flashdata('message'); ?>
+                      <?= $this->session->unset_userdata('message'); ?>
                     </div>
                   </div>
                   <div class="modal-footer d-flex justify-content-center">
@@ -214,4 +215,17 @@
               $(' #form-tahun select, #form-dosen select').val(''); // Clear data pada textbox tanggal, combobox bulan & tahun
             })
           })
+        </script>
+        <script>
+          <?php
+          foreach ($dataProposal as $data) { ?>
+            $(document).ready(function() {
+              $(".show-modal<?= $data->Id_proposal ?>").click(function() {
+                $("#modal-tambah").modal({
+                  backdrop: 'static',
+                  keyboard: false
+                });
+              });
+            });
+          <?php } ?>
         </script>

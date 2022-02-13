@@ -2,7 +2,6 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
 class Topik extends CI_Controller
 {
@@ -31,9 +30,10 @@ class Topik extends CI_Controller
         $Alamat         = htmlspecialchars($this->input->post('Alamat'));
         $Narahubung     = htmlspecialchars($this->input->post('Narahubung'));
         $Email          = htmlspecialchars($this->input->post('Email'));
+        $Konfirmasi     = 1;
         $Tanggal        = date('Y-m-d');
 
-        $id = $this->Model_Pengajuan->simpanData($Topik, $Abstrak, $Jumlah, $Instansi, $Alamat, $Narahubung, $Email, $Tanggal);
+        $id = $this->Model_Pengajuan->simpanData($Topik, $Abstrak, $Jumlah, $Instansi, $Alamat, $Narahubung, $Email, $Konfirmasi, $Tanggal);
         $email_to = $Email;
 
         // PHPMailer object

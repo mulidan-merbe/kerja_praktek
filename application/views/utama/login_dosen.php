@@ -12,19 +12,21 @@
 				</div>
 				<div class="left d-md-block  col-md-4  offset-md-1 col-sm-12 mt-5 ">
 					<h4 class="mt-5 mb-5 text-center text-uppercase">Login Dosen</h4>
-					<?php echo $this->session->flashdata('message'); ?>
-					<?= $this->session->unset_userdata('message'); ?>
 					<form method="POST" action="<?php echo base_url('dosen/login/Auth') ?>" class=" my-login-validation" novalidate="">
 						<div class="form-group">
 							<label for="NIP">NIP</label>
 							<input id="NIP" type="text" class="form-control" name="NIP" value="<?= set_value('NIP') ?>" autofocus>
 							<?= form_error('NIP', '<small class="text-danger pl-3">', '</small>') ?>
+							<?php echo $this->session->flashdata('nip'); ?>
+							<?= $this->session->unset_userdata('nip'); ?>
 						</div>
 
 						<div class="form-group">
 							<label for="password">Password</label>
 							<input id="password" type="password" class="form-control" name="Password" data-eye>
 							<?= form_error('Password', '<small class="text-danger pl-3">', '</small>') ?>
+							<?php echo $this->session->flashdata('password'); ?>
+							<?= $this->session->unset_userdata('password'); ?>
 						</div>
 						<div class="form-group m-0">
 							<button type="submit" class="btn btn-primary btn-sm">

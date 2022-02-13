@@ -12,19 +12,21 @@
 				</div>
 				<div class="left d-md-block   col-md-4  offset-md-1 col-sm-12 mt-5 ">
 					<h4 class="mt-5 mb-5 text-center text-uppercase">Login Admin</h4>
-					<?php echo $this->session->flashdata('message'); ?>
-					<?= $this->session->unset_userdata('message'); ?>
 					<form method="POST" action="<?php echo base_url('admin/login/Auth') ?>" class=" my-login-validation" novalidate="">
 						<div class="form-group">
 							<label for="username">No Identitas</label>
 							<input id="username" type="text" class="form-control" name="No_identitas" value="<?= set_value('No_identitas') ?>" autofocus>
 							<?= form_error('No_identitas', '<small class="text-danger pl-3">', '</small>') ?>
+							<?php echo $this->session->flashdata('noidentitas'); ?>
+							<?= $this->session->unset_userdata('noidentitas'); ?>
 						</div>
 						<div class="form-group">
 							<label for="password">Password
 							</label>
 							<input id="password" type="password" class="form-control" name="Password" data-eye>
 							<?= form_error('Password', '<small class="text-danger pl-3">', '</small>') ?>
+							<?php echo $this->session->flashdata('password'); ?>
+							<?= $this->session->unset_userdata('password'); ?>
 						</div>
 						<div class="form-group m-0">
 							<button type="submit" class="btn btn-primary btn-sm">

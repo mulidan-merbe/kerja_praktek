@@ -1,12 +1,17 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+use PHPMailer\PHPMailer\PHPMailer;
+
 class Topik extends CI_Controller
 {
 
 	function __construct()
 	{
 		parent::__construct();
+		require APPPATH . 'libraries/phpmailer/src/Exception.php';
+		require APPPATH . 'libraries/phpmailer/src/PHPMailer.php';
+		require APPPATH . 'libraries/phpmailer/src/SMTP.php';
 		$this->load->model(['Model_tawaranTopik', 'Model_Jadwal', 'Model_Pengajuan', 'Model_rencanaTopik']);
 		if (is_null($this->session->userdata('Admin'))) {
 			redirect(base_url("admin/login"));
@@ -117,12 +122,15 @@ class Topik extends CI_Controller
 	}
 
 	//pengajuan
-	public function setuju()
+	public function setuju($Id_pengajuan)
 	{
-		$Id = $_GET['setujui'];
+		// $Id = $_GET['setujui'];
+		$NIP = $this->session->userdata('No_identitas');
+		$Id = $Id_pengajuan;
 		$Status = 2;
+		$this->Model_Pengajuan->status($Id, $Status);
 		$data['pengajuan'] = $this->Model_Pengajuan->getbyId($Id);
-		// $data['jadwal'] = $this->Model_Jadwal->getAll();
+		$data['jadwal'] = $this->Model_Jadwal->getAll();
 
 		foreach ($data['pengajuan'] as $pengajuan) {
 			$Id = $pengajuan->Id;
@@ -130,15 +138,104 @@ class Topik extends CI_Controller
 			$Jumlah = $pengajuan->Jumlah;
 			$Alamat = $pengajuan->Alamat;
 			$Instansi = $pengajuan->Instansi;
+			$Email = $pengajuan->Email;
 		}
-		$NIP = '11111';
+
+		foreach ($data['jadwal'] as $j) {
+			$Id_pelaksanaan = $j->Id_pelaksanaan;
+		}
+		// $NIP = '11111';
 		$Username = $this->session->userdata('Nama');
-		$Id_pelaksanaan = 14;
+
 		$No_hp = '08';
 		$Tanggal     	 	= format_indo(date('Y-m-d'));
 		$this->Model_tawaranTopik->tambahData($NIP, $topik, $Alamat, $Jumlah, $No_hp, $Instansi, $Username, $Id_pelaksanaan, $Tanggal);
-		$this->Model_Pengajuan->setuju($Id, $Status);
-		$this->session->set_flashdata('flash', 'Ditambahkan');
-		redirect('admin/topik');
+
+		$response = false;
+		$mail = new PHPMailer();
+		$mail->isSMTP();
+		$mail->Host     = 'smtp.gmail.com'; //sesuaikan sesuai nama domain hosting/server yang digunakan
+		$mail->SMTPAuth = true;
+		$mail->Username = 'mulidan131296@gmail.com'; // user email
+		$mail->Password = 'zdzpyyicdyyhrusr'; // password email
+		$mail->SMTPSecure = 'ssl';
+		$mail->Port     = 465;
+
+		$mail->setFrom('mulidan131296@gmail.com', ''); // user email
+		$mail->addReplyTo('mulidan131296@gmail.com', ''); //user email
+
+		// Add a recipient
+		$mail->addAddress($Email); //email tujuan pengiriman email
+
+		// Email subject
+		$mail->Subject = 'Pengajuan Tawaran Topik'; //subject email
+
+		// Set email format to HTML
+		$mail->isHTML(true);
+
+		// Email body content
+		$mailContent = "<h1>Konfirmasi Pengajuan Tawaran Topik</h1>
+		   <p>Terima kasih telah mengajukan tawaran topik, tawaran topik anda disetujui.</p>
+		   <p>nantikan info selanjutnya dari Kami</p>";
+		$mail->Body = $mailContent;
+
+		// Send email
+		if (!$mail->send()) {
+			redirect('admin/topik');
+		} else {
+			$this->session->set_flashdata('flash', 'Ditambahkan');
+			redirect('admin/topik');
+		}
+		// redirect('admin/topik');
+	}
+
+	public function tolak($Id_pengajuan)
+	{
+		$Id = $Id_pengajuan;
+		$Status = 3;
+		$this->Model_Pengajuan->status($Id, $Status);
+		$data['pengajuan'] = $this->Model_Pengajuan->getbyId($Id);
+		// $data['jadwal'] = $this->Model_Jadwal->getAll();
+		foreach ($data['pengajuan'] as $pengajuan) {
+			$Email = $pengajuan->Email;
+		}
+
+		// var_dump($test);
+		// die;
+		$response = false;
+		$mail = new PHPMailer();
+		$mail->isSMTP();
+		$mail->Host     = 'smtp.gmail.com'; //sesuaikan sesuai nama domain hosting/server yang digunakan
+		$mail->SMTPAuth = true;
+		$mail->Username = 'mulidan131296@gmail.com'; // user email
+		$mail->Password = 'zdzpyyicdyyhrusr'; // password email
+		$mail->SMTPSecure = 'ssl';
+		$mail->Port     = 465;
+
+		$mail->setFrom('mulidan131296@gmail.com', ''); // user email
+		$mail->addReplyTo('mulidan131296@gmail.com', ''); //user email
+
+		// Add a recipient
+		$mail->addAddress($Email); //email tujuan pengiriman email
+
+		// Email subject
+		$mail->Subject = 'Pengajuan Tawaran Topik'; //subject email
+
+		// Set email format to HTML
+		$mail->isHTML(true);
+
+		// Email body content
+		$mailContent = "<h1>Konfirmasi Pengajuan Tawaran Topik</h1>
+           <p>Terima kasih telah mengajukan tawaran topik, tawaran topik anda ditolak.</p>
+           <p>nantikan info selanjutnya dari Kami</p>";
+		$mail->Body = $mailContent;
+
+		// Send email
+		if (!$mail->send()) {
+			redirect('admin/topik/pengajuan');
+		} else {
+			$this->session->set_flashdata('flash', 'Ditambahkan');
+			redirect('admin/topik/pengajuan');
+		}
 	}
 }

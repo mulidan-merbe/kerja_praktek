@@ -126,6 +126,70 @@ class Proposal extends CI_Controller
 	}
 
 	// surat pengantar
+	public function tambahSuratPengantar()
+	{
+		$data['title']  = 'Admin | Proposal';
+		$data['tahun'] = $this->Model_Jadwal->Tahun();
+
+
+
+		// var_dump($data['tahun']);
+		// die;
+		if (isset($_GET['filter']) && !empty($_GET['filter'])) {
+			$filter = $_GET['filter'];
+
+			if ($filter == '1') {
+				$Tahun = $_GET['Tahun'];
+				$Periode = $_GET['Periode'];
+				$ket = 'Data Proposal Periode ' . $Tahun . '/' . $Periode;
+				$cetak	= 'proposal/cetak?filter1&Tahun=' . $Tahun . '&NIP=&Periode=' . $Periode;
+				$data['dataProposal'] = $this->Model_Proposal->lihatPeriode($Tahun, $Periode);
+			} elseif ($filter == '2') {
+				$Tahun = $_GET['Tahun'];
+				$ket = 'Data Proposal Tahun ' . $Tahun;
+				$cetak = 'proposal/cetak?filter=2&Tahun=' . $Tahun . '&NIP=&Periode=';
+				$data['dataProposal'] = $this->Model_Proposal->lihatTahun($Tahun);
+			} elseif ($filter == '3') {
+				$NIP = $_GET['NIP'];
+				$ket = $NIP;
+				$cetak = 'proposal/cetak?filter=3&Tahun=&NIP=' . $NIP . '&Periode=';
+				$data['dataProposal'] = $this->Model_Proposal->getbydataNIP($NIP);
+			}
+		} else {
+			$ket = 'Semua Data Proposal';
+			$cetak = 'proposal/cetak';
+			$data['dataProposal'] = $this->Model_Proposal->getAllAdmin();
+		}
+
+		$data['ket'] = $ket;
+		$data['cetak'] = $cetak;
+
+		if (empty($_FILES['File']['name'])) {
+			$this->form_validation->set_rules('File', 'Berkas', 'required');
+			$this->load->view('admin/tampil_dataProposal', $data);
+		} else {
+
+			$config['upload_path'] = 'assets/KP_TI_A02/file/';
+			$config['allowed_types'] = 'pdf';
+			$config['max_size']      = 5000;
+			$this->load->library('upload', $config);
+			// Cek apakah berkas sudah sesuai dengan konfigurasi
+			if (!$this->upload->do_upload('File')) {
+				$this->session->set_flashdata('message', '<small class="text-danger pl-3">Berkas tidak sesuai</small>');
+				$this->load->view('admin/tampil_dataProposal', $data);
+			} else {
+				$result        	  =  $this->upload->data();
+				$NIM 	  		  = htmlspecialchars($this->input->post('NIM', true));
+				$File 			  =	$result['file_name'];
+				$Tanggal		  = date('Y-m-d');
+
+				$this->Model_Kpdua->tambahDataSuratPengantar($NIM, $File, $Tanggal);
+				$this->session->set_flashdata('flash', 'Ditambahkan');
+				redirect('admin/proposal/suratPengantar');
+			}
+		}
+	}
+
 	public function ubah($Id_Kpdua)
 	{
 		$data['title']  = 'Admin | KP-TI-A02';
@@ -193,7 +257,7 @@ class Proposal extends CI_Controller
 		if (is_readable($proses) && unlink($proses)) {
 			$hapus =	$this->Model_Kpdua->hapusData($Id_Kpdua);
 			$this->session->set_flashdata('flash', 'Dihapus');
-			redirect('admin/KP_TI_A02');
+			redirect('admin/proposal/suratPengantar');
 		} else {
 			'error';
 		}

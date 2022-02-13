@@ -30,7 +30,7 @@
 								<div class="form-group row">
 									<label for="inputEmail3" class="col-md-3 col-form-label">Abstrak</label>
 									<div class="col-sm-9">
-										<textarea class="form-control" name="Abstrak" id="exampleFormControlTextarea1" rows="3" required></textarea>
+										<textarea class="form-control" name="Abstrak" id="exampleFormControlTextarea1" rows="5" placeholder="Abstrak" required></textarea>
 									</div>
 								</div>
 								<div class="form-group row">
@@ -48,7 +48,7 @@
 								<div class="form-group row">
 									<label for="inputEmail3" class="col-md-3 col-form-label">Alamat</label>
 									<div class="col-sm-9">
-										<textarea class="form-control" name="Alamat" id="exampleFormControlTextarea1" rows="3" required></textarea>
+										<textarea class="form-control" name="Alamat" id="exampleFormControlTextarea1" rows="3" placeholder="Alamat" required></textarea>
 									</div>
 								</div>
 								<div class="form-group row">

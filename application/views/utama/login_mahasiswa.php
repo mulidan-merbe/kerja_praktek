@@ -19,12 +19,16 @@
 							<label for="NIM">NIM</label>
 							<input id="NIM" type="text" class="form-control" name="NIM" value="<?= set_value('NIM') ?>" autofocus>
 							<?= form_error('NIM', '<small class="text-danger pl-3">', '</small>') ?>
+							<?php echo $this->session->flashdata('nim'); ?>
+							<?= $this->session->unset_userdata('nim'); ?>
 						</div>
 
 						<div class="form-group">
 							<label for="password">Password</label>
 							<input id="password" type="password" class="form-control" name="Password" data-eye>
 							<?= form_error('Password', '<small class="text-danger pl-3">', '</small>') ?>
+							<?php echo $this->session->flashdata('password'); ?>
+							<?= $this->session->unset_userdata('password'); ?>
 						</div>
 						<div class="form-group m-0">
 							<button type="submit" class="btn btn-info btn-sm ">

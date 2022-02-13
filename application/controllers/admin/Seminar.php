@@ -41,7 +41,7 @@ class Seminar extends CI_Controller
     public function syaratPengajuan()
     {
         $data = [
-            'title'     => 'Admin | KP-TI-A03',
+            'title'     => 'Admin | Syarat Pengajuan Siap Seminar',
             'syarat'    => $this->Model_Syarat->getSyarat(),
             'jadwal'    => $this->Model_Jadwal->getAll()
         ];
@@ -57,7 +57,7 @@ class Seminar extends CI_Controller
 
             $this->Model_Syarat->tambahData($Id_pelaksanaan, $Jumlah, $Tanggal);
             $this->session->set_flashdata('flash', 'Ditambahkan');
-            redirect('admin/KP_TI_A03/syaratPengajuan');
+            redirect('admin/seminar/syaratPengajuan');
         }
     }
 
@@ -65,8 +65,15 @@ class Seminar extends CI_Controller
     public function tambah($NIM)
     {
         $data['title']  = 'Admin | Jadwal Seminar';
-
         $data['jadwal'] = $this->Model_Kptiga->jadwalSeminar($NIM);
+        $this->load->view('admin/tambah_dataEmpat', $data);
+    }
+
+    public function tambahData()
+    {
+        $NIM                = htmlspecialchars($this->input->post('NIM', true));
+        $data['jadwal'] = $this->Model_Kptiga->jadwalSeminar($NIM);
+
         $this->form_validation->set_rules('NIM', 'NIM', 'trim|required');
         $this->form_validation->set_rules('NIP', 'NIP', 'trim|required');
         $this->form_validation->set_rules('No_identitas', 'No identitas', 'trim|required');
@@ -86,12 +93,11 @@ class Seminar extends CI_Controller
             $Ruangan            = htmlspecialchars($this->input->post('Ruangan', true));
             $Tanggal            = date('Y-m-d');
 
-            $this->kpempat->simpanData($NIM, $NIP, $No_identitas, $Hari, $Tanggal_seminar, $Waktu, $Ruangan, $Tanggal);
+            $this->Model_Kpempat->simpanData($NIM, $NIP, $No_identitas, $Hari, $Tanggal_seminar, $Waktu, $Ruangan, $Tanggal);
             $this->session->set_flashdata('flash', 'Ditambahkan');
-            redirect('admin/seminar/jadwal');
+            redirect('admin/jadwal');
         }
     }
-
     public function ubah()
     {
         $Id = $_GET['Id'];
@@ -118,7 +124,7 @@ class Seminar extends CI_Controller
 
             $this->Model_Syarat->ubahData($Id, $Jumlah, $Tanggal);
             $this->session->set_flashdata('flash', 'Diubah');
-            redirect('admin/KP_TI_A03/syaratPengajuan');
+            redirect('admin/seminar/syaratPengajuan');
         }
     }
     public function hapusData()
@@ -126,6 +132,6 @@ class Seminar extends CI_Controller
         $Id = $_GET['Id'];
         $hapus =    $this->Model_Syarat->hapusData($Id);
         $this->session->set_flashdata('flash', 'Dihapus');
-        redirect('admin/KP_TI_A03/syaratPengajuan');
+        redirect('admin/seminar/syaratPengajuan');
     }
 }

@@ -1,4 +1,4 @@
-<?php  
+<?php
 
 class Model_Kpempat_c extends CI_Model
 {
@@ -13,6 +13,22 @@ class Model_Kpempat_c extends CI_Model
 		return $query->result();
 	}
 
+	public function getbyNIM2($NIM)
+	{
+		$this->db->from('tbl_kpempat_c ');
+		$this->db->where('NIM', $NIM);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	public function getbyNIM3($NIM)
+	{
+		$this->db->from('tbl_kpempat_c ');
+		$this->db->where('NIM', $NIM);
+		$query = $this->db->get();
+		return $query->num_rows();
+	}
+
 	public function getbyPeriode($Periode)
 	{
 		$this->db->from('tbl_kpempat_c c');
@@ -22,6 +38,7 @@ class Model_Kpempat_c extends CI_Model
 		$query = $this->db->get();
 		return $query->result();
 	}
+
 
 	public function cekStatusKajur($NIM)
 	{
@@ -53,13 +70,13 @@ class Model_Kpempat_c extends CI_Model
 
 
 	public function get_tanggal($tgl_awal, $tgl_akhir)
-    {
-        $this->db->from('tbl_kpempat_c');
-        $this->db->where('Tanggal_dosen >=', $tgl_awal);
-        $this->db->where('Tanggal_dosen <=', $tgl_akhir);
-        $query = $this->db->get();
-        return $query->num_rows();
-    }
+	{
+		$this->db->from('tbl_kpempat_c');
+		$this->db->where('Tanggal_dosen >=', $tgl_awal);
+		$this->db->where('Tanggal_dosen <=', $tgl_akhir);
+		$query = $this->db->get();
+		return $query->num_rows();
+	}
 
 	public function getRowNIM($NIM)
 	{
@@ -98,7 +115,6 @@ class Model_Kpempat_c extends CI_Model
 		$this->db->order_by('Id_empatC', 'DESC');
 		$query = $this->db->get();
 		return $query->result();
-
 	}
 
 	public function getStatusDosen()
@@ -117,20 +133,22 @@ class Model_Kpempat_c extends CI_Model
 		// $this->db->join('tbl_kpempat_a a', 'a.Id_empatA = c.Id_empatA');
 		// $this->db->join('tbl_kpempat_b b', 'b.Id_empatB = c.Id_empatB');
 		$this->db->where(['Status_dosen' => 2, 'Status_kaprodi' => 2]);
+		$this->db->order_by('Id_empatC', 'DESC');
 		$query = $this->db->get();
 		return $query->result();
-
 	}
 
 	public function getPersentase()
 	{
 		$this->db->from('tbl_persentasenilai n');
-		$this->db->join('tbl_pelaksanaan p ', 'p.Id_pelaksanaan = n.Id_pelaksanaan');
+		$this->db->join('tbl_pelaksanaan a', 'a.Id_pelaksanaan = n.Id_pelaksanaan');
+		// $this->db->limit(1);
+		// $this->db->order_by('Id', 'DESC');
 		$query = $this->db->get();
 		return $query->result();
 	}
 
-	public function tambahDataDosen($NIP, $NIM, $Id_duaC, $Id_empatA, $Id_empatB, $Status_dosen,  $Tanggal_dosen)
+	public function tambahDataDosen($NIP, $NIM, $Id_duaC, $Id_empatA, $Id_empatB, $Status_dosen, $Status_kaprodi, $Tanggal_dosen)
 	{
 		$data = [
 			'NIP' 			=> $NIP,
@@ -139,6 +157,8 @@ class Model_Kpempat_c extends CI_Model
 			'Id_empatA'		=> $Id_empatA,
 			'Id_empatB'		=> $Id_empatB,
 			'Status_dosen'	=> $Status_dosen,
+			'Status_kaprodi' => $Status_kaprodi,
+			'Tanggal_kaprodi' => $Tanggal_dosen,
 			'Tanggal_dosen'	=> $Tanggal_dosen
 		];
 
@@ -153,7 +173,7 @@ class Model_Kpempat_c extends CI_Model
 			'Nilai_Seminar_lapangan'		=> $Nilai_Seminar_lapangan,
 			'Nilai_Seminar_dosen'			=> $Nilai_Seminar_dosen,
 			'Tanggal'						=> $Tanggal
-			];
+		];
 		$this->db->insert('tbl_persentasenilai', $data);
 	}
 
@@ -164,12 +184,12 @@ class Model_Kpempat_c extends CI_Model
 			'Nilai_Seminar_lapangan'		=> $Nilai_Seminar_lapangan,
 			'Nilai_Seminar_dosen'			=> $Nilai_Seminar_dosen,
 			'Tanggal'						=> $Tanggal
-			];
+		];
 
 		$this->db->where('Id', $Id);
 		$this->db->update('tbl_persentasenilai', $data);
 	}
-	
+
 
 	public function tambahDataKaprodi($Id_periode, $NIM, $No_identitas, $Status_kaprodi, $Tanggal_kaprodi)
 	{
@@ -183,7 +203,7 @@ class Model_Kpempat_c extends CI_Model
 		$this->db->update('tbl_kpempat_c', $data);
 	}
 
-	public function ubahDataDosen( $NIM, $NIP, $Status_dosen,  $Tanggal_dosen)
+	public function ubahDataDosen($NIM, $NIP, $Status_dosen,  $Tanggal_dosen)
 	{
 		$data = [
 			'NIP' 			=> $NIP,
@@ -196,11 +216,11 @@ class Model_Kpempat_c extends CI_Model
 	}
 
 	public function hapusData($Id)
-	{	
+	{
 		$data = [
-            'Id' => $Id
-        ];
-           
-        $this->db->delete('tbl_persentasenilai',$data); 
+			'Id' => $Id
+		];
+
+		$this->db->delete('tbl_persentasenilai', $data);
 	}
 }

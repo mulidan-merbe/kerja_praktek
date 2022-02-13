@@ -16,14 +16,14 @@ class Jadwal extends CI_Controller
 
 	public function index()
 	{
-		$data['title']  = 'Admin | KP-TI-A04';
+		$data['title']  = 'Admin | Jadwal Seminar';
 		$data['kpempat'] = $this->kpempat->getAdmin();
 		$this->load->view('admin/tampil_dataEmpat', $data);
 	}
 
 	public function tambah()
 	{
-		$data['title']  = 'Admin | KP-TI-A04';
+		$data['title']  = 'Admin | Jadwal Seminar';
 		$this->form_validation->set_rules('NIM', 'NIM', 'trim|required');
 		$this->form_validation->set_rules('NIP', 'NIP', 'trim|required');
 		$this->form_validation->set_rules('No_identitas', 'No identitas', 'trim|required');
@@ -55,7 +55,7 @@ class Jadwal extends CI_Controller
 
 	public function ubah($Id_Kpempat)
 	{
-		$data['title']  = 'Admin | KP-TI-A04';
+		$data['title']  = 'Admin | Jadwal Seminar';
 		// $Id_Kpempat = $_GET['Id'];
 		$data['ubah'] = $this->kpempat->getbyId($Id_Kpempat);
 		$this->load->view('admin/ubah_dataEmpat', $data);
@@ -63,7 +63,7 @@ class Jadwal extends CI_Controller
 
 	public function ubahData()
 	{
-		$data['title']  = 'Admin | KP-TI-A04';
+		$data['title']  = 'Admin | Jadwal Seminar';
 		$Id_Kpempat = $this->input->post('Id_Kpempat');
 		$data['ubah'] = $this->kpempat->getbyId($Id_Kpempat);
 

@@ -44,7 +44,7 @@
                         <button type="submit" name="button" class="btn btn-primary">Export data</button>
                       </form> -->
                       <a class="dropdown-item" href="<?= base_url() ?>admin/beritaAcara/excel">EXCEL</a>
-                      <a class="dropdown-item" href="<?= $cetak; ?>">PDF</a>
+                      <button class="dropdown-item" onclick=" window.open('<?= $cetak; ?>','_blank')">PDF</button>
                     </div>
                     <!-- </div> -->
                     <!--  <a href="<?= $cetak; ?>" class=" btn btn-warning  ">Cetak</a> -->
@@ -131,7 +131,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">cetak DPNA </h4>
+                <h4 class="modal-title w-100 font-weight-bold">Cetak DPNA </h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -165,15 +165,10 @@
                         <select name="Periode" class="form-control">>
                           <option value="">Pilih</option>
                           <?php
-                          foreach ($periode as $data) {
-                            if ($data->Periode == 1) {
-                              echo "Berjalan";
-                            } elseif ($data->Periode == 2) {
-                              echo "Liburan";
-                            }
-
-                            echo '<option value="' . $data->Id_pelaksanaan . '">' . $data->Tahun . "-" . $data->Periode . '</option>';
-                          }
+                          foreach ($periode as $data) { ?>
+                            <option value="<?= $data->Id_pelaksanaan ?>"><?= $data->Tahun ?> / <?= ($data->Periode == 1) ? 'BERJALAN' : 'LIBURAN'; ?>
+                            </option>
+                          <?php }
                           ?>
                         </select>
                       </div>

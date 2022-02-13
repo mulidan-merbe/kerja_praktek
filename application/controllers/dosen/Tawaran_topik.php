@@ -1,16 +1,18 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class tawaran_topik extends CI_Controller {
+class tawaran_topik extends CI_Controller
+{
 
-	function __construct() {
-        parent::__construct();
+	function __construct()
+	{
+		parent::__construct();
 		$this->load->model(['Model_tawaranTopik', 'Model_Jadwal']);
 		$this->load->library('form_validation');
-		if(is_null($this->session->userdata('Dosen'))) {
-	    	redirect(base_url("dosen/login"));
-	    }
-    }
+		if (is_null($this->session->userdata('Dosen'))) {
+			redirect(base_url("dosen/login"));
+		}
+	}
 
 	public function index()
 	{
@@ -18,7 +20,6 @@ class tawaran_topik extends CI_Controller {
 		$NIP = $this->session->userdata('NIP');
 		$data['tawaranTopik'] = $this->Model_tawaranTopik->getAllTopik($NIP);
 		$this->load->view('dosen/tampil_tawaranTopik', $data);
-        
 	}
 
 	public function tambah()
@@ -31,10 +32,9 @@ class tawaran_topik extends CI_Controller {
 		$this->form_validation->set_rules('No_hp', 'No Handphone', 'trim|required');
 		$this->form_validation->set_rules('Instansi', 'Instansi ', 'trim|required');
 
-		if($this->form_validation->run() == false ) {
-			
-			$this->load->view('dosen/tambah_tawaranTopik', $data);
+		if ($this->form_validation->run() == false) {
 
+			$this->load->view('dosen/tambah_tawaranTopik', $data);
 		} else {
 			$topik 			 = htmlspecialchars($this->input->post('topik'));
 			$Alamat 		 = htmlspecialchars($this->input->post('Alamat'));
@@ -45,9 +45,9 @@ class tawaran_topik extends CI_Controller {
 			$Username		 = $this->session->userdata("Username");
 			$Id_pelaksanaan  = $this->input->post('Id_pelaksanaan');
 			$Tanggal     	 = format_indo(date('Y-m-d'));
-			$this->Model_tawaranTopik->tambahData(  $NIP,$topik, $Alamat, $Jumlah, $No_hp, $Instansi, $Username, $Id_pelaksanaan, $Tanggal);
+			$this->Model_tawaranTopik->tambahData($NIP, $topik, $Alamat, $Jumlah, $No_hp, $Instansi, $Username, $Id_pelaksanaan, $Tanggal);
 			$this->session->set_flashdata('flash', 'Ditambahkan');
-			redirect('dosen/tawaran_topik');
+			redirect('dosen/topik');
 		}
 	}
 
@@ -71,10 +71,9 @@ class tawaran_topik extends CI_Controller {
 		$this->form_validation->set_rules('No_hp', 'No Handphone', 'trim|required');
 		$this->form_validation->set_rules('Instansi', 'Instansi ', 'trim|required');
 
-		if($this->form_validation->run() == false ) {
-			
-			$this->load->view('dosen/ubah_dataTawaranTopik', $data);
+		if ($this->form_validation->run() == false) {
 
+			$this->load->view('dosen/ubah_dataTawaranTopik', $data);
 		} else {
 			$Id_tawaranjudul	= $this->input->post('Id_tawaranjudul');
 			$topik 			 	= htmlspecialchars($this->input->post('topik'));
@@ -91,10 +90,10 @@ class tawaran_topik extends CI_Controller {
 	}
 
 	public function hapus($Id_tawaranjudul)
-    {
+	{
 		$Id_tawaranjudul = $Id_tawaranjudul;
-        $this->Model_tawaranTopik->hapusDataJudul($Id_tawaranjudul);
-        $this->session->set_flashdata('flash', 'Dihapus');
+		$this->Model_tawaranTopik->hapusDataJudul($Id_tawaranjudul);
+		$this->session->set_flashdata('flash', 'Dihapus');
 		redirect('dosen/tawaran_topik');
-    }
+	}
 }

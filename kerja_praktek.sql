@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2021 at 07:31 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.2.27
+-- Generation Time: Jul 29, 2021 at 07:36 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -86,7 +85,8 @@ CREATE TABLE `tbl_kpdua` (
 INSERT INTO `tbl_kpdua` (`Id_Kpdua`, `NIM`, `File`, `Tanggal`) VALUES
 (17, 'D1041151007', '38-81-1-SM1.pdf', '2020-08-24'),
 (21, '6701174119', '5285-14611-1-PB.pdf', '2021-01-07'),
-(23, 'D111111111', 'Frame_1.pdf', '2021-02-28');
+(23, 'D111111111', 'Frame_1.pdf', '2021-02-28'),
+(24, 'D1041151001', 'file_pendaftaran.pdf', '2021-06-26');
 
 -- --------------------------------------------------------
 
@@ -121,13 +121,8 @@ INSERT INTO `tbl_kpdua_a` (`Id_duaA`, `Id_proposal`, `NIM`, `Tema`, `Uraian`, `N
 (37, 0, '6701174119', 'konsul ketiga', 'ketiga', '987654321', 'SOP_Kerja_Praktek1.pdf', 'SOP_Kerja_Praktek1.pdf', '2', '2020-08-08'),
 (38, 0, '6701174119', 'kosul keempat', 'keempat', '987654321', 'SOP_Kerja_Praktek2.pdf', 'SOP_Kerja_Praktek2.pdf', '2', '2020-08-08'),
 (39, 0, '6701174119', 'konsul kelima', 'kelima', '987654321', 'BELAJAR_BAHASA_ARAB_DARI_NOL.pdf', 'BELAJAR_BAHASA_ARAB_DARI_NOL.pdf', '2', '2020-08-08'),
-(40, 196, 'D1041151007', 'konsul kelima', 'as', '987654321', 'D1041151007_UAS.pdf', 'ktm4.pdf', '2', '2020-09-16'),
-(41, 196, 'D1041151007', 'revisiii', 'asdasd', '987654321', 'BAB_II.pdf', '38-81-1-SM.pdf', '2', '2020-09-16'),
-(42, 0, 'D111111111', 'konsul pertama', 'konsul pertama', '987654321', '', '1443-Article_Text-2836-1-10-20190830_(1).pdf', '1', '2020-11-29'),
-(43, 196, 'D1041151007', 'konsul akhir', 'konsul akhir', '987654321', '', '1443-Article_Text-2836-1-10-20190830_(1)1.pdf', '1', '2020-11-29'),
 (45, 1, 'D111111111', 'konsul kedua', 'konsul kedua', '987654321', 'ktm7.pdf', 'ktm6.pdf', '2', '2020-12-01'),
-(46, 196, 'D1041151007', 'konsultasi', 'konsultasi', '987654321', 'ktm8.pdf', '', '1', '2020-12-22'),
-(47, 196, 'D1041151007', 'BAB V', 'terakhir', '987654321', 'WhatsApp_Image_2021-02-01_at_13_58_33-removebg-preview.pdf', '', '2', '2021-02-28');
+(47, 196, 'D1041151007', 'BAB Vi', 'terakhirrr', '987654321', 'WhatsApp_Image_2021-02-01_at_13_58_33-removebg-preview.pdf', '', '2', '2021-07-05');
 
 -- --------------------------------------------------------
 
@@ -153,14 +148,14 @@ CREATE TABLE `tbl_kpdua_b` (
 --
 
 INSERT INTO `tbl_kpdua_b` (`Id_duaB`, `Id_pembimbing`, `NIM`, `Tema`, `Uraian`, `No_identitas`, `File`, `Masukkan`, `Status`, `Tanggal`) VALUES
-(30, 23, 'D1041151007', 'satu', 'aaa', '123', '148-1-691-1-10-20170908.pdf', '', '2', '2020-08-21'),
-(31, 23, 'D1041151007', 'konsul kedua', 'qwe', '123', 'BELAJAR_BAHASA_ARAB_DARI_NOL.pdf', '', '2', '2020-08-21'),
-(32, 23, 'D1041151007', 'revisi', 'asdasdasd', '123', 'BAB_II.pdf', '', '2', '2020-09-16'),
-(33, 0, '6701174119', 'satu', 'asdasdasd', '123', '38-81-1-SM1.pdf', '', '1', '2020-08-26'),
+(30, 23, 'D1041151007', 'satu', 'aaa', '123', '148-1-691-1-10-20170908.pdf', '', '2', '2021-06-01'),
+(31, 23, 'D1041151007', 'konsul kedua', 'qwe', '123', 'BELAJAR_BAHASA_ARAB_DARI_NOL.pdf', '', '2', '2021-06-09'),
+(32, 23, 'D1041151007', 'revisi', 'asdasdasd', '123', 'BAB_II.pdf', '', '2', '2021-06-01'),
+(33, 0, '6701174119', 'satu', 'asdasdasd', '123', '38-81-1-SM1.pdf', '', '1', '0000-00-00'),
 (35, 0, 'D111111111', 'konsul pertama', 'konsul pertama', '11111', '1443-Article_Text-2836-1-10-20190830_(1).pdf', '', '1', '2020-11-29'),
-(36, 23, 'D1041151007', 'konsultasi', 'konsultasi', '1234', 'ktm.pdf', '', '1', '2020-12-22'),
-(37, 23, 'D1041151007', 'konsultasi', 'konsultasi 2', '1234', 'ktm1.pdf', '', '1', '2020-12-22'),
-(38, 23, 'D1041151007', 'BAB V', 'as', '1234', 'WhatsApp_Image_2021-02-01_at_13_58_33-removebg-preview.pdf', '', '1', '2021-02-28');
+(36, 23, 'D1041151007', 'konsultasi', 'konsultasi', '123', 'ktm.pdf', '', '1', '2020-12-22'),
+(37, 23, 'D1041151007', 'konsultasi', 'konsultasi 2', '123', 'ktm1.pdf', '', '1', '2020-12-22'),
+(38, 23, 'D1041151007', 'BAB V', 'as', '123', 'WhatsApp_Image_2021-02-01_at_13_58_33-removebg-preview.pdf', '', '2', '2021-06-01');
 
 -- --------------------------------------------------------
 
@@ -214,7 +209,8 @@ CREATE TABLE `tbl_kpempat` (
 
 INSERT INTO `tbl_kpempat` (`Id_Kpempat`, `NIM`, `NIP`, `No_identitas`, `Hari`, `Tanggal_seminar`, `Waktu`, `Ruangan`, `Tanggal`) VALUES
 (2, 'D1041151007', '987654321', '123', 'Selasa', '2020-08-05', '08.00', 'Ruang Sidang', '2020-08-04'),
-(4, '6701174119', '987654321', '123', 'Jumat', '2020-08-14', '12.00', 'Kelas A', '2021-01-07');
+(4, '6701174119', '987654321', '123', 'Jumat', '2020-08-14', '12.00', 'Kelas A', '2021-01-07'),
+(6, 'D1041151001', '987654321', '1234', 'Senin', '2021-06-08', '08.00', 'Ruang Sidang', '2021-06-07');
 
 -- --------------------------------------------------------
 
@@ -278,6 +274,7 @@ INSERT INTO `tbl_kpempat_b` (`Id_empatB`, `No_identitas`, `NIM`, `Nilai_satu`, `
 
 CREATE TABLE `tbl_kpempat_c` (
   `Id_empatC` int(11) NOT NULL,
+  `Id_periode` int(11) NOT NULL,
   `NIP` varchar(30) NOT NULL,
   `No_identitas` varchar(30) NOT NULL,
   `NIM` varchar(30) NOT NULL,
@@ -294,9 +291,9 @@ CREATE TABLE `tbl_kpempat_c` (
 -- Dumping data for table `tbl_kpempat_c`
 --
 
-INSERT INTO `tbl_kpempat_c` (`Id_empatC`, `NIP`, `No_identitas`, `NIM`, `Id_duaC`, `Id_empatA`, `Id_empatB`, `Status_kaprodi`, `Status_dosen`, `Tanggal_kaprodi`, `Tanggal_dosen`) VALUES
-(1, '987654321', '', '6701174119', 0, 0, 0, 2, 2, '2020-09-06', '2021-01-06'),
-(5, '987654321', '', 'D1041151007', 2, 2, 1, 0, 2, '0000-00-00', '2021-03-02');
+INSERT INTO `tbl_kpempat_c` (`Id_empatC`, `Id_periode`, `NIP`, `No_identitas`, `NIM`, `Id_duaC`, `Id_empatA`, `Id_empatB`, `Status_kaprodi`, `Status_dosen`, `Tanggal_kaprodi`, `Tanggal_dosen`) VALUES
+(1, 14, '987654321', '11111', '6701174119', 0, 0, 0, 2, 2, '2021-06-16', '2021-05-31'),
+(5, 14, '987654321', '11111', 'D1041151007', 2, 2, 1, 1, 2, '2021-07-02', '2021-03-02');
 
 -- --------------------------------------------------------
 
@@ -317,7 +314,7 @@ CREATE TABLE `tbl_kptiga` (
 --
 
 INSERT INTO `tbl_kptiga` (`Id_Kptiga`, `NIM`, `NIP`, `Status`, `Tanggal`) VALUES
-(1, 'D1041151007', '987654321', 1, '2021-03-02');
+(2, 'D1041151007', '987654321', 2, '2021-04-13');
 
 -- --------------------------------------------------------
 
@@ -331,6 +328,7 @@ CREATE TABLE `tbl_laporan` (
   `NIM` varchar(30) NOT NULL,
   `NIP` varchar(30) NOT NULL,
   `No_identitas` varchar(30) NOT NULL,
+  `Keterangan` varchar(255) NOT NULL,
   `Berkas` varchar(255) NOT NULL,
   `Tanggal` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -339,8 +337,8 @@ CREATE TABLE `tbl_laporan` (
 -- Dumping data for table `tbl_laporan`
 --
 
-INSERT INTO `tbl_laporan` (`Id_laporan`, `Id_pelaksanaan`, `NIM`, `NIP`, `No_identitas`, `Berkas`, `Tanggal`) VALUES
-(21, 14, 'D1041151007', '987654321', '123', 'Untitled_(1).zip', '2021-01-04');
+INSERT INTO `tbl_laporan` (`Id_laporan`, `Id_pelaksanaan`, `NIM`, `NIP`, `No_identitas`, `Keterangan`, `Berkas`, `Tanggal`) VALUES
+(21, 14, 'D1041151007', '987654321', '123', 'Seminar', '', '2021-06-30');
 
 -- --------------------------------------------------------
 
@@ -393,7 +391,7 @@ CREATE TABLE `tbl_pelaksanaan` (
 
 INSERT INTO `tbl_pelaksanaan` (`Id_pelaksanaan`, `Id_tahun_pelaksanaan`, `Tahun`, `Periode`, `Tanggal_mulai`, `Tanggal_selesai`, `Pengajuan_seminar`, `Pelaksanaan_seminar`, `RevisiDpengumpulan`, `Tanggal_upload`) VALUES
 (13, 0, '2020', 2, '2020-12-25', '2021-02-25', '2021-01-25', '2021-01-29', '2021-02-28', '2021-01-07'),
-(14, 1, '2021', 1, '2021-03-21', '2021-05-21', '2021-04-18', '2021-04-20', '2021-05-28', '2021-03-01');
+(14, 1, '2021', 1, '2021-03-21', '2021-07-31', '2021-04-18', '2021-04-20', '2021-05-28', '2021-06-01');
 
 -- --------------------------------------------------------
 
@@ -407,6 +405,7 @@ CREATE TABLE `tbl_pembimbing_lapangan` (
   `NIM` varchar(30) NOT NULL,
   `Nama` varchar(50) NOT NULL,
   `No_identitas` varchar(50) NOT NULL,
+  `Password` varchar(255) NOT NULL,
   `Jabatan` varchar(100) NOT NULL,
   `Alamat_kantor` varchar(255) NOT NULL,
   `No_hp` varchar(20) NOT NULL,
@@ -418,10 +417,40 @@ CREATE TABLE `tbl_pembimbing_lapangan` (
 -- Dumping data for table `tbl_pembimbing_lapangan`
 --
 
-INSERT INTO `tbl_pembimbing_lapangan` (`Id`, `Id_proposal`, `NIM`, `Nama`, `No_identitas`, `Jabatan`, `Alamat_kantor`, `No_hp`, `File`, `Tanggal`) VALUES
-(20, 187, '6701174119', 'pak Dia', '1111111111', 'ketua', 'Jl imbonnnn', '08134567890111', 'Contoh_Desain_UML_Sistem_Informasi_Absen.pdf', '2020-08-08'),
-(23, 196, 'D1041151007', 'Pak Pembimbing', '1234', 'IT', 'Jl imbon raya', '08134567890', 'backdrop.pdf', '2021-01-20'),
-(28, 205, 'D111111111', 'Pak Pembimbing mahasiswi', '11111', 'IT', 'Jl imbon', '08134567890', 'Frame_1_(1).pdf', '2021-02-23');
+INSERT INTO `tbl_pembimbing_lapangan` (`Id`, `Id_proposal`, `NIM`, `Nama`, `No_identitas`, `Password`, `Jabatan`, `Alamat_kantor`, `No_hp`, `File`, `Tanggal`) VALUES
+(20, 187, '6701174119', 'pak Dia', '1111111111', '', 'ketua', 'Jl imbonnnn', '08134567890111', 'Contoh_Desain_UML_Sistem_Informasi_Absen.pdf', '2020-08-08'),
+(23, 196, 'D1041151007', 'Pak Pembimbing', '123', '$2y$10$pZ02jgLDlZehgTeDUIeup.FCfBQ.fNHE8TOF24//SojCUcaZbQZuW', 'IT ', 'Jl imbon ', '08134567890', 'backdrop.pdf', '2021-06-27'),
+(28, 205, 'D111111111', 'Pak Pembimbing mahasiswi', '11111', '', 'IT', 'Jl imbon', '08134567890', 'Frame_1_(1).pdf', '2021-02-23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_pengajuan`
+--
+
+CREATE TABLE `tbl_pengajuan` (
+  `Id_pengajuan` int(11) NOT NULL,
+  `Topik` varchar(255) NOT NULL,
+  `Abstrak` varchar(255) NOT NULL,
+  `Jumlah` int(11) NOT NULL,
+  `Instansi` varchar(255) NOT NULL,
+  `Alamat` varchar(255) NOT NULL,
+  `Narahubung` int(15) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `Konfirmasi` int(11) NOT NULL,
+  `Status` int(11) NOT NULL,
+  `Tanggal` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_pengajuan`
+--
+
+INSERT INTO `tbl_pengajuan` (`Id_pengajuan`, `Topik`, `Abstrak`, `Jumlah`, `Instansi`, `Alamat`, `Narahubung`, `Email`, `Konfirmasi`, `Status`, `Tanggal`) VALUES
+(3, 'd', 'd', 1, 'informatika', 'jl kuala behe', 909, 'mulidan131296@student.untan.ac.id', 2, 2, '2021-07-23'),
+(4, 'd', 'd', 1, 'informatika', 'jl kuala behe', 909, 'mulidan131296@student.untan.ac.id', 2, 2, '2021-07-23'),
+(5, 'd', 'v', 1, 'informatika', 'jl kuala behe', 909, 'mulidan131296@gmail.com', 2, 2, '2021-07-23'),
+(10, 'sistem', 'sistem', 1, 'test', 'jl daya nasional no 2', 2147483647, 'mulidan131296@student.untan.ac.id', 2, 2, '2021-07-27');
 
 -- --------------------------------------------------------
 
@@ -460,6 +489,8 @@ CREATE TABLE `tbl_proposal` (
   `nama` varchar(100) NOT NULL,
   `NIP` varchar(30) NOT NULL,
   `NamaDosen` varchar(100) NOT NULL,
+  `Status` int(11) NOT NULL DEFAULT 1,
+  `Tanggal_Status` date NOT NULL,
   `Tanggal_upload` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -467,10 +498,11 @@ CREATE TABLE `tbl_proposal` (
 -- Dumping data for table `tbl_proposal`
 --
 
-INSERT INTO `tbl_proposal` (`Id_proposal`, `Id_pelaksanaan`, `topik`, `NIM`, `Berkas`, `nama`, `NIP`, `NamaDosen`, `Tanggal_upload`) VALUES
-(187, 13, 'sistem informasi manajemen kerja praktek', '6701174119', '2015_2016-Ganjil.pdf', 'mahasiswa', '987654321', 'Pak Dosen', '2020-09-16'),
-(196, 14, 'sistem informasi manajemen kerja praktekaaa', 'D1041151007', 'backdrop.pdf', 'mulidan', '987654321', 'Pak Dosen', '2021-01-20'),
-(205, 14, 'sistem uji kompetensi', 'D1111111112', 'Frame_1_(7).pdf', 'mahasiswiii', '987654321', 'pakdosen', '2021-02-22');
+INSERT INTO `tbl_proposal` (`Id_proposal`, `Id_pelaksanaan`, `topik`, `NIM`, `Berkas`, `nama`, `NIP`, `NamaDosen`, `Status`, `Tanggal_Status`, `Tanggal_upload`) VALUES
+(187, 13, 'sistem informasi manajemen kerja praktek', '6701174119', '2015_2016-Ganjil.pdf', 'mahasiswa', '987654321', 'Pak Dosen', 2, '2021-05-28', '2020-09-16'),
+(196, 14, 'sistem informasi manajemen kerja praktekaaa', 'D1041151007', 'backdrop.pdf', 'mulidan', '987654321', 'Pak Dosen', 2, '2021-05-28', '2021-01-20'),
+(205, 14, 'sistem uji kompetensi', 'D1111111112', 'Frame_1_(7).pdf', 'mahasiswiii', '987654321', 'pakdosen', 2, '2021-05-28', '2021-02-22'),
+(206, 14, 'topik baru2', 'D1041151001', 'Transkrip.pdf', 'mahasiswa 2', '987654321', 'dosen123', 2, '2021-06-29', '2021-06-07');
 
 -- --------------------------------------------------------
 
@@ -492,8 +524,11 @@ CREATE TABLE `tbl_rencanajudul` (
 --
 
 INSERT INTO `tbl_rencanajudul` (`Id_rencanajudul`, `Id_tawaranjudul`, `NIM`, `Username`, `Status`, `Tanggal`) VALUES
-(34, 15, 'D111111111', 'mahasiswiii', '2', '2020-11-04'),
-(45, 21, 'D1041151007', 'mulidan', '2', '2021-01-07');
+(45, 21, 'D1041151007', 'mulidan', '2', '2021-01-07'),
+(59, 22, 'D1041151001', 'mahasiswa 2', '1', '2021-03-15'),
+(60, 20, 'D1041151001', 'mahasiswa 2', '1', '2021-03-15'),
+(61, 21, 'D1041151001', 'mahasiswa 2', '3', '2021-03-15'),
+(63, 24, 'D1041151001', 'mahasiswa 2', '2', '2021-06-23');
 
 -- --------------------------------------------------------
 
@@ -559,11 +594,12 @@ CREATE TABLE `tbl_tawaranjudul` (
 --
 
 INSERT INTO `tbl_tawaranjudul` (`Id_tawaranjudul`, `NIP`, `topik`, `Alamat`, `Jumlah`, `No_Hp`, `Instansi`, `Username`, `Id_pelaksanaan`, `Tanggal`) VALUES
-(9, '987654321', 'android', 'jl ayani 2', 1, '08123456789', 'pt perkasa', 'dosen123', 10, '23 Agustus 2020'),
-(15, '987654321', 'sistem uji kompetensi', 'jl untan', 1, '08134567890', 'informatika', 'pakdosen', 9, '03 Oktober 2020'),
-(16, '987654321', 'sistem informasi manajemen', 'jl ayani', 2, '08134567890', 'informatika', 'dosen123', 10, '02 Desember 2020'),
-(20, '987654321', 'topik baru', 'jl topik', 1, '089009090909', 'untan', 'dosen123', 13, '22 Desember 2020'),
-(21, '987654321', 'topik baru2', 'jl topik', 1, '08900123', 'untan', 'dosen123', 13, '02 Maret 2021');
+(20, '987654321', 'topik baru', 'jl topik', 1, '089009090909', 'untan', 'dosen123', 14, '22 Desember 2020'),
+(21, '987654321', 'topik baru2', 'jl topik', 1, '08900123', 'untan', 'dosen123', 14, '02 Maret 2021'),
+(22, '987654321', 'sistem informasi manajemen untan', 'untan', 1, '08134567890', 'Untan', 'Pak Dosen', 14, '09 Maret 2021'),
+(23, '0000', 'sistem pemetaan wilayah', 'Untan', 1, '08000000', 'Untan', 'tes', 14, '16 Maret 2021'),
+(24, '11111', 'Web Service', 'Jurusan Informatika', 1, '08134567890', 'informatika', 'admin', 14, '07 Juni 2021'),
+(36, '11111', 'd', 'jl kuala behe', 1, '08', 'informatika', 'admin', 14, '27 Juli 2021');
 
 -- --------------------------------------------------------
 
@@ -690,6 +726,12 @@ ALTER TABLE `tbl_pembimbing_lapangan`
   ADD UNIQUE KEY `NIM` (`NIM`);
 
 --
+-- Indexes for table `tbl_pengajuan`
+--
+ALTER TABLE `tbl_pengajuan`
+  ADD PRIMARY KEY (`Id_pengajuan`);
+
+--
 -- Indexes for table `tbl_persentasenilai`
 --
 ALTER TABLE `tbl_persentasenilai`
@@ -753,7 +795,7 @@ ALTER TABLE `tbl_dosen`
 -- AUTO_INCREMENT for table `tbl_kpdua`
 --
 ALTER TABLE `tbl_kpdua`
-  MODIFY `Id_Kpdua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `Id_Kpdua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `tbl_kpdua_a`
@@ -777,7 +819,7 @@ ALTER TABLE `tbl_kpdua_c`
 -- AUTO_INCREMENT for table `tbl_kpempat`
 --
 ALTER TABLE `tbl_kpempat`
-  MODIFY `Id_Kpempat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Id_Kpempat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_kpempat_a`
@@ -801,7 +843,7 @@ ALTER TABLE `tbl_kpempat_c`
 -- AUTO_INCREMENT for table `tbl_kptiga`
 --
 ALTER TABLE `tbl_kptiga`
-  MODIFY `Id_Kptiga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id_Kptiga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_laporan`
@@ -819,13 +861,19 @@ ALTER TABLE `tbl_mahasiswa`
 -- AUTO_INCREMENT for table `tbl_pelaksanaan`
 --
 ALTER TABLE `tbl_pelaksanaan`
-  MODIFY `Id_pelaksanaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `Id_pelaksanaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tbl_pembimbing_lapangan`
 --
 ALTER TABLE `tbl_pembimbing_lapangan`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `tbl_pengajuan`
+--
+ALTER TABLE `tbl_pengajuan`
+  MODIFY `Id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_persentasenilai`
@@ -837,13 +885,13 @@ ALTER TABLE `tbl_persentasenilai`
 -- AUTO_INCREMENT for table `tbl_proposal`
 --
 ALTER TABLE `tbl_proposal`
-  MODIFY `Id_proposal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
+  MODIFY `Id_proposal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=207;
 
 --
 -- AUTO_INCREMENT for table `tbl_rencanajudul`
 --
 ALTER TABLE `tbl_rencanajudul`
-  MODIFY `Id_rencanajudul` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `Id_rencanajudul` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `tbl_status`
@@ -861,7 +909,7 @@ ALTER TABLE `tbl_syaratseminar`
 -- AUTO_INCREMENT for table `tbl_tawaranjudul`
 --
 ALTER TABLE `tbl_tawaranjudul`
-  MODIFY `Id_tawaranjudul` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `Id_tawaranjudul` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`

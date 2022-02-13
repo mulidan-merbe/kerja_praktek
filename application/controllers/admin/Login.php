@@ -55,11 +55,11 @@ class Login extends CI_Controller
         $this->session->set_userdata($data);
         redirect(base_url("admin/beranda"));
       } else {
-        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password tidak terdaftar!</div>');
+        $this->session->set_flashdata('password', '<small class="text-danger pl-3">Password belum terdaftar!</small>');
         redirect('admin/login');
       }
     } else {
-      $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Username belum terdaftar!</div>');
+      $this->session->set_flashdata('noidentitas', '<small class="text-danger pl-3">No Identitas belum terdaftar!</small>');
       redirect('admin/login');
     }
   }

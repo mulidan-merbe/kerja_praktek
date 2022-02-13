@@ -13,6 +13,20 @@ class Model_Proposal extends CI_Model
         return $query->result();
     }
 
+    public function getbyNIM2($NIM)
+    {
+        $this->db->from('tbl_proposal p');
+        $this->db->where('NIM', $NIM);
+        $this->db->where('Status', 2);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getbyId($Id_proposal)
+    {
+        return $this->db->get_where('tbl_proposal', ['Id_proposal' => $Id_proposal])->result();
+    }
+
     public function getDataNIMLimit($NIM)
     {
         $this->db->from('tbl_proposal');
@@ -56,6 +70,16 @@ class Model_Proposal extends CI_Model
         $this->db->order_by('Id_proposal', 'DESC');
         $query = $this->db->get();
         return $query->result();
+    }
+
+    public function getbyNIP2($NIP)
+    {
+        $this->db->from('tbl_proposal r');
+        $this->db->join('tbl_status t', 't.Id = r.Status');
+        $this->db->where('NIP', $NIP);
+        $this->db->order_by('Id_proposal', 'DESC');
+        $query = $this->db->get();
+        return $query->num_rows();
     }
 
     public function getbydataNIP($NIP)
